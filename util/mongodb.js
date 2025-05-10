@@ -10,7 +10,7 @@ export async function connectToDatabase() {
   }
 
   // Connect to the database
-  await mongoose.connect(MONGODB_URI, {
+  await mongoose.connect(MONGODB_URI || NEXT_PUBLIC_MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });

@@ -16,15 +16,16 @@ const Hero = () => {
   return (
     <div className={showAnimation ? "fade-in" : "opacity-0"} id="home">
       <h1 className="text-5xl text-center lg:text-start lg:text-8xl font-bold">
-        SOFTWARE
+        Full-Stack
       </h1>
-      <h1 className="text-5xl text-center lg:text-start lg:text-8xl font-bold text-[#353334]">
-        ENGINEER
+      <h1 className="text-4xl text-center lg:text-start lg:text-7xl font-bold text-[#353334]">
+        Software Engineer
       </h1>
 
-      <p className="text-lg text-[#948A8A] lg:mt-6 mt-4 w-full lg:w-[55%] text-center lg:text-start lg:px-0 px-2">
-        Passionate about creating intuitive and engaging user experiences.
-        Specialize in transforming ideas into beautifully crafted products.
+      <p className="text-lg text-[#948A8A] lg:mt-6 mt-4 w-full lg:w-[78%] text-center lg:text-start lg:px-0 px-2">
+        Architecting modern applications using robust backend systems and
+        intuitive frontend interfaces. I turn complex problems into efficient,
+        full-cycle solutions.
       </p>
 
       {/* STAT */}

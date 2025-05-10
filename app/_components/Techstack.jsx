@@ -3,10 +3,58 @@ import React from "react";
 
 const Techstack = () => {
   const techIcons = [
+    // Frontend
+    { name: "HTML5", src: "/html.png" },
+    { name: "CSS3", src: "/css-3.png" },
+    {
+      name: "JavaScript",
+      src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg",
+    },
+    {
+      name: "React",
+      src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg",
+    },
+    {
+      name: "Next.js",
+      src: "https://cdn.worldvectorlogo.com/logos/nextjs-2.svg",
+    },
+    {
+      name: "Tailwind CSS",
+      src: "https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg",
+    },
     {
       name: "Bootstrap",
       src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg",
     },
+    { name: "Pug", src: "https://cdn.worldvectorlogo.com/logos/pug.svg" },
+
+    // Backend
+    {
+      name: "Node.js",
+      src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg",
+    },
+    {
+      name: "Express.js",
+      src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg",
+    },
+
+    // Version Control & Tools
+    {
+      name: "Git",
+      src: "https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg",
+    },
+    {
+      name: "Postman",
+      src: "https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg",
+    },
+
+    // Database
+    {
+      name: "MongoDB",
+      src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg",
+    },
+
+    // Languages
     {
       name: "C",
       src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg",
@@ -16,68 +64,22 @@ const Techstack = () => {
       src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg",
     },
     {
-      name: "CSS3",
-      src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg",
-    },
-    {
-      name: "Express.js",
-      src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg",
-    },
-    {
-      name: "Git",
-      src: "https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg",
-    },
-    {
-      name: "HTML5",
-      src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg",
-    },
-    {
       name: "Java",
       src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg",
-    },
-    {
-      name: "JavaScript",
-      src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg",
-    },
-    {
-      name: "MongoDB",
-      src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg",
-    },
-    {
-      name: "Next.js",
-      src: "https://cdn.worldvectorlogo.com/logos/nextjs-2.svg",
-    },
-    {
-      name: "Node.js",
-      src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg",
-    },
-    {
-      name: "Pandas",
-      src: "https://raw.githubusercontent.com/devicons/devicon/2ae2a900d2f041da66e950e4d48052658d850630/icons/pandas/pandas-original.svg",
-    },
-    {
-      name: "Postman",
-      src: "https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg",
-    },
-    {
-      name: "Pug",
-      src: "https://cdn.worldvectorlogo.com/logos/pug.svg",
     },
     {
       name: "Python",
       src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg",
     },
+
+    // Data Libraries
     {
-      name: "React",
-      src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg",
+      name: "Pandas",
+      src: "https://raw.githubusercontent.com/devicons/devicon/2ae2a900d2f041da66e950e4d48052658d850630/icons/pandas/pandas-original.svg",
     },
     {
       name: "Seaborn",
       src: "https://seaborn.pydata.org/_images/logo-mark-lightbg.svg",
-    },
-    {
-      name: "Tailwind CSS",
-      src: "https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg",
     },
   ];
 

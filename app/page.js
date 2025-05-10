@@ -13,16 +13,16 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <div className="mt-24">
+      <div className="mt-24 snap-start">
         <Project />
       </div>
-      <div className="mt-24">
+      <div className="mt-24 snap-start">
         <Experience />
       </div>
-      <div className="lg:mt-24 mt-16">
+      <div className="lg:mt-24 mt-16 snap-start">
         <Techstack />
       </div>
-      <div className="mt-24">
+      <div className="mt-24 snap-start">
         <Contact />
       </div>
     </>

@@ -1,8 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import Header from "./_components/Header";
-import Sidebar from "./_components/Sidebar";
-import "./globals.css";
 import HeroCard from "./_components/HeroCard";
+import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,18 +20,24 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-theme="light">
+    <html lang="en" data-theme="light" className="no-scrollbar">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex bg-[#151312] text-white lg:h-screen lg:overflow-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#151312] text-white lg:h-screen overflow-hidden overflow-y-scroll no-scrollbar`}
       >
-        <Sidebar />
-        <div className="flex-1 flex flex-col overflow-hidden">
-          <Header />
-          <div className="flex lg:flex-row flex-col items-start w-full gap-4 flex-1 lg:overflow-hidden">
-            <div className="lg:w-[25%] w-[90%] lg:overflow-hidden mx-auto">
+        <div className="flex flex-col lg:max-h-screen no-scrollbar">
+          <div className=" h-[50px]">
+            <Header />
+          </div>
+
+          {/* Main Layout */}
+          <div className="flex flex-col lg:flex-row w-full max-w-7xl mx-auto px-4 py-6 gap-6 flex-1">
+            {/* Sidebar */}
+            <aside className="w-full lg:w-1/3 flex-shrink-0 ">
               <HeroCard />
-            </div>
-            <main className="p-6 lg:w-[70%] w-full lg:overflow-y-auto h-full no-scrollbar">
+            </aside>
+
+            {/* Main Content */}
+            <main className="w-full lg:w-3/3 flex-1 overflow-y-scroll no-scrollbar lg:max-h-[85vh]">
               {children}
             </main>
           </div>

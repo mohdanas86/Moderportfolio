@@ -1,113 +1,3 @@
-// "use client";
-
-// import React from "react";
-// import { Button } from "@/components/ui/button";
-// import {
-//   Sheet,
-//   SheetClose,
-//   SheetContent,
-//   SheetFooter,
-//   SheetHeader,
-//   SheetTitle,
-//   SheetTrigger,
-// } from "@/components/ui/sheet";
-// import Link from "next/link";
-// import { Menu } from "lucide-react";
-// import { usePathname } from "next/navigation";
-
-// const Header = () => {
-//   const pathname = usePathname(); // Use to determine active navigation
-
-//   return (
-//     <header className="shadow-sm  p-4 flex justify-between items-center min-h-[60px] text-black">
-//       {/* Site Name or Logo */}
-//       <div>
-//         <Link
-//           href="/"
-//           className="text-xl font-bold text-white hover:text-[#353334] lg:hidden"
-//         >
-//           Anas Alam
-//         </Link>
-//       </div>
-
-//       {/* Mobile Navigation Menu - Visible Only on Small Screens */}
-//       <Sheet>
-//         <SheetTrigger asChild>
-//           <Button
-//             variant="outline"
-//             className="lg:hidden" // Hide button on large screens
-//             aria-label="Open Menu"
-//           >
-//             <Menu className="w-6 h-6 text-black" />
-//           </Button>
-//         </SheetTrigger>
-//         <SheetContent className="w-64 bg-gray-50">
-//           <SheetHeader>
-//             <SheetTitle className="text-xl font-bold">Anas</SheetTitle>
-//           </SheetHeader>
-//           <nav>
-//             <ul className="space-y-2 mt-4 text-black">
-//               <Link href="/">
-//                 <li
-//                   className={`p-4 rounded-lg cursor-pointer ${
-//                     pathname === "/"
-//                       ? "bg-blue-50 text-[#353334] font-semibold"
-//                       : "hover:bg-gray-100"
-//                   }`}
-//                 >
-//                   Home
-//                 </li>
-//               </Link>
-//               <Link href="/about">
-//                 <li
-//                   className={`p-4 rounded-lg cursor-pointer ${
-//                     pathname === "/about"
-//                       ? "bg-blue-50 text-[#353334] font-semibold"
-//                       : "hover:bg-gray-100"
-//                   }`}
-//                 >
-//                   Project
-//                 </li>
-//               </Link>
-//               <Link href="/projects">
-//                 <li
-//                   className={`p-4 rounded-lg cursor-pointer ${
-//                     pathname === "/projects"
-//                       ? "bg-blue-50 text-[#353334] font-semibold"
-//                       : "hover:bg-gray-100"
-//                   }`}
-//                 >
-//                   Expreance
-//                 </li>
-//               </Link>
-//               <Link href="/contact">
-//                 <li
-//                   className={`p-4 rounded-lg cursor-pointer ${
-//                     pathname === "/contact"
-//                       ? "bg-blue-50 text-[#353334] font-semibold"
-//                       : "hover:bg-gray-100"
-//                   }`}
-//                 >
-//                   Contact
-//                 </li>
-//               </Link>
-//             </ul>
-//           </nav>
-//           <SheetFooter className="mt-6">
-//             <SheetClose asChild>
-//               <Button className="w-full" variant="primary">
-//                 Close Menu
-//               </Button>
-//             </SheetClose>
-//           </SheetFooter>
-//         </SheetContent>
-//       </Sheet>
-//     </header>
-//   );
-// };
-
-// export default Header;
-
 "use client";
 
 import React from "react";
@@ -136,87 +26,183 @@ const Header = () => {
   const pathname = usePathname(); // Use to determine active navigation
 
   return (
-    <header className="shadow-sm p-4 flex justify-between items-center min-h-[60px] text-black">
+    <header className="shadow-md p-4 flex justify-between items-center max-h-[60px] bg-[#1e1e1e] text-white">
       {/* Site Name or Logo */}
-      <div>
+      <div className="flex items-center gap-2">
         <Link
           href="/"
-          className="text-xl font-bold text-white hover:text-[#353334] lg:hidden"
+          className="text-xl font-bold text-white hover:text-[#353334] transition duration-300"
         >
           Anas Alam
         </Link>
       </div>
 
+      {/* Desktop Navigation */}
+      <nav className="hidden lg:flex justify-between items-center gap-8 text-white">
+        <ul className="flex gap-6">
+          <Link href="/">
+            <li
+              className={`p-3 relative rounded-lg flex items-center gap-3 cursor-pointer transition-all duration-300 ${
+                pathname === "/" ? "text-[#FF7A00] " : "hover:text-[#FF7A00]"
+              }`}
+            >
+              {/* <Home className="w-5 h-5 text-white" />  */}
+              Home
+              {pathname === "/" && (
+                <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
+              )}
+            </li>
+          </Link>
+          <Link href="/projects">
+            <li
+              className={`p-3 relative rounded-lg flex items-center gap-3 cursor-pointer transition-all duration-300 ${
+                pathname === "/projects"
+                  ? "text-[#FF7A00] "
+                  : "hover:text-[#FF7A00]"
+              }`}
+            >
+              {/* <FolderGit2 className="w-5 h-5 text-white" />  */}
+              Projects
+              {pathname === "/projects" && (
+                <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
+              )}
+            </li>
+          </Link>
+          <Link href="/experience">
+            <li
+              className={`p-3 relative rounded-lg flex items-center gap-3 cursor-pointer transition-all duration-300 ${
+                pathname === "/experience"
+                  ? "text-[#FF7A00] "
+                  : "hover:text-[#FF7A00]"
+              }`}
+            >
+              {/* <Briefcase className="w-5 h-5 text-white" />  */}
+              Experience
+              {pathname === "/experience" && (
+                <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
+              )}
+            </li>
+          </Link>
+          <Link href="/tools">
+            <li
+              className={`p-3 relative rounded-lg flex items-center gap-3 cursor-pointer transition-all duration-300 ${
+                pathname === "/tools"
+                  ? "text-[#FF7A00] "
+                  : "hover:text-[#FF7A00]"
+              }`}
+            >
+              {/* <Wrench className="w-5 h-5 text-white" /> */}
+              Tools
+              {pathname === "/tools" && (
+                <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
+              )}
+            </li>
+          </Link>
+          <Link href="/contact">
+            <li
+              className={`p-3 relative rounded-lg flex items-center gap-3 cursor-pointer transition-all duration-300 ${
+                pathname === "/contact"
+                  ? "text-[#FF7A00] "
+                  : "hover:text-[#FF7A00]"
+              }`}
+            >
+              {/* <Headset className="w-5 h-5 text-white" />  */}
+              Contact
+              {pathname === "/contact" && (
+                <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
+              )}
+            </li>
+          </Link>
+        </ul>
+      </nav>
+
       {/* Mobile Navigation Menu - Visible Only on Small Screens */}
       <Sheet>
         <SheetTrigger asChild>
           <Button
-            variant="outline"
-            className="lg:hidden" // Hide button on large screens
+            variant="ghost"
             aria-label="Open Menu"
+            className="hover:text-[#FF7A00] transition-all duration-300 lg:hidden hover:bg-transparent"
           >
-            <Menu className="w-6 h-6 text-black" />
+            <Menu className="w-6 h-6 text-white" />
           </Button>
         </SheetTrigger>
-        <SheetContent className="w-64 bg-gray-50">
+        <SheetContent className="w-64 bg-[#1e1e1e]">
           <SheetHeader>
-            <SheetTitle className="text-xl font-bold">Anas Alam</SheetTitle>
+            <SheetTitle className="text-xl font-bold text-white text-start">
+              Anas Alam
+            </SheetTitle>
           </SheetHeader>
           <nav>
-            <ul className="space-y-2 mt-4 text-black">
+            <ul className="space-y-4 mt-4 text-white">
               <Link href="/">
                 <li
-                  className={`p-4 rounded-lg flex items-center gap-3 cursor-pointer ${
+                  className={`p-4 rounded-lg flex items-center gap-3 cursor-pointer transition-all duration-300 ${
                     pathname === "/"
-                      ? "bg-blue-50 text-[#353334] font-semibold"
-                      : "hover:bg-gray-100"
+                      ? "text-[#FF7A00] "
+                      : "hover:text-[#FF7A00]"
                   }`}
                 >
-                  <Home className="w-5 h-5 text-black" /> Home
+                  <Home className="w-5 h-5 text-white" /> Home
+                  {pathname === "/" && (
+                    <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
+                  )}
                 </li>
               </Link>
               <Link href="/projects">
                 <li
-                  className={`p-4 rounded-lg flex items-center gap-3 cursor-pointer ${
+                  className={`p-4 rounded-lg flex items-center gap-3 cursor-pointer transition-all duration-300 ${
                     pathname === "/projects"
-                      ? "bg-blue-50 text-[#353334] font-semibold"
-                      : "hover:bg-gray-100"
+                      ? "text-[#FF7A00] "
+                      : "hover:text-[#FF7A00]"
                   }`}
                 >
-                  <FolderGit2 className="w-5 h-5 text-black" /> Projects
+                  <FolderGit2 className="w-5 h-5 text-white" /> Projects
+                  {pathname === "/projects" && (
+                    <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
+                  )}
                 </li>
               </Link>
               <Link href="/experience">
                 <li
-                  className={`p-4 rounded-lg flex items-center gap-3 cursor-pointer ${
+                  className={`p-4 rounded-lg flex items-center gap-3 cursor-pointer transition-all duration-300 ${
                     pathname === "/experience"
-                      ? "bg-blue-50 text-[#353334] font-semibold"
-                      : "hover:bg-gray-100"
+                      ? "text-[#FF7A00] "
+                      : "hover:text-[#FF7A00]"
                   }`}
                 >
-                  <Briefcase className="w-5 h-5 text-black" /> Experience
+                  <Briefcase className="w-5 h-5 text-white" /> Experience
+                  {pathname === "/experience" && (
+                    <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
+                  )}
                 </li>
               </Link>
               <Link href="/tools">
                 <li
-                  className={`p-4 rounded-lg flex items-center gap-3 cursor-pointer ${
+                  className={`p-4 rounded-lg flex items-center gap-3 cursor-pointer transition-all duration-300 ${
                     pathname === "/tools"
-                      ? "bg-blue-50 text-[#353334] font-semibold"
-                      : "hover:bg-gray-100"
+                      ? "text-[#FF7A00] "
+                      : "hover:text-[#FF7A00]"
                   }`}
                 >
-                  <Wrench className="w-5 h-5 text-black" /> Tools
+                  <Wrench className="w-5 h-5 text-white" /> Tools
+                  {pathname === "/tools" && (
+                    <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
+                  )}
                 </li>
               </Link>
               <Link href="/contact">
                 <li
-                  className={`p-4 rounded-lg flex items-center gap-3 cursor-pointer ${
+                  className={`p-4 rounded-lg flex items-center gap-3 cursor-pointer transition-all duration-300 ${
                     pathname === "/contact"
-                      ? "bg-blue-50 text-[#353334] font-semibold"
-                      : "hover:bg-gray-100"
+                      ? "text-[#FF7A00] "
+                      : "hover:text-[#FF7A00]"
                   }`}
                 >
-                  <Headset className="w-5 h-5 text-black" /> Contact
+                  <Headset className="w-5 h-5 text-white" /> Contact
+                  {pathname === "/contact" && (
+                    <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
+                  )}
                 </li>
               </Link>
             </ul>
