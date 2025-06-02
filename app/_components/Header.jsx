@@ -19,6 +19,7 @@ import {
   Headset,
   Home,
   Wrench,
+  Award,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 
@@ -38,7 +39,7 @@ const Header = () => {
       </div>
 
       {/* Desktop Navigation */}
-      <nav className="hidden lg:flex justify-between items-center gap-8 text-white">
+      <nav className="hidden lg:flex justify-between items-center gap-6 text-white">
         <ul className="flex gap-6">
           <Link href="/">
             <li
@@ -109,6 +110,34 @@ const Header = () => {
               {/* <Headset className="w-5 h-5 text-white" />  */}
               Contact
               {pathname === "/contact" && (
+                <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
+              )}
+            </li>
+          </Link>{" "}
+          <Link href="/badges">
+            <li
+              className={`p-3 relative rounded-lg flex items-center gap-3 cursor-pointer transition-all duration-300 ${
+                pathname === "/badges"
+                  ? "text-[#FF7A00] "
+                  : "hover:text-[#FF7A00]"
+              }`}
+            >
+              Badges
+              {pathname === "/badges" && (
+                <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
+              )}
+            </li>
+          </Link>{" "}
+          <Link href="/resume">
+            <li
+              className={`p-3 relative rounded-lg flex items-center gap-3 cursor-pointer transition-all duration-300 ${
+                pathname === "/resume"
+                  ? "text-[#FF7A00] "
+                  : "hover:text-[#FF7A00]"
+              }`}
+            >
+              Resume
+              {pathname === "/resume" && (
                 <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
               )}
             </li>
@@ -190,7 +219,7 @@ const Header = () => {
                     <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
                   )}
                 </li>
-              </Link>
+              </Link>{" "}
               <Link href="/contact">
                 <li
                   className={`p-4 rounded-lg flex items-center gap-3 cursor-pointer transition-all duration-300 ${
@@ -201,6 +230,20 @@ const Header = () => {
                 >
                   <Headset className="w-5 h-5 text-white" /> Contact
                   {pathname === "/contact" && (
+                    <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
+                  )}
+                </li>
+              </Link>
+              <Link href="/badges">
+                <li
+                  className={`p-4 rounded-lg flex items-center gap-3 cursor-pointer transition-all duration-300 ${
+                    pathname === "/badges"
+                      ? "text-[#FF7A00] "
+                      : "hover:text-[#FF7A00]"
+                  }`}
+                >
+                  <Award className="w-5 h-5 text-white" /> Badges
+                  {pathname === "/badges" && (
                     <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
                   )}
                 </li>

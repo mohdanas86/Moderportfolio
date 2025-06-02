@@ -161,9 +161,8 @@ const HeroCard = () => {
               Anas Alam
             </h2>
             <h4 className="font-medium text-sm md:text-base text-white/90 leading-tight">
-              Founder @ Fynnsera | Full-Stack Developer & Data Science Explorer
-              | Ex-Frontend Intern @ ChartsMaze & Codexintern | Open Source @
-              GirlScript
+              Full stack Intern @ Blue Planet | Full-Stack Developer | Data
+              Science Explorer
             </h4>
           </div>
 
@@ -186,11 +185,11 @@ const HeroCard = () => {
         </div>
 
         {/* Decorative Elements */}
-        <span className="absolute top-[35%] left-[58%] w-6 h-6 md:w-8 md:h-8 bg-[#FF7A00] rounded-full text-white flex items-center justify-center z-50">
+        <span className="absolute lg:top-[35%] lg:left-[58%] top-[30%] left-[58%] w-6 h-6 md:w-8 md:h-8 bg-[#FF7A00] rounded-full text-white flex items-center justify-center z-50">
           <Flame className="w-4 h-4 md:w-5 md:h-5" />
         </span>
 
-        <img
+        {/* <img
           src="/lines.png"
           alt="decorative lines"
           className="absolute top-[60%] left-0 rotate-45 w-[45%] md:w-[50%] opacity-75"
@@ -199,7 +198,7 @@ const HeroCard = () => {
           src="/lines.png"
           alt="decorative lines"
           className="absolute top-[60%] right-0 -rotate-45 w-[45%] md:w-[50%] opacity-75 transform scale-x-[-1]"
-        />
+        /> */}
 
         <style jsx>{`
           .fade-in {
