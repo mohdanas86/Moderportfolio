@@ -43,11 +43,11 @@ function Contact() {
   }
 
   return (
-    <div className="fade-in" id="contact">
-      <h1 className="text-center lg:text-start text-5xl lg:text-7xl font-bold uppercase">
+    <div className="fade-in py-16" id="contact">
+      <h1 className="text-center text-5xl lg:text-7xl font-bold uppercase">
         LET'S WORK
       </h1>
-      <h1 className="text-center lg:text-start text-5xl lg:text-7xl font-bold text-[#353334] uppercase">
+      <h1 className="text-center text-5xl lg:text-7xl font-bold text-[#353334] uppercase">
         TOGETHER
       </h1>
       <div className=" mt-12 lg:w-[45%] w-[95%] mx-auto">

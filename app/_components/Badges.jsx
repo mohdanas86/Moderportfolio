@@ -178,53 +178,6 @@ const Badges = () => {
   return (
     <div className={`${showAnimation ? "fade-in" : "opacity-0"}`} id="badges">
       {/* Achievement Overview */}
-      <section className="py-8 px-4 md:px-8 max-w-7xl mx-auto">
-        <Card className="bg-white border border-gray-200 shadow-md rounded-2xl">
-          <CardHeader className="text-center pb-2">
-            <CardTitle className="text-2xl md:text-3xl font-bold text-[#353334] tracking-tight">
-              Professional Achievement Overview
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="text-center">
-                <div className="text-4xl font-bold text-[#353334] mb-2">
-                  {allSkillBadges.length}
-                </div>
-                <Badge
-                  variant="outline"
-                  className="mb-3 border-[#FF7A00] text-[#FF7A00] bg-white"
-                >
-                  Google Cloud Badges
-                </Badge>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-[#353334] mb-2">
-                  {certificates.length}
-                </div>
-                <Badge
-                  variant="outline"
-                  className="mb-3 border-blue-400 text-blue-500 bg-white"
-                >
-                  Professional Certificates
-                </Badge>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-[#353334] mb-2">
-                  {Object.keys(skillBadges).length +
-                    new Set(certificates.map((c) => c.type)).size}
-                </div>
-                <Badge
-                  variant="outline"
-                  className="mb-3 border-green-400 text-green-600 bg-white"
-                >
-                  Expertise Areas
-                </Badge>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </section>
 
       {/* Google Cloud Skill Badges Section */}
       <section className="py-16 px-4 md:px-8 max-w-7xl mx-auto">
@@ -279,41 +232,6 @@ const Badges = () => {
             </div>
           </div>
         ))}
-        {/* Skill Badges Summary */}
-        <div className="mt-14 flex justify-center">
-          <Card className="bg-white border border-gray-200 shadow-md rounded-2xl">
-            <CardContent className="px-6 md:px-8 py-6">
-              <div className="flex flex-wrap items-center justify-center gap-8">
-                <div className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold text-[#948A8A]">
-                    {allSkillBadges.length}
-                  </div>
-                  <Badge
-                    variant="outline"
-                    className="mt-2 border-[#948A8A] text-[#948A8A] bg-white"
-                  >
-                    Skill Badges
-                  </Badge>
-                </div>
-                <Separator
-                  orientation="vertical"
-                  className="h-12 bg-gray-200"
-                />
-                <div className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold text-[#948A8A]">
-                    {Object.keys(skillBadges).length}
-                  </div>
-                  <Badge
-                    variant="outline"
-                    className="mt-2 border-[#948A8A] text-[#948A8A] bg-white"
-                  >
-                    Expertise Areas
-                  </Badge>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
       </section>
 
       {/* Professional Certificates Section */}
@@ -376,41 +294,6 @@ const Badges = () => {
               </CardContent>
             </Card>
           ))}
-        </div>
-        {/* Certificates Summary */}
-        <div className="mt-14 flex justify-center">
-          <Card className="bg-white border border-gray-200 shadow-md rounded-2xl">
-            <CardContent className="px-6 md:px-8 py-6">
-              <div className="flex flex-wrap items-center justify-center gap-8">
-                <div className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold text-[#353334]">
-                    {certificates.length}
-                  </div>
-                  <Badge
-                    variant="outline"
-                    className="mt-2 border-[#FF7A00] text-[#FF7A00] bg-white"
-                  >
-                    Certificates
-                  </Badge>
-                </div>
-                <Separator
-                  orientation="vertical"
-                  className="h-12 bg-gray-200"
-                />
-                <div className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold text-[#353334]">
-                    {new Set(certificates.map((c) => c.type)).size}
-                  </div>
-                  <Badge
-                    variant="outline"
-                    className="mt-2 border-green-400 text-green-600 bg-white"
-                  >
-                    Categories
-                  </Badge>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
         </div>
       </section>
       <style jsx>{`

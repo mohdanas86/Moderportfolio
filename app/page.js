@@ -11,20 +11,26 @@ const Contact = dynamic(() => import("./_components/Contact"));
 
 export default function Home() {
   return (
-    <>
-      <Hero />
-      <div className="mt-24 snap-start">
+    <div className="">
+      <section className="snap-start">
+        <Hero />
+      </section>
+
+      <section className="snap-start">
         <Project />
-      </div>
-      <div className="mt-24 snap-start">
+      </section>
+
+      <section className="snap-start">
         <Experience />
-      </div>
-      <div className="lg:mt-24 mt-16 snap-start">
+      </section>
+
+      <section className="snap-start">
         <Techstack />
-      </div>
-      <div className="mt-24 snap-start">
+      </section>
+
+      <section className="snap-start ">
         <Contact />
-      </div>
-    </>
+      </section>
+    </div>
   );
 }

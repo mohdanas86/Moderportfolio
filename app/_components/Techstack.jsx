@@ -84,11 +84,11 @@ const Techstack = () => {
   ];
 
   return (
-    <div className="fade-in-animation" id="tools">
-      <h1 className="text-5xl text-center lg:text-start lg:text-7xl font-bold uppercase">
+    <div className="fade-in-animation py-16" id="tools">
+      <h1 className="text-5xl text-center lg:text-7xl font-bold uppercase">
         Tools &
       </h1>
-      <h1 className="text-5xl text-center lg:text-start lg:text-7xl font-bold text-[#353334] uppercase">
+      <h1 className="text-5xl text-center lg:text-7xl font-bold text-[#353334] uppercase">
         Stacks
       </h1>
 

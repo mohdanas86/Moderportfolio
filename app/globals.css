@@ -69,10 +69,35 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Optimized scroll behavior */
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+  
+  /* Better text rendering */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  
+  /* Mobile-specific optimizations */
+  @media (max-width: 768px) {
+    body {
+      font-size: 16px; /* Prevent zoom on iOS */
+    }
+  }
+  
+  /* Prevent horizontal scroll */
+  body, html {
+    overflow-x: hidden;
+    width: 100%;
+  }
 }
 
-
-
+/* Custom scrollbar styles */
 .no-scrollbar {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -81,6 +106,111 @@ body {
   display: none; /* Chrome, Safari, and Opera */
 }
 
-html {
-  scroll-behavior: smooth;
+/* Better mobile touch targets */
+@layer utilities {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Responsive spacing utilities */
+  .section-spacing {
+    @apply mt-8 sm:mt-12 lg:mt-16 xl:mt-20;
+  }
+  
+  .container-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Smooth transitions for performance */
+  .smooth-transition {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Fix for mobile navigation items */
+  .mobile-nav-item {
+    @apply text-white;
+  }
+  
+  .mobile-nav-item:hover {
+    @apply text-[#FF7A00];
+  }
+  
+  .mobile-nav-item.active {
+    @apply text-[#FF7A00] bg-[#FF7A00]/10;
+  }
+}
+
+/* Mobile Header Optimizations */
+@media (max-width: 640px) {
+  /* Prevent horizontal overflow on mobile */
+  header {
+    overflow-x: hidden;
+  }
+  
+  /* Ensure proper touch targets */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Better text handling on small screens */
+  .truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  /* Larger touch targets for mobile */
+  .touch-target {
+    min-height: 48px;
+    min-width: 48px;
+  }
+  
+  /* Remove hover effects on touch devices */
+  *:hover {
+    transition: none !important;
+  }
+}
+
+/* Prevent layout shift during navigation */
+.nav-link {
+  will-change: color, background-color;
+  transform: translateZ(0);
+}
+
+/* Optimize mobile menu animations */
+@media (prefers-reduced-motion: no-preference) {
+  .mobile-menu-enter {
+    animation: slideInRight 0.2s ease-out;
+  }
+  
+  .mobile-menu-exit {
+    animation: slideOutRight 0.2s ease-in;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
 }

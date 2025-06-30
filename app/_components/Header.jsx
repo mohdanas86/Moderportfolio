@@ -26,237 +26,253 @@ import { usePathname } from "next/navigation";
 const Header = () => {
   const pathname = usePathname(); // Use to determine active navigation
 
+  // Debug logging to see what pathname we're getting
+  console.log("Current pathname:", pathname);
+
   return (
-    <header className="shadow-md p-4 flex justify-between items-center max-h-[60px] bg-[#1e1e1e] text-white">
-      {/* Site Name or Logo */}
-      <div className="flex items-center gap-2">
-        <Link
-          href="/"
-          className="text-xl font-bold text-white hover:text-[#353334] transition duration-300"
-        >
-          Anas Alam
-        </Link>
-      </div>
-
-      {/* Desktop Navigation */}
-      <nav className="hidden lg:flex justify-between items-center gap-6 text-white">
-        <ul className="flex gap-6">
-          <Link href="/">
-            <li
-              className={`p-3 relative rounded-lg flex items-center gap-3 cursor-pointer transition-all duration-300 ${
-                pathname === "/" ? "text-[#FF7A00] " : "hover:text-[#FF7A00]"
-              }`}
-            >
-              {/* <Home className="w-5 h-5 text-white" />  */}
-              Home
-              {pathname === "/" && (
-                <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
-              )}
-            </li>
-          </Link>
-          <Link href="/projects">
-            <li
-              className={`p-3 relative rounded-lg flex items-center gap-3 cursor-pointer transition-all duration-300 ${
-                pathname === "/projects"
-                  ? "text-[#FF7A00] "
-                  : "hover:text-[#FF7A00]"
-              }`}
-            >
-              {/* <FolderGit2 className="w-5 h-5 text-white" />  */}
-              Projects
-              {pathname === "/projects" && (
-                <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
-              )}
-            </li>
-          </Link>
-          <Link href="/experience">
-            <li
-              className={`p-3 relative rounded-lg flex items-center gap-3 cursor-pointer transition-all duration-300 ${
-                pathname === "/experience"
-                  ? "text-[#FF7A00] "
-                  : "hover:text-[#FF7A00]"
-              }`}
-            >
-              {/* <Briefcase className="w-5 h-5 text-white" />  */}
-              Experience
-              {pathname === "/experience" && (
-                <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
-              )}
-            </li>
-          </Link>
-          <Link href="/tools">
-            <li
-              className={`p-3 relative rounded-lg flex items-center gap-3 cursor-pointer transition-all duration-300 ${
-                pathname === "/tools"
-                  ? "text-[#FF7A00] "
-                  : "hover:text-[#FF7A00]"
-              }`}
-            >
-              {/* <Wrench className="w-5 h-5 text-white" /> */}
-              Tools
-              {pathname === "/tools" && (
-                <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
-              )}
-            </li>
-          </Link>
-          <Link href="/contact">
-            <li
-              className={`p-3 relative rounded-lg flex items-center gap-3 cursor-pointer transition-all duration-300 ${
-                pathname === "/contact"
-                  ? "text-[#FF7A00] "
-                  : "hover:text-[#FF7A00]"
-              }`}
-            >
-              {/* <Headset className="w-5 h-5 text-white" />  */}
-              Contact
-              {pathname === "/contact" && (
-                <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
-              )}
-            </li>
-          </Link>{" "}
-          <Link href="/badges">
-            <li
-              className={`p-3 relative rounded-lg flex items-center gap-3 cursor-pointer transition-all duration-300 ${
-                pathname === "/badges"
-                  ? "text-[#FF7A00] "
-                  : "hover:text-[#FF7A00]"
-              }`}
-            >
-              Badges
-              {pathname === "/badges" && (
-                <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
-              )}
-            </li>
-          </Link>{" "}
-          <Link href="/resume">
-            <li
-              className={`p-3 relative rounded-lg flex items-center gap-3 cursor-pointer transition-all duration-300 ${
-                pathname === "/resume"
-                  ? "text-[#FF7A00] "
-                  : "hover:text-[#FF7A00]"
-              }`}
-            >
-              Resume
-              {pathname === "/resume" && (
-                <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
-              )}
-            </li>
-          </Link>
-        </ul>
-      </nav>
-
-      {/* Mobile Navigation Menu - Visible Only on Small Screens */}
-      <Sheet>
-        <SheetTrigger asChild>
-          <Button
-            variant="ghost"
-            aria-label="Open Menu"
-            className="hover:text-[#FF7A00] transition-all duration-300 lg:hidden hover:bg-transparent"
+    <header className="w-full bg-[#1e1e1e] border-b border-gray-800/50 backdrop-blur-sm">
+      <div className="w-full h-[60px] lg:h-[70px] flex items-center justify-between px-3 sm:px-4 lg:px-8 max-w-7xl mx-auto">
+        {/* Site Logo/Name - Mobile optimized */}
+        <div className="flex-shrink-0 min-w-0">
+          <Link
+            href="/"
+            className="text-base sm:text-lg lg:text-xl xl:text-2xl font-bold text-white hover:text-[#FF7A00] transition-colors duration-200 truncate block"
           >
-            <Menu className="w-6 h-6 text-white" />
-          </Button>
-        </SheetTrigger>
-        <SheetContent className="w-64 bg-[#1e1e1e]">
-          <SheetHeader>
-            <SheetTitle className="text-xl font-bold text-white text-start">
-              Anas Alam
-            </SheetTitle>
-          </SheetHeader>
-          <nav>
-            <ul className="space-y-4 mt-4 text-white">
-              <Link href="/">
-                <li
-                  className={`p-4 rounded-lg flex items-center gap-3 cursor-pointer transition-all duration-300 ${
-                    pathname === "/"
-                      ? "text-[#FF7A00] "
-                      : "hover:text-[#FF7A00]"
-                  }`}
-                >
-                  <Home className="w-5 h-5 text-white" /> Home
-                  {pathname === "/" && (
-                    <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
-                  )}
-                </li>
+            Anas Alam
+          </Link>
+        </div>
+
+        {/* Desktop Navigation - Hidden on mobile */}
+        <nav className="hidden lg:flex items-center">
+          <ul className="flex items-center gap-1 xl:gap-2">
+            <li>
+              <Link
+                href="/"
+                className={`px-2 xl:px-3 py-2 rounded-lg transition-colors duration-200 text-sm xl:text-base ${
+                  pathname === "/"
+                    ? "text-[#FF7A00] bg-[#FF7A00]/10"
+                    : "text-white hover:text-[#FF7A00] hover:bg-[#FF7A00]/5"
+                }`}
+              >
+                Home
               </Link>
-              <Link href="/projects">
-                <li
-                  className={`p-4 rounded-lg flex items-center gap-3 cursor-pointer transition-all duration-300 ${
-                    pathname === "/projects"
-                      ? "text-[#FF7A00] "
-                      : "hover:text-[#FF7A00]"
-                  }`}
-                >
-                  <FolderGit2 className="w-5 h-5 text-white" /> Projects
-                  {pathname === "/projects" && (
-                    <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
-                  )}
-                </li>
+            </li>
+            <li>
+              <Link
+                href="/projects"
+                className={`px-2 xl:px-3 py-2 rounded-lg transition-colors duration-200 text-sm xl:text-base ${
+                  pathname === "/projects"
+                    ? "text-[#FF7A00] bg-[#FF7A00]/10"
+                    : "text-white hover:text-[#FF7A00] hover:bg-[#FF7A00]/5"
+                }`}
+              >
+                Projects
               </Link>
-              <Link href="/experience">
-                <li
-                  className={`p-4 rounded-lg flex items-center gap-3 cursor-pointer transition-all duration-300 ${
-                    pathname === "/experience"
-                      ? "text-[#FF7A00] "
-                      : "hover:text-[#FF7A00]"
-                  }`}
-                >
-                  <Briefcase className="w-5 h-5 text-white" /> Experience
-                  {pathname === "/experience" && (
-                    <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
-                  )}
-                </li>
+            </li>
+            <li>
+              <Link
+                href="/experience"
+                className={`px-2 xl:px-3 py-2 rounded-lg transition-colors duration-200 text-sm xl:text-base ${
+                  pathname === "/experience"
+                    ? "text-[#FF7A00] bg-[#FF7A00]/10"
+                    : "text-white hover:text-[#FF7A00] hover:bg-[#FF7A00]/5"
+                }`}
+              >
+                Experience
               </Link>
-              <Link href="/tools">
-                <li
-                  className={`p-4 rounded-lg flex items-center gap-3 cursor-pointer transition-all duration-300 ${
-                    pathname === "/tools"
-                      ? "text-[#FF7A00] "
-                      : "hover:text-[#FF7A00]"
-                  }`}
-                >
-                  <Wrench className="w-5 h-5 text-white" /> Tools
-                  {pathname === "/tools" && (
-                    <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
-                  )}
-                </li>
-              </Link>{" "}
-              <Link href="/contact">
-                <li
-                  className={`p-4 rounded-lg flex items-center gap-3 cursor-pointer transition-all duration-300 ${
-                    pathname === "/contact"
-                      ? "text-[#FF7A00] "
-                      : "hover:text-[#FF7A00]"
-                  }`}
-                >
-                  <Headset className="w-5 h-5 text-white" /> Contact
-                  {pathname === "/contact" && (
-                    <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
-                  )}
-                </li>
+            </li>
+            <li>
+              <Link
+                href="/tools"
+                className={`px-2 xl:px-3 py-2 rounded-lg transition-colors duration-200 text-sm xl:text-base ${
+                  pathname === "/tools"
+                    ? "text-[#FF7A00] bg-[#FF7A00]/10"
+                    : "text-white hover:text-[#FF7A00] hover:bg-[#FF7A00]/5"
+                }`}
+              >
+                Tools
               </Link>
-              <Link href="/badges">
-                <li
-                  className={`p-4 rounded-lg flex items-center gap-3 cursor-pointer transition-all duration-300 ${
-                    pathname === "/badges"
-                      ? "text-[#FF7A00] "
-                      : "hover:text-[#FF7A00]"
-                  }`}
-                >
-                  <Award className="w-5 h-5 text-white" /> Badges
-                  {pathname === "/badges" && (
-                    <span className="absolute bottom-2 left-0 w-full h-[1px] bg-[#FF7A00]"></span>
-                  )}
-                </li>
+            </li>
+            <li>
+              <Link
+                href="/contact"
+                className={`px-2 xl:px-3 py-2 rounded-lg transition-colors duration-200 text-sm xl:text-base ${
+                  pathname === "/contact"
+                    ? "text-[#FF7A00] bg-[#FF7A00]/10"
+                    : "text-white hover:text-[#FF7A00] hover:bg-[#FF7A00]/5"
+                }`}
+              >
+                Contact
               </Link>
-            </ul>
-          </nav>
-          <SheetFooter className="mt-6">
-            <SheetClose asChild>
-              <Button className="w-full">Close Menu</Button>
-            </SheetClose>
-          </SheetFooter>
-        </SheetContent>
-      </Sheet>
+            </li>
+            <li>
+              <Link
+                href="/badges"
+                className={`px-2 xl:px-3 py-2 rounded-lg transition-colors duration-200 text-sm xl:text-base ${
+                  pathname === "/badges"
+                    ? "text-[#FF7A00] bg-[#FF7A00]/10"
+                    : "text-white hover:text-[#FF7A00] hover:bg-[#FF7A00]/5"
+                }`}
+              >
+                Badges
+              </Link>
+            </li>
+          </ul>
+        </nav>
+
+        {/* Mobile Menu Button - Properly sized for touch */}
+        <div className="flex-shrink-0 lg:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button
+                variant="ghost"
+                size="sm"
+                aria-label="Open navigation menu"
+                className="w-10 h-10 p-0 hover:bg-[#FF7A00]/10 hover:text-[#FF7A00] transition-colors duration-200"
+              >
+                <Menu className="w-5 h-5 text-white" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent
+              side="right"
+              className="w-[280px] sm:w-[300px] bg-[#1e1e1e] border-l border-gray-800/50 p-0"
+            >
+              {/* Mobile Menu Header */}
+              <SheetHeader className="p-6 pb-4 border-b border-gray-800/50">
+                <SheetTitle className="text-xl font-bold text-white text-left">
+                  Explore
+                </SheetTitle>
+              </SheetHeader>
+
+              {/* Mobile Menu Navigation */}
+              <nav className="flex-1 p-6">
+                <ul className="space-y-2">
+                  <li>
+                    <SheetClose asChild>
+                      <Link
+                        href="/"
+                        className={`flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 ${
+                          pathname === "/"
+                            ? "text-[#FF7A00] bg-[#FF7A00]/10"
+                            : "text-white hover:text-[#FF7A00] hover:bg-white/5"
+                        }`}
+                      >
+                        <Home
+                          className="w-5 h-5 flex-shrink-0"
+                          style={{ color: "currentColor" }}
+                        />
+                        <span className="font-medium">Home</span>
+                      </Link>
+                    </SheetClose>
+                  </li>
+                  <li>
+                    <SheetClose asChild>
+                      <Link
+                        href="/projects"
+                        className={`flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 ${
+                          pathname === "/projects"
+                            ? "text-[#FF7A00] bg-[#FF7A00]/10"
+                            : "text-white hover:text-[#FF7A00] hover:bg-white/5"
+                        }`}
+                      >
+                        <FolderGit2
+                          className="w-5 h-5 flex-shrink-0"
+                          style={{ color: "currentColor" }}
+                        />
+                        <span className="font-medium">Projects</span>
+                      </Link>
+                    </SheetClose>
+                  </li>
+                  <li>
+                    <SheetClose asChild>
+                      <Link
+                        href="/experience"
+                        className={`flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 ${
+                          pathname === "/experience"
+                            ? "text-[#FF7A00] bg-[#FF7A00]/10"
+                            : "text-white hover:text-[#FF7A00] hover:bg-white/5"
+                        }`}
+                      >
+                        <Briefcase
+                          className="w-5 h-5 flex-shrink-0"
+                          style={{ color: "currentColor" }}
+                        />
+                        <span className="font-medium">Experience</span>
+                      </Link>
+                    </SheetClose>
+                  </li>
+                  <li>
+                    <SheetClose asChild>
+                      <Link
+                        href="/tools"
+                        className={`flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 ${
+                          pathname === "/tools"
+                            ? "text-[#FF7A00] bg-[#FF7A00]/10"
+                            : "text-white hover:text-[#FF7A00] hover:bg-white/5"
+                        }`}
+                      >
+                        <Wrench
+                          className="w-5 h-5 flex-shrink-0"
+                          style={{ color: "currentColor" }}
+                        />
+                        <span className="font-medium">Tools</span>
+                      </Link>
+                    </SheetClose>
+                  </li>
+                  <li>
+                    <SheetClose asChild>
+                      <Link
+                        href="/contact"
+                        className={`flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 ${
+                          pathname === "/contact"
+                            ? "text-[#FF7A00] bg-[#FF7A00]/10"
+                            : "text-white hover:text-[#FF7A00] hover:bg-white/5"
+                        }`}
+                      >
+                        <Headset
+                          className="w-5 h-5 flex-shrink-0"
+                          style={{ color: "currentColor" }}
+                        />
+                        <span className="font-medium">Contact</span>
+                      </Link>
+                    </SheetClose>
+                  </li>
+                  <li>
+                    <SheetClose asChild>
+                      <Link
+                        href="/badges"
+                        className={`flex items-center gap-3 p-3 rounded-lg transition-colors duration-200 ${
+                          pathname === "/badges"
+                            ? "text-[#FF7A00] bg-[#FF7A00]/10"
+                            : "text-white hover:text-[#FF7A00] hover:bg-white/5"
+                        }`}
+                      >
+                        <Award
+                          className="w-5 h-5 flex-shrink-0"
+                          style={{ color: "currentColor" }}
+                        />
+                        <span className="font-medium">Badges</span>
+                      </Link>
+                    </SheetClose>
+                  </li>
+                </ul>
+              </nav>
+
+              {/* Mobile Menu Footer */}
+              <SheetFooter className="p-6 pt-4 border-t border-gray-800/50">
+                <SheetClose asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full bg-transparent border-gray-600 text-white hover:bg-[#FF7A00]/10 hover:border-[#FF7A00] hover:text-[#FF7A00]"
+                  >
+                    Close Menu
+                  </Button>
+                </SheetClose>
+              </SheetFooter>
+            </SheetContent>
+          </Sheet>
+        </div>
+      </div>
     </header>
   );
 };

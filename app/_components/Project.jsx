@@ -71,11 +71,12 @@ const Project = () => {
   }, []);
 
   return (
-    <div className={showAnimation ? "fade-in" : "opacity-0"} id="project">
-      <h1 className="text-5xl lg:text-start text-center lg:text-7xl font-bold">
-        RECENT
-      </h1>
-      <h1 className="text-5xl lg:text-start text-center lg:text-7xl font-bold text-[#353334]">
+    <div
+      className={`${showAnimation ? "fade-in" : "opacity-0"} py-16`}
+      id="project"
+    >
+      <h1 className="text-5xl text-center lg:text-7xl font-bold">RECENT</h1>
+      <h1 className="text-5xl text-center lg:text-7xl font-bold text-[#353334]">
         PROJECTS
       </h1>
 

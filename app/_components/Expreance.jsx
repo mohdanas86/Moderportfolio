@@ -89,10 +89,11 @@ const Experience = () => {
   ];
 
   return (
-    <div className={showAnimation ? "fade-in" : "opacity-0"} id="experience">
-      <h1 className="text-5xl text-center lg:text-start lg:text-7xl font-bold">
-        EXPERIENCE
-      </h1>
+    <div
+      className={`${showAnimation ? "fade-in" : "opacity-0"} py-16`}
+      id="experience"
+    >
+      <h1 className="text-5xl text-center lg:text-7xl font-bold">EXPERIENCE</h1>
 
       <div className="experience-list mt-12 grid grid-cols-1 lg:gap-8 gap-6 w-full">
         {experienceData.map((experience, index) => (
