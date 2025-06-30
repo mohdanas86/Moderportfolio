@@ -164,22 +164,6 @@ const Badges = () => {
     "Technical Certifications & Skills": [
       {
         id: "cert-4",
-        image: "/certificates/cyber.png",
-        title: "Introduction to Cybersecurity",
-        issuer: "Cisco Networking Academy",
-        description:
-          "Foundational cybersecurity principles, threat detection, and network security fundamentals",
-      },
-      {
-        id: "cert-5",
-        image: "/certificates/intro-data-science.png",
-        title: "Introduction to Data Science",
-        issuer: "Simplilearn",
-        description:
-          "Data analysis, machine learning basics, and statistical modeling techniques",
-      },
-      {
-        id: "cert-6",
         image: "/certificates/postman.png",
         title: "Postman API Fundamentals Student Expert",
         issuer: "Canvas Credentials (Badgr)",
@@ -187,13 +171,29 @@ const Badges = () => {
           "API testing, documentation, and development using industry-standard tools",
       },
       {
-        id: "cert-7",
+        id: "cert-5",
         image:
           "/certificates/frontend_developer_react certificate (1)_page-0001.jpg",
         title: "Frontend Developer React Certificate",
         issuer: "HackerRank",
         description:
           "Advanced React.js development skills validated through practical coding assessments",
+      },
+      {
+        id: "cert-6",
+        image: "/certificates/cyber.png",
+        title: "Introduction to Cybersecurity",
+        issuer: "Cisco Networking Academy",
+        description:
+          "Foundational cybersecurity principles, threat detection, and network security fundamentals",
+      },
+      {
+        id: "cert-7",
+        image: "/certificates/intro-data-science.png",
+        title: "Introduction to Data Science",
+        issuer: "Simplilearn",
+        description:
+          "Data analysis, machine learning basics, and statistical modeling techniques",
       },
     ],
     "Competitions & Academic Achievements": [
@@ -220,10 +220,75 @@ const Badges = () => {
   const allSkillBadges = Object.values(skillBadges).flat();
   return (
     <div className={`${showAnimation ? "fade-in" : "opacity-0"}`} id="badges">
-      {/* Achievement Overview */}
+      {/* Professional Certificates Section */}
+      <section className="py-16 px-4 md:px-8 max-w-7xl mx-auto">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-2 text-[#353334]">
+            Professional
+          </h1>
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-semibold text-[#948A8A] mb-6 tracking-tight">
+            Certificates
+          </h2>
+          <p className="text-base md:text-lg text-[#948A8A] max-w-3xl mx-auto leading-relaxed">
+            Industry-recognized certifications from leading companies and
+            institutions, validating expertise across multiple domains and
+            showcasing commitment to professional growth.
+          </p>
+        </div>
+
+        {/* Category-wise certificate display */}
+        {Object.entries(certificates).map(([categoryName, certs]) => (
+          <div key={categoryName} className="mb-14">
+            <div className="flex items-center justify-center mb-8">
+              <Separator className="flex-1 bg-[#948A8A]" />
+              <Badge
+                variant="outline"
+                className="mx-4 px-5 py-1.5 text-base font-medium border-[#FF7A00] text-[#FF7A00] bg-white"
+              >
+                {categoryName}
+              </Badge>
+              <Separator className="flex-1 bg-[#948A8A]" />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {certs.map((cert) => (
+                <Card
+                  key={cert.id}
+                  className="group transition-all duration-300 hover:shadow-lg hover:scale-[1.02] bg-transparent text-white hover:bg-[#2726262e] rounded-xl overflow-hidden border-0"
+                >
+                  <div className="relative aspect-[4/3] bg-gray-50">
+                    <Image
+                      src={cert.image}
+                      alt={cert.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  </div>
+                  <CardHeader className="pb-2">
+                    <Badge
+                      variant="outline"
+                      className="self-start border-[#FF7A00] text-[#FF7A00] bg-transparent mb-2"
+                    >
+                      {cert.issuer}
+                    </Badge>
+                    <CardTitle className="text-lg md:text-xl text-white line-clamp-2 font-semibold">
+                      {cert.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <p className="text-[#948A8A] text-sm md:text-base leading-relaxed">
+                      {cert.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        ))}
+      </section>
 
       {/* Google Cloud Skill Badges Section */}
-      <section className="py-16 px-4 md:px-8 max-w-7xl mx-auto">
+      <section className="py-16 pt-0 px-4 md:px-8 max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-2 text-[#353334]">
             Google Cloud
@@ -277,72 +342,6 @@ const Badges = () => {
         ))}
       </section>
 
-      {/* Professional Certificates Section */}
-      <section className="py-16 px-4 md:px-8 max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-2 text-[#353334]">
-            Professional
-          </h1>
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-semibold text-[#948A8A] mb-6 tracking-tight">
-            Certificates
-          </h2>
-          <p className="text-base md:text-lg text-[#948A8A] max-w-3xl mx-auto leading-relaxed">
-            Industry-recognized certifications from leading companies and
-            institutions, validating expertise across multiple domains and
-            showcasing commitment to professional growth.
-          </p>
-        </div>
-
-        {/* Category-wise certificate display */}
-        {Object.entries(certificates).map(([categoryName, certs]) => (
-          <div key={categoryName} className="mb-14">
-            <div className="flex items-center justify-center mb-8">
-              <Separator className="flex-1 bg-[#948A8A]" />
-              <Badge
-                variant="outline"
-                className="mx-4 px-5 py-1.5 text-base font-medium border-[#FF7A00] text-[#FF7A00] bg-white"
-              >
-                {categoryName}
-              </Badge>
-              <Separator className="flex-1 bg-[#948A8A]" />
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {certs.map((cert) => (
-                <Card
-                  key={cert.id}
-                  className="group transition-all duration-300 hover:shadow-lg hover:scale-[1.02] border border-gray-200 bg-white rounded-xl overflow-hidden"
-                >
-                  <div className="relative aspect-[4/3] bg-gray-50">
-                    <Image
-                      src={cert.image}
-                      alt={cert.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
-                  </div>
-                  <CardHeader className="pb-2">
-                    <Badge
-                      variant="outline"
-                      className="self-start border-[#FF7A00] text-[#FF7A00] bg-white mb-2"
-                    >
-                      {cert.issuer}
-                    </Badge>
-                    <CardTitle className="text-lg md:text-xl text-[#353334] line-clamp-2 font-semibold">
-                      {cert.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="pt-0">
-                    <p className="text-[#948A8A] text-sm md:text-base leading-relaxed">
-                      {cert.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        ))}
-      </section>
       <style jsx>{`
         .fade-in {
           opacity: 1;

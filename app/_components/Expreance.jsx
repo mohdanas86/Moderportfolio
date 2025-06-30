@@ -82,7 +82,7 @@ const Experience = () => {
     >
       <h1 className="text-5xl text-center lg:text-7xl font-bold">EXPERIENCE</h1>
 
-      <div className="experience-list mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8 w-full max-w-7xl mx-auto">
+      <div className="experience-list mt-12 grid grid-cols-1 gap-6 lg:gap-8 w-full max-w-7xl mx-auto">
         {experienceData.map((experience, index) => (
           <div
             key={index}

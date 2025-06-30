@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Badges from "./_components/Badges";
 
 // Dynamically import components
 const Hero = dynamic(() => import("./_components/Hero"));
@@ -22,6 +23,10 @@ export default function Home() {
 
       <section className="snap-start">
         <Experience />
+      </section>
+
+      <section className="snap-start">
+        <Badges />
       </section>
 
       <section className="snap-start">
