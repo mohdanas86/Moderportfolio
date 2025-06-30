@@ -133,46 +133,89 @@ const Badges = () => {
     ],
   };
 
-  // Professional Certificates
-  const certificates = [
-    {
-      id: "cert-1",
-      image: "/certificates/Accenture UK_page-0001.jpg",
-      title: "Accenture UK - Software Engineering Job Simulation",
-      issuer: "Accenture",
-      type: "Professional Development",
-    },
-    {
-      id: "cert-2",
-      image:
-        "/certificates/frontend_developer_react certificate (1)_page-0001.jpg",
-      title: "Frontend Developer React Certificate",
-      issuer: "HackerRank",
-      type: "Technical Certification",
-    },
-    {
-      id: "cert-3",
-      image: "/certificates/object-automation-hackathon_page-0001.jpg",
-      title: "Object Automation Hackathon",
-      issuer: "Hackathon",
-      type: "Competition",
-    },
-    {
-      id: "cert-4",
-      image:
-        "/certificates/Participation _ Student_E Certificate-251-500-77_page-0001.jpg",
-      title: "Research Paper Participation Certificate",
-      issuer: "Educational Institution",
-      type: "Academic",
-    },
-    {
-      id: "cert-5",
-      image: "/certificates/Tata Group_page-0001.jpg",
-      title: "Tata Group - Professional Development Program",
-      issuer: "Tata Group",
-      type: "Professional Development",
-    },
-  ];
+  // Professional Certificates organized by category
+  const certificates = {
+    "Industry Simulations & Professional Development": [
+      {
+        id: "cert-1",
+        image: "/certificates/deloitte.png",
+        title: "Deloitte Australia - Data Analytics Job Simulation",
+        issuer: "Forage",
+        description:
+          "Hands-on experience with real-world data analytics challenges from a Big 4 consulting firm",
+      },
+      {
+        id: "cert-2",
+        image: "/certificates/Accenture UK_page-0001.jpg",
+        title: "Accenture UK - Software Engineering Job Simulation",
+        issuer: "Accenture",
+        description:
+          "Professional software engineering practices and methodologies from a global technology leader",
+      },
+      {
+        id: "cert-3",
+        image: "/certificates/Tata Group_page-0001.jpg",
+        title: "Tata Group - Professional Development Program",
+        issuer: "Tata Group",
+        description:
+          "Leadership and professional skills development from one of India's largest conglomerates",
+      },
+    ],
+    "Technical Certifications & Skills": [
+      {
+        id: "cert-4",
+        image: "/certificates/cyber.png",
+        title: "Introduction to Cybersecurity",
+        issuer: "Cisco Networking Academy",
+        description:
+          "Foundational cybersecurity principles, threat detection, and network security fundamentals",
+      },
+      {
+        id: "cert-5",
+        image: "/certificates/intro-data-science.png",
+        title: "Introduction to Data Science",
+        issuer: "Simplilearn",
+        description:
+          "Data analysis, machine learning basics, and statistical modeling techniques",
+      },
+      {
+        id: "cert-6",
+        image: "/certificates/postman.png",
+        title: "Postman API Fundamentals Student Expert",
+        issuer: "Canvas Credentials (Badgr)",
+        description:
+          "API testing, documentation, and development using industry-standard tools",
+      },
+      {
+        id: "cert-7",
+        image:
+          "/certificates/frontend_developer_react certificate (1)_page-0001.jpg",
+        title: "Frontend Developer React Certificate",
+        issuer: "HackerRank",
+        description:
+          "Advanced React.js development skills validated through practical coding assessments",
+      },
+    ],
+    "Competitions & Academic Achievements": [
+      {
+        id: "cert-8",
+        image: "/certificates/object-automation-hackathon_page-0001.jpg",
+        title: "Object Automation Hackathon",
+        issuer: "Hackathon",
+        description:
+          "Innovative automation solutions developed under time constraints in competitive environment",
+      },
+      {
+        id: "cert-9",
+        image:
+          "/certificates/Participation _ Student_E Certificate-251-500-77_page-0001.jpg",
+        title: "Research Paper Participation Certificate",
+        issuer: "Educational Institution",
+        description:
+          "Academic research contribution and scholarly publication participation",
+      },
+    ],
+  };
 
   const allSkillBadges = Object.values(skillBadges).flat();
   return (
@@ -236,18 +279,6 @@ const Badges = () => {
 
       {/* Professional Certificates Section */}
       <section className="py-16 px-4 md:px-8 max-w-7xl mx-auto">
-        <div className="flex items-center justify-center mb-12">
-          <Separator className="flex-1 bg-gray-200" />
-          <div className="mx-8">
-            <Badge
-              variant="outline"
-              className="px-6 py-2 text-lg font-semibold border-[#FF7A00] text-[#FF7A00] bg-white"
-            >
-              Professional Achievements
-            </Badge>
-          </div>
-          <Separator className="flex-1 bg-gray-200" />
-        </div>
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-2 text-[#353334]">
             Professional
@@ -257,44 +288,60 @@ const Badges = () => {
           </h2>
           <p className="text-base md:text-lg text-[#948A8A] max-w-3xl mx-auto leading-relaxed">
             Industry-recognized certifications from leading companies and
-            institutions, validating my expertise in software engineering and
-            professional development.
+            institutions, validating expertise across multiple domains and
+            showcasing commitment to professional growth.
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {certificates.map((cert) => (
-            <Card
-              key={cert.id}
-              className="group transition-all duration-300 hover:shadow-lg hover:scale-[1.02] border border-gray-200 bg-white rounded-xl overflow-hidden"
-            >
-              <div className="relative aspect-[4/3] bg-gray-50">
-                <Image
-                  src={cert.image}
-                  alt={cert.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-              </div>
-              <CardHeader className="pb-2">
-                <Badge
-                  variant="outline"
-                  className="self-start border-[#FF7A00] text-[#FF7A00] bg-white mb-2"
+
+        {/* Category-wise certificate display */}
+        {Object.entries(certificates).map(([categoryName, certs]) => (
+          <div key={categoryName} className="mb-14">
+            <div className="flex items-center justify-center mb-8">
+              <Separator className="flex-1 bg-[#948A8A]" />
+              <Badge
+                variant="outline"
+                className="mx-4 px-5 py-1.5 text-base font-medium border-[#FF7A00] text-[#FF7A00] bg-white"
+              >
+                {categoryName}
+              </Badge>
+              <Separator className="flex-1 bg-[#948A8A]" />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {certs.map((cert) => (
+                <Card
+                  key={cert.id}
+                  className="group transition-all duration-300 hover:shadow-lg hover:scale-[1.02] border border-gray-200 bg-white rounded-xl overflow-hidden"
                 >
-                  {cert.type}
-                </Badge>
-                <CardTitle className="text-lg md:text-xl text-[#353334] line-clamp-2 font-semibold">
-                  {cert.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <p className="text-[#948A8A] text-sm md:text-base font-medium">
-                  {cert.issuer}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+                  <div className="relative aspect-[4/3] bg-gray-50">
+                    <Image
+                      src={cert.image}
+                      alt={cert.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  </div>
+                  <CardHeader className="pb-2">
+                    <Badge
+                      variant="outline"
+                      className="self-start border-[#FF7A00] text-[#FF7A00] bg-white mb-2"
+                    >
+                      {cert.issuer}
+                    </Badge>
+                    <CardTitle className="text-lg md:text-xl text-[#353334] line-clamp-2 font-semibold">
+                      {cert.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <p className="text-[#948A8A] text-sm md:text-base leading-relaxed">
+                      {cert.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        ))}
       </section>
       <style jsx>{`
         .fade-in {

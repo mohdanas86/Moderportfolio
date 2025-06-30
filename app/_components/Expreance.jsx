@@ -13,45 +13,20 @@ const Experience = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // const experienceData = [
-  //   {
-  //     title: "Frontend Development Intern",
-  //     company: "CODEXINTERN",
-  //     duration: "November 2024 – November 2024 (1 Month)",
-  //     location: "Remote, Virtual",
-  //     responsibilities: [
-  //       "Designed and implemented responsive, user-friendly interfaces using HTML5, CSS3, and JavaScript for interactive web applications.",
-  //       "Explored modern frontend frameworks, enhancing problem-solving skills and understanding of industry standards.",
-  //       "Collaborated effectively in a virtual environment with peers and mentors to deliver high-quality, on-time project deliverables.",
-  //       "Leveraged tools like React.js to create scalable and maintainable codebases.",
-  //     ],
-  //   },
-  //   {
-  //     title: "Open-Source Contributor",
-  //     company: "GirlScript Summer of Code 2024 – Extended Edition!",
-  //     duration: "October 2024 – October 2024 (1 Month)",
-  //     location: "Remote",
-  //     responsibilities: [
-  //       "Contributed to open-source repositories by developing new features and resolving issues to improve functionality.",
-  //       "Worked closely with project maintainers to ensure contributions aligned with community goals and requirements.",
-  //       "Enhanced accessibility through detailed project documentation and ensured code quality by conducting comprehensive reviews.",
-  //     ],
-  //   },
-  //   {
-  //     title: "Web Developer",
-  //     company: "Fiverr - Freelance",
-  //     duration: "Mar 2021 – May 2021 (3 Months)",
-  //     location: "Remote",
-  //     responsibilities: [
-  //       "Successfully completed numerous freelance projects focused on creating engaging, responsive web applications tailored to client needs.",
-  //       "Delivered custom solutions using technologies like React.js, HTML5, CSS3, and JavaScript.",
-  //       "Maintained a high client satisfaction rate by adhering to deadlines and providing consistent, high-quality results.",
-  //       "Collaborated with diverse clients worldwide, enhancing communication and project management skills.",
-  //     ],
-  //   },
-  // ];
-
   const experienceData = [
+    {
+      title: "Data Analysis Intern",
+      company: "Cognifyz Technologies",
+      duration: "May 2025 – June 2025 (2 Months)",
+      location: "Remote, Virtual",
+      responsibilities: [
+        "Worked on data analysis projects as part of internship under Cognifyz Technologies.",
+        "Demonstrated strong analytical and problem-solving skills using relevant data tools.",
+        "Showcased effective communication, attention to detail, and coordination throughout the internship.",
+        "Proactively took on new challenges with enthusiasm and a desire to learn.",
+        "Gained practical exposure to data cleaning, interpretation, and reporting.",
+      ],
+    },
     {
       title: "Frontend Development Intern",
       company: "ChartsMaze",
@@ -75,6 +50,18 @@ const Experience = () => {
       ],
     },
     {
+      title: "Open-Source Contributor",
+      company: "GirlScript Summer of Code 2024 - Extended Edition",
+      duration: "October 2024 – October 2024 (1 Month)",
+      location: "Remote",
+      responsibilities: [
+        "Developed and maintained code for open-source repositories, enhancing features and resolving issues.",
+        "Collaborated with project maintainers to align contributions with community needs.",
+        "Created documentation to improve project accessibility and ensured code quality through reviews.",
+        "Enhanced project functionality while maintaining high code standards and community guidelines.",
+      ],
+    },
+    {
       title: "Web Developer",
       company: "Fiverr - Freelance",
       duration: "March 2021 – May 2021 (3 Months)",
@@ -95,27 +82,31 @@ const Experience = () => {
     >
       <h1 className="text-5xl text-center lg:text-7xl font-bold">EXPERIENCE</h1>
 
-      <div className="experience-list mt-12 grid grid-cols-1 lg:gap-8 gap-6 w-full">
+      <div className="experience-list mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-8 w-full max-w-7xl mx-auto">
         {experienceData.map((experience, index) => (
           <div
             key={index}
-            className="card w-full shadow-lg rounded-xl overflow-hidden hover:shadow-xl transition-transform duration-300 transform hover:scale-105 hover:bg-[#2726262e] text-white"
+            className="card w-full h-full min-h-[320px] md:min-h-[360px] lg:min-h-[280px] shadow-lg rounded-xl overflow-hidden hover:shadow-xl transition-transform duration-300 transform hover:scale-105 hover:bg-[#2726262e] text-white flex flex-col"
           >
-            <div className="p-6 flex flex-col justify-between h-full w-full">
-              <h2 className="text-2xl font-semibold text-white mb-2">
-                {experience.title}
-              </h2>
-              <p className="text-[#948A8A] text-sm mb-2">
-                {experience.company}
-              </p>
-              <p className="text-[#948A8A] text-sm mb-4">
-                {experience.duration}
-              </p>
-              <ul className="text-sm text-[#bfbaba] list-disc ml-6">
-                {experience.responsibilities.map((item, i) => (
-                  <li key={i}>{item}</li>
-                ))}
-              </ul>
+            <div className="p-6 flex flex-col h-full">
+              <div className="flex-shrink-0 mb-4">
+                <h2 className="text-xl md:text-2xl font-semibold text-white mb-2 leading-tight">
+                  {experience.title}
+                </h2>
+                <p className="text-[#948A8A] text-sm mb-1 font-medium">
+                  {experience.company}
+                </p>
+                <p className="text-[#948A8A] text-sm mb-2">
+                  {experience.duration}
+                </p>
+              </div>
+              <div className="flex-grow">
+                <ul className="text-sm text-[#bfbaba] list-disc ml-6 space-y-1 leading-relaxed">
+                  {experience.responsibilities.map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         ))}

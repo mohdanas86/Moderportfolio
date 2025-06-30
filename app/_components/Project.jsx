@@ -6,32 +6,21 @@ import React, { useEffect, useState } from "react";
 
 const Project = () => {
   const [showAnimation, setShowAnimation] = useState(false);
-
-  // const Projects = [
-  //   {
-  //     img: "ainotestaker.png",
-  //     title: "Ai Notes Taker",
-  //     des: "Transform your notes with AI! Select text from PDFs, click to generate concise summaries and answers. Boost your productivity and stay organized effortlessly.",
-  //     repo: "#",
-  //     link: "https://ainotestaker.netlify.app/",
-  //   },
-  //   {
-  //     img: "anaspice.png",
-  //     title: "AnaSpice - Food Delivery",
-  //     des: "Order food with ease! Fast, reliable, and efficient delivery service at your fingertips.",
-  //     repo: "https://github.com/mohdanas86/anaspiceFood.git",
-  //     link: "https://anaspice.netlify.app/",
-  //   },
-  //   {
-  //     img: "anasufy.png",
-  //     title: "Anasufy Academy",
-  //     des: "A hub for learning and growth. Explore courses and resources to advance your skills.",
-  //     repo: "#",
-  //     link: "#",
-  //   },
-  // ];
-
   const Projects = [
+    {
+      img: "imgrithm.png",
+      title: "ImgRithm",
+      des: "A free and unlimited online image compressor and resizer used globally. Supports bulk image optimization, JPG/PNG to WebP conversion, and up to 95% size reduction with zero quality loss.",
+      repo: "#", // Add GitHub repo link if available
+      link: "https://imgrithm.tech/", // Add live link if hosted
+    },
+    {
+      img: "blog-backend.png",
+      title: "Blog API Platform",
+      des: "A high-performance, fully-featured blog backend API built with Express.js, MongoDB, and Redis. Features RESTful endpoints, caching, rate limiting, and Docker containerization.",
+      repo: "https://github.com/mohdanas86/Blog-CRUD", // Add GitHub repo link if available
+      link: "#", // Add live link if hosted
+    },
     {
       img: "fynsera.png",
       title: "Fynnsera – AI Financial Assistant",
@@ -53,13 +42,13 @@ const Project = () => {
       repo: "https://github.com/mohdanas86/anaspiceFood.git",
       link: "https://anaspice.netlify.app/",
     },
-    {
-      img: "anasufy.png",
-      title: "Anasufy Academy",
-      des: "A learning platform offering curated resources and course materials for self-paced education and upskilling.",
-      repo: "#",
-      link: "#",
-    },
+    // {
+    //   img: "anasufy.png",
+    //   title: "Anasufy Academy",
+    //   des: "A learning platform offering curated resources and course materials for self-paced education and upskilling.",
+    //   repo: "#",
+    //   link: "#",
+    // },
   ];
 
   useEffect(() => {
