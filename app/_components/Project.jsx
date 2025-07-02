@@ -77,7 +77,7 @@ const Project = () => {
             return (
               <div
                 key={i}
-                className="card w-full shadow-lg rounded-xl overflow-hidden hover:shadow-xl transition-transform duration-300 transform hover:scale-105 hover:bg-[#2726262e] text-white "
+                className="card w-full z-50 rounded-xl overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:bg-[#2726262e] text-white "
               >
                 <figure className="h-[100%]">
                   <img

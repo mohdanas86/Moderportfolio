@@ -1,6 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import Header from "./_components/Header";
 import "./globals.css";
+import CursorFollower from "./_components/CursorFollower";
+import TechUI from "./_components/TechUI";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +33,8 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#151312] text-white min-h-screen overflow-x-hidden`}
       >
+        <CursorFollower />
+        <TechUI />
         <div className="flex flex-col min-h-screen w-full">
           {/* Header - Fixed positioning and mobile optimized */}
           <div className="sticky top-0 z-50 w-full">

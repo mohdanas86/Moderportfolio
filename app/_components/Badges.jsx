@@ -253,7 +253,7 @@ const Badges = () => {
               {certs.map((cert) => (
                 <Card
                   key={cert.id}
-                  className="group transition-all duration-300 hover:shadow-lg hover:scale-[1.02] bg-transparent text-white hover:bg-[#2726262e] rounded-xl overflow-hidden border-0"
+                  className="group transition-all duration-300 hover:scale-[1.02] bg-transparent text-white hover:bg-[#2726262e] rounded-xl overflow-hidden border-0"
                 >
                   <div className="relative aspect-[4/3] bg-gray-50">
                     <Image

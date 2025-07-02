@@ -86,7 +86,7 @@ const Experience = () => {
         {experienceData.map((experience, index) => (
           <div
             key={index}
-            className="card w-full h-full min-h-[320px] md:min-h-[360px] lg:min-h-[280px] shadow-lg rounded-xl overflow-hidden hover:shadow-xl transition-transform duration-300 transform hover:scale-105 hover:bg-[#2726262e] text-white flex flex-col"
+            className="card w-full h-full min-h-[320px] md:min-h-[360px] lg:min-h-[280px] rounded-xl overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:bg-[#2726262e] text-white flex flex-col"
           >
             <div className="p-6 flex flex-col h-full">
               <div className="flex-shrink-0 mb-4">
