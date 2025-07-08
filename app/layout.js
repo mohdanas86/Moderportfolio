@@ -35,14 +35,14 @@ export default function RootLayout({ children }) {
       >
         <CursorFollower />
         <TechUI />
-        <div className="flex flex-col min-h-screen w-full">
+        <div className="flex flex-col min-h-screen w-full relative main-content">
           {/* Header - Fixed positioning and mobile optimized */}
-          <div className="sticky top-0 z-50 w-full">
+          <div className="header-fixed top-0 z-50 w-full">
             <Header />
           </div>
 
           {/* Main Layout - Mobile-first responsive design */}
-          <div className="flex-1 w-full min-w-0">
+          <div className="flex-1 w-full min-w-0 pt-[60px]">
             <div className="w-full max-w-7xl mx-auto min-h-0">
               {/* Main Content with mobile-optimized spacing */}
               <main className="w-full px-3 sm:px-4 lg:px-8 py-4 sm:py-6 lg:py-8 min-w-0">

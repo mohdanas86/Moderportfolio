@@ -12,30 +12,28 @@ const Badges = dynamic(() => import("./_components/Badges"))
 
 export default function Home() {
   return (
-    <div className="">
-      {/* <FloatingElements /> */}
-
-      <section className="snap-start z-50">
+    <div className="relative">
+      <section className="snap-start relative">
         <Hero />
       </section>
 
-      <section className="snap-start z-50">
+      <section className="snap-start relative">
         <Project />
       </section>
 
-      <section className="snap-start z-50">
+      <section className="snap-start relative">
         <Experience />
       </section>
 
-      <section className="snap-start z-50">
+      <section className="snap-start relative">
         <Badges />
       </section>
 
-      <section className="snap-start z-50">
+      <section className="snap-start relative">
         <Techstack />
       </section>
 
-      <section className="snap-start z-50 ">
+      <section className="snap-start relative">
         <Contact />
       </section>
     </div>

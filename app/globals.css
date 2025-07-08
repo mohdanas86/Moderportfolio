@@ -6,6 +6,46 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Custom animations for TechUI */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes spin-very-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 4s ease-in-out infinite;
+}
+
+.animate-spin-very-slow {
+  animation: spin-very-slow 20s linear infinite;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -213,4 +253,62 @@ body {
     transform: translateX(100%);
     opacity: 0;
   }
+}
+
+/* Mobile-specific layout fixes */
+@media (max-width: 768px) {
+  /* Prevent horizontal scrolling issues */
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Ensure TechUI elements don't interfere with content */
+  .tech-ui-mobile {
+    opacity: 0.3 !important;
+  }
+  
+  /* Better spacing for mobile content */
+  main {
+    padding-top: 80px; /* Account for header height */
+  }
+  
+  /* Smoother animations on mobile */
+  .animate-pulse-slow,
+  .animate-float-slow,
+  .animate-spin-very-slow {
+    animation-duration: 4s, 6s, 30s respectively;
+    will-change: transform, opacity;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-slow,
+  .animate-float-slow,
+  .animate-spin-very-slow {
+    animation: none !important;
+  }
+}
+
+/* Ensure proper stacking context */
+.main-content {
+  position: relative;
+  z-index: 1;
+}
+
+.background-ui {
+  position: fixed;
+  z-index: 0;
+}
+
+.header-fixed {
+  position: fixed;
+  z-index: 50;
+}
+
+/* Performance optimizations */
+.tech-ui-element {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
