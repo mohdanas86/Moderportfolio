@@ -3,6 +3,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useEffect, useState } from "react";
+import ParallaxElement from "./ParallaxElement";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -42,15 +44,32 @@ function Contact() {
     }
   }
 
+  const [showAnimation, setShowAnimation] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowAnimation(true);
+    }, 200);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="fade-in py-16" id="contact">
-      <h1 className="text-center text-5xl lg:text-7xl font-bold uppercase">
-        LET'S WORK
-      </h1>
-      <h1 className="text-center text-5xl lg:text-7xl font-bold text-[#353334] uppercase">
-        TOGETHER
-      </h1>
-      <div className=" mt-12 lg:w-[45%] w-[95%] mx-auto">
+    <div className={`${showAnimation ? "fade-in" : "opacity-0"} py-16 relative overflow-hidden`} id="contact">
+      <ParallaxElement speed={0.3}>
+        <h1 className="text-center text-5xl lg:text-7xl font-bold uppercase">
+          LET'S WORK
+        </h1>
+      </ParallaxElement>
+      
+      <ParallaxElement speed={0.5}>
+        <h1 className="text-center text-5xl lg:text-7xl font-bold text-[#353334] uppercase">
+          TOGETHER
+        </h1>
+      </ParallaxElement>
+      
+      <ParallaxElement speed={0.2}>
+        <div className="mt-12 lg:w-[45%] w-[95%] mx-auto">
         <div
           className={
             "relative overflow-hidden z-10 bg-[#2726262e] p-8 rounded-lg shadow-md " +
@@ -135,19 +154,17 @@ function Contact() {
           </Form>
         </div>
       </div>
+      </ParallaxElement>
 
       <style jsx>{`
         .fade-in {
+          opacity: 1;
+          transform: translateY(0);
+          transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+        }
+        .opacity-0 {
           opacity: 0;
           transform: translateY(20px);
-          animation: fadeIn 0.8s ease-in-out forwards;
-        }
-
-        @keyframes fadeIn {
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
         }
       `}</style>
     </div>

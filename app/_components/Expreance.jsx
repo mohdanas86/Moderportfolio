@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import ParallaxElement from "./ParallaxElement";
 
 const Experience = () => {
   const [showAnimation, setShowAnimation] = useState(false);
@@ -77,40 +78,45 @@ const Experience = () => {
 
   return (
     <div
-      className={`${showAnimation ? "fade-in" : "opacity-0"} py-16`}
+      className={`${showAnimation ? "fade-in" : "opacity-0"} py-16 relative overflow-hidden`}
       id="experience"
     >
-      <h1 className="text-5xl text-center lg:text-7xl font-bold">EXPERIENCE</h1>
+      <ParallaxElement speed={0.3}>
+        <h1 className="text-5xl text-center lg:text-7xl font-bold">EXPERIENCE</h1>
+      </ParallaxElement>
 
-      <div className="experience-list mt-12 grid grid-cols-1 gap-6 lg:gap-8 w-full max-w-7xl mx-auto">
+      <ParallaxElement speed={0.2}>
+        <div className="experience-list mt-12 grid grid-cols-1 gap-6 lg:gap-8 w-full max-w-7xl mx-auto">
         {experienceData.map((experience, index) => (
-          <div
-            key={index}
-            className="card w-full h-full min-h-[320px] md:min-h-[360px] lg:min-h-[280px] shadow-lg rounded-xl overflow-hidden hover:shadow-xl transition-transform duration-300 transform hover:scale-105 hover:bg-[#2726262e] text-white flex flex-col"
-          >
-            <div className="p-6 flex flex-col h-full">
-              <div className="flex-shrink-0 mb-4">
-                <h2 className="text-xl md:text-2xl font-semibold text-white mb-2 leading-tight">
-                  {experience.title}
-                </h2>
-                <p className="text-[#948A8A] text-sm mb-1 font-medium">
-                  {experience.company}
-                </p>
-                <p className="text-[#948A8A] text-sm mb-2">
-                  {experience.duration}
-                </p>
-              </div>
-              <div className="flex-grow">
-                <ul className="text-sm text-[#bfbaba] list-disc ml-6 space-y-1 leading-relaxed">
-                  {experience.responsibilities.map((item, i) => (
-                    <li key={i}>{item}</li>
-                  ))}
-                </ul>
+          <ParallaxElement speed={0.1 * (index + 1)} direction={index % 2 === 0 ? 'horizontal' : 'vertical'} key={index}>
+            <div
+              className="card w-full h-full min-h-[320px] md:min-h-[360px] lg:min-h-[280px] rounded-xl overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:bg-[#2726262e] text-white flex flex-col"
+            >
+              <div className="p-6 flex flex-col h-full">
+                <div className="flex-shrink-0 mb-4">
+                  <h2 className="text-xl md:text-2xl font-semibold text-white mb-2 leading-tight">
+                    {experience.title}
+                  </h2>
+                  <p className="text-[#948A8A] text-sm mb-1 font-medium">
+                    {experience.company}
+                  </p>
+                  <p className="text-[#948A8A] text-sm mb-2">
+                    {experience.duration}
+                  </p>
+                </div>
+                <div className="flex-grow">
+                  <ul className="text-sm text-[#bfbaba] list-disc ml-6 space-y-1 leading-relaxed">
+                    {experience.responsibilities.map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
+          </ParallaxElement>
         ))}
       </div>
+      </ParallaxElement>
 
       <style jsx>{`
         .fade-in {

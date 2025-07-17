@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Badges from "./_components/Badges";
+import ScrollReveal from "./_components/ScrollReveal";
 
 // Dynamically import components
 const Hero = dynamic(() => import("./_components/Hero"));
@@ -9,32 +9,43 @@ const Project = dynamic(() => import("./_components/Project"));
 const Experience = dynamic(() => import("./_components/Expreance"));
 const Techstack = dynamic(() => import("./_components/Techstack"));
 const Contact = dynamic(() => import("./_components/Contact"));
+const Badges = dynamic(() => import("./_components/Badges"));
 
 export default function Home() {
   return (
-    <div className="">
-      <section className="snap-start">
+    <div className="relative">
+      <section id="hero" className="snap-start relative">
         <Hero />
       </section>
 
-      <section className="snap-start">
-        <Project />
+      <section id="projects" className="snap-start relative">
+        <ScrollReveal animation="fade-up">
+          <Project />
+        </ScrollReveal>
       </section>
 
-      <section className="snap-start">
-        <Experience />
+      <section id="experience" className="snap-start relative">
+        <ScrollReveal animation="fade-up" delay={0.1}>
+          <Experience />
+        </ScrollReveal>
       </section>
 
-      <section className="snap-start">
-        <Badges />
+      <section id="badges" className="snap-start relative">
+        <ScrollReveal animation="fade-up" delay={0.2}>
+          <Badges />
+        </ScrollReveal>
       </section>
 
-      <section className="snap-start">
-        <Techstack />
+      <section id="tools" className="snap-start relative">
+        <ScrollReveal animation="fade-up" delay={0.3}>
+          <Techstack />
+        </ScrollReveal>
       </section>
 
-      <section className="snap-start ">
-        <Contact />
+      <section id="contact" className="snap-start relative">
+        <ScrollReveal animation="fade-up" delay={0.4}>
+          <Contact />
+        </ScrollReveal>
       </section>
     </div>
   );

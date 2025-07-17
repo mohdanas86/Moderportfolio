@@ -1,5 +1,6 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import ParallaxElement from "./ParallaxElement";
 
 const Techstack = () => {
   const techIcons = [
@@ -83,45 +84,62 @@ const Techstack = () => {
     },
   ];
 
-  return (
-    <div className="fade-in-animation py-16" id="tools">
-      <h1 className="text-5xl text-center lg:text-7xl font-bold uppercase">
-        Tools &
-      </h1>
-      <h1 className="text-5xl text-center lg:text-7xl font-bold text-[#353334] uppercase">
-        Stacks
-      </h1>
+  const [showAnimation, setShowAnimation] = useState(false);
 
-      <div className="flex flex-wrap justify-center gap-6 mt-12">
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowAnimation(true);
+    }, 200);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div className={`${showAnimation ? "fade-in" : "opacity-0"} py-16 relative overflow-hidden`} id="tools">
+      <ParallaxElement speed={0.3}>
+        <h1 className="text-5xl text-center lg:text-7xl font-bold uppercase">
+          Tools &
+        </h1>
+      </ParallaxElement>
+      
+      <ParallaxElement speed={0.5}>
+        <h1 className="text-5xl text-center lg:text-7xl font-bold text-[#353334] uppercase">
+          Stacks
+        </h1>
+      </ParallaxElement>
+
+      <ParallaxElement speed={0.2}>
+        <div className="flex flex-wrap justify-center gap-6 mt-12">
         {techIcons.map((tech, index) => (
-          <div
+          <ParallaxElement 
             key={index}
-            className="flex flex-col items-center justify-center bg-white lg:p-4 p-3 rounded-lg shadow-lg transform hover:scale-110 transition duration-500  lg:w-[90px] lg:h-[90px] w-[50px] h-[50px]"
+            speed={0.05 * ((index % 5) + 1)}
+            direction={(index % 2 === 0) ? 'vertical' : 'horizontal'}
           >
-            <img
-              src={tech.src}
-              alt={`${tech.name} logo`}
-              className="w-full max-w-[50px] transition duration-500 ease-in-out transform hover:scale-125"
-            />
-            {/* <p className="text-sm text-gray-600 mt-2">{tech.name}</p> */}
-          </div>
+            <div
+              className="flex flex-col items-center justify-center bg-white lg:p-4 p-3 rounded-lg shadow-lg transform hover:scale-110 transition duration-500 lg:w-[90px] lg:h-[90px] w-[50px] h-[50px]"
+            >
+              <img
+                src={tech.src}
+                alt={`${tech.name} logo`}
+                className="w-full max-w-[50px] transition duration-500 ease-in-out transform hover:scale-125"
+              />
+              {/* <p className="text-sm text-gray-600 mt-2">{tech.name}</p> */}
+            </div>
+          </ParallaxElement>
         ))}
       </div>
+      </ParallaxElement>
 
       <style jsx>{`
-        .fade-in-animation {
-          animation: fadeIn 1s ease-in-out forwards;
+        .fade-in {
+          opacity: 1;
+          transform: translateY(0);
+          transition: opacity 1s ease-in-out, transform 1s ease-in-out;
         }
-
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+        .opacity-0 {
+          opacity: 0;
+          transform: translateY(20px);
         }
       `}</style>
     </div>

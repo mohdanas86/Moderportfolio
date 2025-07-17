@@ -31,12 +31,12 @@ const Header = () => {
 
   return (
     <header className="w-full bg-[#1e1e1e] border-b border-gray-800/50 backdrop-blur-sm">
-      <div className="w-full h-[60px] lg:h-[70px] flex items-center justify-between px-3 sm:px-4 lg:px-8 max-w-7xl mx-auto">
+      <div className="w-full h-[60px] lg:h-[60px] flex items-center justify-between px-3 sm:px-4 lg:px-8 max-w-7xl mx-auto">
         {/* Site Logo/Name - Mobile optimized */}
         <div className="flex-shrink-0 min-w-0">
           <Link
             href="/"
-            className="text-base sm:text-lg lg:text-xl xl:text-2xl font-bold text-white hover:text-[#FF7A00] transition-colors duration-200 truncate block"
+            className="text-base sm:text-lg lg:text-xl xl:text-2xl font-bold text-white hover:text-[#FF7A00] transition-colors duration-200 truncate flex items-center justify-center"
           >
             Anas Alam
           </Link>
