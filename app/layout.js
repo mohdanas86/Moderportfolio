@@ -3,6 +3,8 @@ import Header from "./_components/Header";
 import "./globals.css";
 import CursorFollower from "./_components/CursorFollower";
 import TechUI from "./_components/TechUI";
+import SmoothScroll from "./_components/SmoothScroll";
+import ScrollToTop from "./_components/ScrollToTop";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,9 +35,11 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#151312] text-white min-h-screen overflow-x-hidden`}
       >
-        <CursorFollower />
-        <TechUI />
-        <div className="flex flex-col min-h-screen w-full relative main-content">
+        <SmoothScroll>
+          <CursorFollower />
+          <TechUI />
+          <ScrollToTop />
+          <div className="flex flex-col min-h-screen w-full relative main-content">
           {/* Header - Fixed positioning and mobile optimized */}
           <div className="header-fixed top-0 z-50 w-full">
             <Header />
@@ -53,6 +57,7 @@ export default function RootLayout({ children }) {
             </div>
           </div>
         </div>
+        </SmoothScroll>
       </body>
     </html>
   );

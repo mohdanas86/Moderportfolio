@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import ScrollDownButton from "./ScrollDownButton";
 
 const Hero = () => {
   const [showAnimation, setShowAnimation] = useState(false);
@@ -55,6 +56,9 @@ const Hero = () => {
           </p>
         </div>
       </div>
+      
+      {/* Scroll down button */}
+      <ScrollDownButton />
 
       <style jsx>{`
         .fade-in {
