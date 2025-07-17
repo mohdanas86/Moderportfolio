@@ -164,6 +164,14 @@ const Badges = () => {
     ],
     "Technical Certifications & Skills": [
       {
+        id: "cert-10",
+        image: "/certificates/machineLearning.png",
+        title: "Machine Learning with Python",
+        issuer: "Coursera",
+        description:
+          "Comprehensive understanding of machine learning concepts and practical implementation using Python.",
+      },
+      {
         id: "cert-4",
         image: "/certificates/postman.png",
         title: "Postman API Fundamentals Student Expert",
@@ -220,7 +228,12 @@ const Badges = () => {
 
   const allSkillBadges = Object.values(skillBadges).flat();
   return (
-    <div className={`${showAnimation ? "fade-in" : "opacity-0"} relative overflow-hidden`} id="badges">
+    <div
+      className={`${
+        showAnimation ? "fade-in" : "opacity-0"
+      } relative overflow-hidden`}
+      id="badges"
+    >
       {/* Professional Certificates Section */}
       <section className="py-16 px-4 md:px-8 max-w-7xl mx-auto">
         <div className="text-center mb-12">
@@ -229,13 +242,13 @@ const Badges = () => {
               Professional
             </h1>
           </ParallaxElement>
-          
+
           <ParallaxElement speed={0.5}>
             <h2 className="text-2xl md:text-4xl lg:text-5xl font-semibold text-[#948A8A] mb-6 tracking-tight">
               Certificates
             </h2>
           </ParallaxElement>
-          
+
           <ParallaxElement speed={0.2}>
             <p className="text-base md:text-lg text-[#948A8A] max-w-3xl mx-auto leading-relaxed">
               Industry-recognized certifications from leading companies and
@@ -304,67 +317,69 @@ const Badges = () => {
               Google Cloud
             </h1>
           </ParallaxElement>
-          
+
           <ParallaxElement speed={0.5}>
             <h2 className="text-2xl md:text-4xl lg:text-5xl font-semibold text-[#948A8A] mb-6 tracking-tight">
               Skill Badges
             </h2>
           </ParallaxElement>
-          
+
           <ParallaxElement speed={0.2}>
             <p className="text-base md:text-lg text-[#948A8A] max-w-3xl mx-auto leading-relaxed">
-              Professional Google Cloud skill badges organized by expertise areas
-              – showcasing hands-on experience in AI/ML, networking, data
+              Professional Google Cloud skill badges organized by expertise
+              areas – showcasing hands-on experience in AI/ML, networking, data
               analytics, and cloud infrastructure.
             </p>
           </ParallaxElement>
         </div>
         {/* Category-wise display */}
-        {Object.entries(skillBadges).map(([categoryName, badges], categoryIndex) => (
-          <ParallaxElement speed={0.1} key={categoryName}>
-            <div className="mb-14">
-              <div className="flex items-center justify-center mb-8">
-                <Separator className="flex-1 bg-[#948A8A]" />
-                <Badge
-                  variant="outline"
-                  className="mx-4 px-5 py-1.5 text-base font-medium border-[#FF7A00] text-[#FF7A00] bg-white"
-                >
-                  {categoryName}
-                </Badge>
-                <Separator className="flex-1 bg-[#948A8A]" />
-              </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6">
-                {badges.map((badge, badgeIndex) => (
-                  <ParallaxElement 
-                    key={badge.id} 
-                    speed={0.05 * ((badgeIndex % 3) + 1)} 
-                    direction={(badgeIndex % 2 === 0) ? 'vertical' : 'horizontal'}
-                    disabled={true}
+        {Object.entries(skillBadges).map(
+          ([categoryName, badges], categoryIndex) => (
+            <ParallaxElement speed={0.1} key={categoryName}>
+              <div className="mb-14">
+                <div className="flex items-center justify-center mb-8">
+                  <Separator className="flex-1 bg-[#948A8A]" />
+                  <Badge
+                    variant="outline"
+                    className="mx-4 px-5 py-1.5 text-base font-medium border-[#FF7A00] text-[#FF7A00] bg-white"
                   >
-                    <Card
-                      className="group transition-all duration-300 hover:shadow-lg hover:scale-105 border border-gray-200 bg-white rounded-xl"
+                    {categoryName}
+                  </Badge>
+                  <Separator className="flex-1 bg-[#948A8A]" />
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6">
+                  {badges.map((badge, badgeIndex) => (
+                    <ParallaxElement
+                      key={badge.id}
+                      speed={0.05 * ((badgeIndex % 3) + 1)}
+                      direction={
+                        badgeIndex % 2 === 0 ? "vertical" : "horizontal"
+                      }
+                      disabled={true}
                     >
-                      <CardContent className="p-3 md:p-4 flex flex-col items-center">
-                        <div className="relative w-16 h-16 md:w-20 md:h-20 mb-3">
-                          <Image
-                            src={badge.image}
-                            alt={badge.alt}
-                            fill
-                            className="object-contain"
-                            sizes="(max-width: 768px) 64px, 80px"
-                          />
-                        </div>
-                        <h4 className="text-xs md:text-sm font-medium text-[#353334] text-center leading-tight line-clamp-3">
-                          {badge.title}
-                        </h4>
-                      </CardContent>
-                    </Card>
-                  </ParallaxElement>
-                ))}
+                      <Card className="group transition-all duration-300 hover:shadow-lg hover:scale-105 border border-gray-200 bg-white rounded-xl">
+                        <CardContent className="p-3 md:p-4 flex flex-col items-center">
+                          <div className="relative w-16 h-16 md:w-20 md:h-20 mb-3">
+                            <Image
+                              src={badge.image}
+                              alt={badge.alt}
+                              fill
+                              className="object-contain"
+                              sizes="(max-width: 768px) 64px, 80px"
+                            />
+                          </div>
+                          <h4 className="text-xs md:text-sm font-medium text-[#353334] text-center leading-tight line-clamp-3">
+                            {badge.title}
+                          </h4>
+                        </CardContent>
+                      </Card>
+                    </ParallaxElement>
+                  ))}
+                </div>
               </div>
-            </div>
-          </ParallaxElement>
-        ))}
+            </ParallaxElement>
+          )
+        )}
       </section>
 
       <style jsx>{`
