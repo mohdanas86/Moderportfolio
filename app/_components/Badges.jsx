@@ -231,11 +231,11 @@ const Badges = () => {
     <div
       className={`${
         showAnimation ? "fade-in" : "opacity-0"
-      } relative overflow-hidden`}
+      } relative overflow-hidden w-full`}
       id="badges"
     >
       {/* Professional Certificates Section */}
-      <section className="py-16 px-4 md:px-8 max-w-7xl mx-auto">
+      <section className="py-16 px-4 md:px-8 w-full mx-auto">
         <div className="text-center mb-12">
           <ParallaxElement speed={0.3}>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-2 text-[#353334]">
@@ -271,7 +271,7 @@ const Badges = () => {
               </Badge>
               <Separator className="flex-1 bg-[#948A8A]" />
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
               {certs.map((cert) => (
                 <Card
                   key={cert.id}
@@ -310,7 +310,7 @@ const Badges = () => {
       </section>
 
       {/* Google Cloud Skill Badges Section */}
-      <section className="py-16 pt-0 px-4 md:px-8 max-w-7xl mx-auto">
+      <section className="py-16 pt-0 px-4 md:px-8 w-full mx-auto">
         <div className="text-center mb-12">
           <ParallaxElement speed={0.3}>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-2 text-[#353334]">

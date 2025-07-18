@@ -5,6 +5,12 @@
 html, body {
   font-family: Arial, Helvetica, sans-serif;
   min-height: 100%;
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+  overscroll-behavior-y: none; /* Prevent bounce effect on iOS */
+  touch-action: manipulation; /* Optimize for touch interactions */
+  -webkit-touch-callout: none; /* Disable callout on long-press */
+  -webkit-user-select: none; /* Safari */
+  user-select: none; /* Standard */
 }
 
 html.lenis {
@@ -167,6 +173,16 @@ html.lenis {
   display: none; /* Chrome, Safari, and Opera */
 }
 
+/* Hide scrollbar for the entire page */
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+*::-webkit-scrollbar, body::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari, and Opera */
+}
+
 /* Better mobile touch targets */
 @layer utilities {
   .touch-target {
@@ -325,6 +341,27 @@ html.lenis {
 .header-fixed {
   position: fixed;
   z-index: 50;
+}
+
+/* Mobile App-specific styles */
+@media (display-mode: standalone) {
+  /* Styles for when the app is running in standalone mode */
+  body {
+    padding-top: env(safe-area-inset-top); /* Handle iOS notches */
+    padding-bottom: env(safe-area-inset-bottom); /* Handle iOS home indicator */
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+  
+  .header-fixed {
+    padding-top: env(safe-area-inset-top);
+  }
+}
+
+/* Active state for touch feedback */
+.touch-active {
+  transform: scale(0.98);
+  transition: transform 0.1s ease;
 }
 
 /* Performance optimizations */
