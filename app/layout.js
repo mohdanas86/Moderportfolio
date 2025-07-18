@@ -5,11 +5,8 @@ import CursorFollower from "./_components/CursorFollower";
 import TechUI from "./_components/TechUI";
 import SmoothScroll from "./_components/SmoothScroll";
 import ScrollToTop from "./_components/ScrollToTop";
-import { registerServiceWorker } from './registerSW';
-import dynamic from 'next/dynamic';
-
-// Dynamically import the InstallPWA component (client-side only)
-const InstallPWA = dynamic(() => import('./_components/InstallPWA'), { ssr: false });
+import InstallPWAWrapper from "./_components/InstallPWAWrapper";
+import ServiceWorkerRegistration from "./_components/ServiceWorkerRegistration";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,10 +39,6 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  // Register service worker on the client side
-  if (typeof window !== 'undefined') {
-    registerServiceWorker();
-  }
   
   return (
     <html lang="en" data-theme="light" className="no-scrollbar">
@@ -63,7 +56,8 @@ export default function RootLayout({ children }) {
           <CursorFollower />
           <TechUI />
           <ScrollToTop />
-          <InstallPWA />
+          <InstallPWAWrapper />
+          <ServiceWorkerRegistration />
           <div className="flex flex-col min-h-screen w-full relative main-content">
             {/* Header - Fixed positioning and mobile optimized */}
             <div className="header-fixed top-0 z-50 w-full">
