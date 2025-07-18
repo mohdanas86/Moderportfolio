@@ -9,17 +9,24 @@ export default function SmoothScroll({ children }) {
   const [lenis, setLenis] = useState(null);
 
   useEffect(() => {
-    // Initialize Lenis for smooth scrolling
+    // Check if device is mobile
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || 
+                     (window.matchMedia("(max-width: 768px)").matches);
+                     
+    // Initialize Lenis for smooth scrolling with optimized mobile settings
     lenisRef.current = new Lenis({
-      duration: 1.2,
+      duration: isMobile ? 0.8 : 1.2, // Shorter duration for mobile
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
       direction: 'vertical',
       gestureDirection: 'vertical',
       smooth: true,
       mouseMultiplier: 1,
-      smoothTouch: false, // Mobile scrolling should be natural
-      touchMultiplier: 2,
+      smoothTouch: isMobile, // Enable smooth touch on mobile
+      touchMultiplier: isMobile ? 1.2 : 2, // Less aggressive for mobile
       infinite: false,
+      orientation: 'vertical',
+      normalizeWheel: true,
+      smoothWheel: true,
     });
     
     setLenis(lenisRef.current);
@@ -40,16 +47,44 @@ export default function SmoothScroll({ children }) {
     
     resizeObserver.observe(document.documentElement);
 
-    // Optional: Connect to scroll events
+    // Optimize scrolling behavior based on scroll data
     function onScroll({ scroll, limit, velocity, direction, progress }) {
-      // You can use these values to create parallax effects or trigger animations
+      // Adjust scroll behavior based on velocity for smoother experience
+      if (Math.abs(velocity) > 30) {
+        // Fast scrolling - make it more responsive
+        lenisRef.current.options.lerp = 0.04;
+      } else if (Math.abs(velocity) < 10) {
+        // Slow scrolling - make it smoother
+        lenisRef.current.options.lerp = 0.08;
+      } else {
+        // Normal scrolling - default smoothness
+        lenisRef.current.options.lerp = 0.06;
+      }
+    }
+
+    // Detect scroll stop to restore default settings
+    let scrollTimeout;
+    function onScrollEnd() {
+      // Reset lerp to default value after scrolling stops
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        if (lenisRef.current) {
+          lenisRef.current.options.lerp = 0.1;
+        }
+      }, 100);
     }
 
     lenisRef.current?.on('scroll', onScroll);
+    lenisRef.current?.on('scroll', onScrollEnd);
 
     // Clean up
     return () => {
-      lenisRef.current?.destroy();
+      if (lenisRef.current) {
+        lenisRef.current.off('scroll', onScroll);
+        lenisRef.current.off('scroll', onScrollEnd);
+        lenisRef.current.destroy();
+      }
+      clearTimeout(scrollTimeout);
       resizeObserver.disconnect();
     };
   }, []);

@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --image-quality: 'high';
+}
+
 html, body {
   font-family: Arial, Helvetica, sans-serif;
   min-height: 100%;
@@ -358,10 +362,59 @@ html.lenis {
   }
 }
 
+/* Image quality optimization during scrolling */
+@media (max-width: 768px) {
+  /* When --image-quality is low (during scrolling) */
+  :root[style*="--image-quality:low"] img, 
+  :root[style*="--image-quality: low"] img {
+    image-rendering: optimizeSpeed;
+    filter: blur(0.5px);
+    transform: translateZ(0); /* Force GPU acceleration */
+    backface-visibility: hidden;
+  }
+
+  /* Optimize scrolling elements on mobile */
+  .main-content {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+  
+  /* Better touch feedback */
+  a, button {
+    touch-action: manipulation;
+  }
+}
+
 /* Active state for touch feedback */
 .touch-active {
   transform: scale(0.98);
   transition: transform 0.1s ease;
+}
+
+/* Touch scrolling optimizations */
+.is-touch-scrolling {
+  pointer-events: none;
+}
+
+.is-touch-scrolling * {
+  cursor: grabbing !important;
+}
+
+/* Scroll snap optimization for mobile */
+@media (max-width: 768px) {
+  html, body {
+    scroll-snap-type: y proximity;
+  }
+  
+  section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  
+  /* Remove sticky hover effects on mobile */
+  a:hover, button:hover {
+    transition: none !important;
+  }
 }
 
 /* Performance optimizations */
