@@ -7,6 +7,8 @@ import SmoothScroll from "./_components/SmoothScroll";
 import ScrollToTop from "./_components/ScrollToTop";
 import InstallPWAWrapper from "./_components/InstallPWAWrapper";
 import ServiceWorkerRegistration from "./_components/ServiceWorkerRegistration";
+import MobileScrollOptimizer from "./_components/MobileScrollOptimizer";
+import TouchGestureHandler from "./_components/TouchGestureHandler";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,16 +22,18 @@ const geistMono = Geist_Mono({
   display: 'swap',
 });
 
+// Separate viewport export as per Next.js guidelines
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: false, // Prevent pinch zooming for app-like feel
+  themeColor: '#151312',
+};
+
 export const metadata = {
   title: "Anas Alam - Portfolio",
   description: "A portfolio website built by Anas Alam.",
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-    userScalable: false, // Prevent pinch zooming for app-like feel
-  },
-  themeColor: '#151312',
   manifest: '/manifest.json', // For PWA support
   appleWebApp: {
     capable: true,
@@ -39,14 +43,14 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  
+
   return (
     <html lang="en" data-theme="light" className="no-scrollbar">
       <head>
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="Anas Alam" />
-        <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+        <link rel="apple-touch-icon" href="/icons/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body
@@ -58,6 +62,8 @@ export default function RootLayout({ children }) {
           <ScrollToTop />
           <InstallPWAWrapper />
           <ServiceWorkerRegistration />
+          <MobileScrollOptimizer />
+          <TouchGestureHandler />
           <div className="flex flex-col min-h-screen w-full relative main-content">
             {/* Header - Fixed positioning and mobile optimized */}
             <div className="header-fixed top-0 z-50 w-full">
