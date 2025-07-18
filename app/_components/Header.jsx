@@ -128,17 +128,17 @@ const Header = () => {
                 variant="ghost"
                 size="sm"
                 aria-label="Open navigation menu"
-                className="w-10 h-10 p-0 hover:bg-[#FF7A00]/10 hover:text-[#FF7A00] transition-colors duration-200"
+                className="w-10 h-10 p-0 hover:bg-[#FF7A00]/10 hover:text-[#FF7A00] transition-colors duration-200 flex justify-center items-center outline-0"
               >
                 <Menu className="w-5 h-5 text-white" />
               </Button>
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-[280px] sm:w-[300px] bg-[#1e1e1e] border-l border-gray-800/50 p-0"
+              className="w-[280px] sm:w-[300px] bg-[#1e1e1e] border-l border-gray-800/50 p-0 [&>button]:top-6 [&>button]:right-6 [&>button]:text-white [&>button:hover]:text-[#FF7A00]"
             >
               {/* Mobile Menu Header */}
-              <SheetHeader className="p-6 pb-4 border-b border-gray-800/50">
+              <SheetHeader className="p-6 pb-4 border-b border-gray-800/50 border">
                 <SheetTitle className="text-xl font-bold text-white text-left">
                   Explore
                 </SheetTitle>
@@ -259,7 +259,7 @@ const Header = () => {
               </nav>
 
               {/* Mobile Menu Footer */}
-              <SheetFooter className="p-6 pt-4 border-t border-gray-800/50">
+              <div className="p-6 pt-4 border-t border-gray-800/50 flex justify-center w-full">
                 <SheetClose asChild>
                   <Button
                     variant="outline"
@@ -268,7 +268,7 @@ const Header = () => {
                     Close Menu
                   </Button>
                 </SheetClose>
-              </SheetFooter>
+              </div>
             </SheetContent>
           </Sheet>
         </div>
