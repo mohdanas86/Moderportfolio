@@ -11,18 +11,57 @@ export default function SmoothScroll({ children }) {
   useEffect(() => {
     // Check if device is mobile
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || 
-                     (window.matchMedia("(max-width: 768px)").matches);
+                     (window.matchMedia("(max-width: 768px)").matches) ||
+                     (window.matchMedia("(pointer: coarse)").matches);
                      
-    // Initialize Lenis for smooth scrolling with optimized mobile settings
+    // On mobile devices, use native scrolling instead of Lenis for better performance
+    if (isMobile) {
+      // Enable native scrolling on mobile
+      document.documentElement.style.scrollBehavior = 'smooth';
+      document.body.style.overflowY = 'auto';
+      document.body.style.touchAction = 'pan-y pinch-zoom';
+      
+      // Set a simple lenis-like object for context compatibility
+      const simpleLenis = {
+        scrollTo: (target, options = {}) => {
+          const element = typeof target === 'string' ? document.querySelector(target) : target;
+          if (element) {
+            element.scrollIntoView({ 
+              behavior: 'smooth',
+              block: options.offset ? 'start' : 'center',
+              ...options
+            });
+          } else if (typeof target === 'number') {
+            window.scrollTo({
+              top: target,
+              behavior: 'smooth'
+            });
+          }
+        },
+        on: () => {},
+        off: () => {},
+        destroy: () => {},
+        resize: () => {},
+      };
+      
+      setLenis(simpleLenis);
+      window.lenis = simpleLenis;
+      
+      return () => {
+        document.documentElement.style.scrollBehavior = '';
+      };
+    }
+                     
+    // Initialize Lenis for smooth scrolling only on desktop
     lenisRef.current = new Lenis({
-      duration: isMobile ? 0.8 : 1.2, // Shorter duration for mobile
+      duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
       direction: 'vertical',
       gestureDirection: 'vertical',
       smooth: true,
       mouseMultiplier: 1,
-      smoothTouch: isMobile, // Enable smooth touch on mobile
-      touchMultiplier: isMobile ? 1.2 : 2, // Less aggressive for mobile
+      smoothTouch: false, // Disable smooth touch - use native mobile scrolling
+      touchMultiplier: 2,
       infinite: false,
       orientation: 'vertical',
       normalizeWheel: true,
@@ -31,7 +70,7 @@ export default function SmoothScroll({ children }) {
     
     setLenis(lenisRef.current);
 
-    // Connect Lenis to the RAF (request animation frame)
+    // Connect Lenis to the RAF (request animation frame) only for desktop
     function raf(time) {
       lenisRef.current?.raf(time);
       requestAnimationFrame(raf);

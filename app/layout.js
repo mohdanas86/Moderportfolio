@@ -23,7 +23,7 @@ export const viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
-  userScalable: false,
+  userScalable: true, // Allow user scaling for accessibility
 };
 
 export const metadata = {
@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="light" className="no-scrollbar">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#151312] text-white min-h-screen overflow-x-hidden no-scrollbar overscroll-none`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#151312] text-white min-h-screen overflow-x-hidden no-scrollbar`}
       >
         <SmoothScroll>
           <CursorFollower />
