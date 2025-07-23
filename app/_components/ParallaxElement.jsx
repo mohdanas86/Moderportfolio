@@ -22,9 +22,6 @@ export default function ParallaxElement({
   const elementRef = useRef(null);
   const [translate, setTranslate] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
-  const [windowHeight, setWindowHeight] = useState(0);
-  const [elementTop, setElementTop] = useState(0);
-  const [elementHeight, setElementHeight] = useState(0);
   const [isInView, setIsInView] = useState(false);
   const [isInit, setIsInit] = useState(false);
 
@@ -32,7 +29,6 @@ export default function ParallaxElement({
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
-      setWindowHeight(window.innerHeight);
     };
     
     checkMobile();
@@ -56,7 +52,6 @@ export default function ParallaxElement({
           setIsInView(entry.isIntersecting);
           
           if (entry.isIntersecting && !isInit) {
-            updateElementPosition();
             setIsInit(true);
           }
         });
@@ -76,16 +71,6 @@ export default function ParallaxElement({
     };
   }, [isInit]);
   
-  // Update element position values
-  const updateElementPosition = () => {
-    const element = elementRef.current;
-    if (element) {
-      const rect = element.getBoundingClientRect();
-      setElementTop(rect.top + window.scrollY);
-      setElementHeight(rect.height);
-    }
-  };
-
   // Handle scroll events with requestAnimationFrame for performance
   useEffect(() => {
     if (disabled || (disabled && isMobile)) return;
@@ -100,9 +85,15 @@ export default function ParallaxElement({
       }
       
       rafId = requestAnimationFrame(() => {
+        const element = elementRef.current;
+        if (!element) return;
+        
         const scrollPos = window.scrollY;
-        const elementCenter = elementTop + elementHeight / 2;
-        const windowCenter = scrollPos + windowHeight / 2;
+        const rect = element.getBoundingClientRect();
+        const currentElementTop = rect.top + scrollPos;
+        const currentElementHeight = rect.height;
+        const elementCenter = currentElementTop + currentElementHeight / 2;
+        const windowCenter = scrollPos + window.innerHeight / 2;
         const distanceFromCenter = elementCenter - windowCenter;
         const movement = distanceFromCenter * speed * -0.1;
         
@@ -114,9 +105,10 @@ export default function ParallaxElement({
       });
     };
     
-    updateElementPosition();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Initial calculation
+    if (isInView && isInit) {
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      handleScroll(); // Initial calculation
+    }
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -124,7 +116,7 @@ export default function ParallaxElement({
         cancelAnimationFrame(rafId);
       }
     };
-  }, [speed, direction, disabled, isMobile, isInView, isInit, elementTop, elementHeight, windowHeight]);
+  }, [speed, direction, disabled, isMobile, isInView, isInit]);
 
   // Apply the transform styles based on scroll position
   const style = !disabled && isInView ? {

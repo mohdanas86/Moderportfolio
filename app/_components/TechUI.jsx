@@ -96,13 +96,6 @@ const TechUI = () => {
         </svg>
       </div>
 
-      {/* Digital Noise Strips - Reduced opacity for mobile */}
-      <div className="absolute top-0 left-1/3 w-px h-full bg-gradient-to-b from-transparent via-cyan-400 to-transparent opacity-3 lg:opacity-5 animate-pulse-slow tech-ui-element"></div>
-      <div
-        className="absolute top-0 right-1/3 w-px h-full bg-gradient-to-b from-transparent via-blue-400 to-transparent opacity-3 lg:opacity-5 animate-pulse-slow tech-ui-element"
-        style={{ animationDelay: "2s" }}
-      ></div>
-
       {/* Hologram Frame - Smaller and less prominent on mobile */}
       <div className="absolute top-1/2 left-1/2 w-40 h-40 sm:w-60 sm:h-60 lg:w-80 lg:h-80 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-3 lg:opacity-5 tech-ui-element">
         <div className="absolute inset-0 border border-cyan-400 border-opacity-20 lg:border-opacity-30 rotate-45 animate-spin-very-slow"></div>
