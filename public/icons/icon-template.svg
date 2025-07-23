@@ -1,6 +1,0 @@
-<!-- This is a placeholder SVG that can be converted to PNG for various icon sizes -->
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
-  <rect width="512" height="512" fill="#151312"/>
-  <text x="256" y="256" font-family="Arial" font-size="120" font-weight="bold" text-anchor="middle" fill="#FF7A00" dominant-baseline="middle">AA</text>
-  <circle cx="256" cy="256" r="200" stroke="#FF7A00" stroke-width="8" fill="none"/>
-</svg>
