@@ -171,6 +171,22 @@ const Badges = () => {
           "Comprehensive understanding of machine learning concepts and practical implementation using Python.",
       },
       {
+        id: "cert-11",
+        image: "/certificates/mongodb-basic-of-students.png",
+        title: "MongoDB Basics for Students",
+        issuer: "MongoDB, Inc",
+        description:
+          "Foundational understanding of MongoDB document database fundamentals and basic operations.",
+      },
+      {
+        id: "cert-12",
+        image: "/certificates/relational-doc-model.png",
+        title: "Relational to Document Model",
+        issuer: "MongoDB, Inc",
+        description:
+          "Understanding the transition from relational database concepts to MongoDB's document-based approach.",
+      },
+      {
         id: "cert-4",
         image: "/certificates/postman.png",
         title: "Postman API Fundamentals Student Expert",
@@ -314,8 +330,8 @@ const Badges = () => {
           </h2>
 
           <p className="text-base md:text-lg text-[#948A8A] max-w-3xl mx-auto leading-relaxed">
-            Professional Google Cloud skill badges organized by expertise
-            areas – showcasing hands-on experience in AI/ML, networking, data
+            Professional Google Cloud skill badges organized by expertise areas
+            – showcasing hands-on experience in AI/ML, networking, data
             analytics, and cloud infrastructure.
           </p>
         </div>
@@ -335,7 +351,7 @@ const Badges = () => {
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6">
                 {badges.map((badge, badgeIndex) => (
-                  <Card 
+                  <Card
                     key={badge.id}
                     className="group transition-all duration-300 hover:shadow-lg hover:scale-105 border border-gray-200 bg-white rounded-xl"
                   >

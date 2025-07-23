@@ -10,20 +10,24 @@ const Hero = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowAnimation(true);
-    }, 20); // Delay animation by 200ms
+    }, 0.2); // Delay animation by 200ms
 
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <div
-      className={`${showAnimation ? "fade-in" : "opacity-0"} py-16 relative overflow-hidden`}
+      className={`${
+        showAnimation ? "fade-in" : "opacity-0"
+      } py-16 relative overflow-hidden`}
       id="home"
     >
       <ParallaxElement speed={0.3}>
-        <h1 className="text-5xl text-center lg:text-8xl font-bold">Full-Stack</h1>
+        <h1 className="text-5xl text-center lg:text-8xl font-bold">
+          Full-Stack
+        </h1>
       </ParallaxElement>
-      
+
       <ParallaxElement speed={0.5}>
         <h1 className="text-5xl text-center lg:text-8xl font-bold text-[#353334]">
           Software Engineer
@@ -72,7 +76,7 @@ const Hero = () => {
           </ParallaxElement>
         </div>
       </ParallaxElement>
-      
+
       {/* Scroll down button */}
       <ScrollDownButton />
 
@@ -80,7 +84,7 @@ const Hero = () => {
         .fade-in {
           opacity: 1;
           transform: translateY(0);
-          transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+          transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
         }
         .opacity-0 {
           opacity: 0;
