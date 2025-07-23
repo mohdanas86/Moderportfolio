@@ -31,9 +31,7 @@ export default function Home() {
       </section>
 
       <section id="badges" className="snap-start relative">
-        <ScrollReveal animation="fade-up" delay={0.2}>
-          <Badges />
-        </ScrollReveal>
+        <Badges />
       </section>
 
       <section id="tools" className="snap-start relative">

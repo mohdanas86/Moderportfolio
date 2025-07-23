@@ -44,7 +44,7 @@ export default function RootLayout({ children }) {
           <ScrollToTop />
           <div className="flex flex-col min-h-screen w-full relative main-content">
             {/* Header - Fixed positioning and mobile optimized */}
-            <div className="fixed lg:top-0 top-6 left-0 right-0 z-50 w-full">
+            <div className="fixed top-0 left-0 right-0 z-50 w-full">
               <Header />
             </div>
 
