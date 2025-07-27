@@ -21,6 +21,7 @@ const geistMono = Geist_Mono({
 // Viewport configuration
 export const viewport = {
   width: 'device-width',
+  themeColor: "#151312",
   initialScale: 1,
   maximumScale: 5,
   userScalable: true, // Allow user scaling for accessibility
@@ -29,6 +30,7 @@ export const viewport = {
 export const metadata = {
   title: "Anas Alam - Portfolio",
   description: "A portfolio website built by Anas Alam.",
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({ children }) {
