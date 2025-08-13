@@ -23,29 +23,28 @@ const Hero = () => {
       id="home"
     >
       <ParallaxElement speed={0.2} direction="horizontal">
-        <h1 className="text-5xl text-center lg:text-8xl font-bold">
-          Full-Stack
+        <h1 className="text-7xl text-center lg:text-8xl font-bold">
+          {/* Full-Stack */}
+          Software
         </h1>
       </ParallaxElement>
-
       <ParallaxElement speed={0.2} direction="horizontal">
-        <h1 className="text-5xl text-center lg:text-8xl font-bold text-[#353334]">
-          Software Engineer
+        <h1 className="text-7xl text-center lg:text-8xl font-bold text-[#353334]">
+          Engineer
         </h1>
       </ParallaxElement>
-
       <ParallaxElement speed={0.2} direction="horizontal">
-        <p className="text-lg text-[#948A8A] lg:mt-6 mt-4 w-full text-center lg:px-0 px-2">
-          Architecting modern applications using robust backend systems and
-          intuitive frontend interfaces. I turn complex problems into efficient,
-          full-cycle solutions.
+        <p className="text-lg text-[#948A8A] lg:mt-6 mt-4 w-full</ParallaxElement> text-center lg:px-0 px-2">
+          Specializing in React, Node.js, and modern frameworks to build
+          scalable web solutions. I transform complex requirements into clean,
+          maintainable code with a focus on performance, accessibility, and user
+          experience. From database architecture to responsive interfaces, I
+          deliver end-to-end solutions that drive business value.
         </p>
       </ParallaxElement>
-
       <ParallaxElement speed={0.2} direction="horizontal">
         <SocialLinks />
       </ParallaxElement>
-
       {/* STAT */}
       <ParallaxElement speed={0.2} direction="horizontal">
         <div className="flex flex-wrap justify-center lg:justify-center items-center lg:gap-8 gap-6 mt-12">
@@ -80,10 +79,8 @@ const Hero = () => {
           </ParallaxElement>
         </div>
       </ParallaxElement>
-
       {/* Scroll down button */}
       <ScrollDownButton />
-
       <style jsx>{`
         .fade-in {
           opacity: 1;

@@ -42,7 +42,7 @@ export default function RootLayout({ children }) {
       >
         <SmoothScroll>
           <CursorFollower />
-          <TechUI />
+          {/* <TechUI /> */}
           <ScrollToTop />
           <div className="flex flex-col min-h-screen w-full relative main-content">
             {/* Header - Fixed positioning and mobile optimized */}

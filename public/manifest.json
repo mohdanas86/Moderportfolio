@@ -16,7 +16,7 @@
         }
     ],
     "orientation": "any",
-    "display": "fullscreen",
+    "display": "standalone",
     "dir": "auto",
     "lang": "en-US",
     "name": "Anas",
