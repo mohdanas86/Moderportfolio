@@ -10,11 +10,11 @@ html, body {
   font-family: Arial, Helvetica, sans-serif;
   min-height: 100%;
   -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
-  overscroll-behavior-y: none; /* Prevent bounce effect on iOS */
-  touch-action: manipulation; /* Optimize for touch interactions */
+  overscroll-behavior-y: auto; /* Allow native scrolling behavior */
+  touch-action: pan-y pinch-zoom; /* Allow vertical scrolling and pinch zoom */
   -webkit-touch-callout: none; /* Disable callout on long-press */
-  -webkit-user-select: none; /* Safari */
-  user-select: none; /* Standard */
+  -webkit-user-select: text; /* Allow text selection */
+  user-select: text; /* Allow text selection */
 }
 
 html.lenis {
@@ -380,8 +380,15 @@ html.lenis {
   }
   
   /* Better touch feedback */
-  a, button {
+  a, button, [role="button"] {
     touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(255, 122, 0, 0.3);
+  }
+  
+  /* Ensure interactive elements are touchable */
+  button, a, input, textarea, select {
+    min-height: 44px; /* Minimum touch target size */
+    min-width: 44px;
   }
 }
 
@@ -400,15 +407,24 @@ html.lenis {
   cursor: grabbing !important;
 }
 
-/* Scroll snap optimization for mobile */
+/* Mobile scrolling fixes */
 @media (max-width: 768px) {
   html, body {
-    scroll-snap-type: y proximity;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    touch-action: pan-y pinch-zoom !important;
   }
   
-  section {
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
+  /* Ensure main content is scrollable */
+  .main-content {
+    overflow-y: visible;
+    height: auto;
+  }
+  
+  /* Remove any scroll preventing styles on mobile */
+  .lenis.lenis-stopped {
+    overflow: visible !important;
   }
   
   /* Remove sticky hover effects on mobile */

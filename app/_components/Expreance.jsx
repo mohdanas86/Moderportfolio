@@ -16,9 +16,44 @@ const Experience = () => {
 
   const experienceData = [
     {
+      title: "Full Stack Developer Intern",
+      company: "Blue Planet Infosolutions Pvt. Ltd., India",
+      duration: "Jun 2025 - Present · 2 mos",
+      location: "Remote",
+      responsibilities: [
+        "Develop and maintain both front-end and back-end components of web applications",
+        "Collaborate with the team to design scalable and efficient software solutions",
+        "Participate in code reviews and provide technical input",
+        "Debug and optimize existing applications for performance and scalability",
+      ],
+    },
+    {
+      title: "Club President & Founder",
+      company: "NextGen Crews",
+      duration: "Jul 2025 - Present · 1 mos",
+      location: "SRM Institute of Science and Technology",
+      responsibilities: [
+        "Founded and established NextGen Crews, a student-led community bridging tech and non-tech domains",
+        "Lead interdisciplinary initiatives including Full Stack Development, AI/Data Science, UI/UX Design, and Content Creation",
+        "Mentor students in developing both technical skills and soft skills for industry readiness",
+        "Organize weekly Tech x Talk sessions, bootcamps",
+      ],
+    },
+    {
+      title: "Executive Member - Institute Innovation Entrepreneur Council",
+      company: "SRM Institute of Science and Technology (SRMIST)",
+      duration: "Jan 2025 - Present · 7 mos",
+      location: "SRM IST Chennai",
+      responsibilities: [
+        "Organized and managed events to foster innovation and entrepreneurship at SRM IST Chennai.",
+        "Collaborated with stakeholders to develop strategies and provide mentorship for students and faculty.",
+        "Facilitated resources to promote innovative thinking and entrepreneurial growth within the institution.",
+      ],
+    },
+    {
       title: "Data Analysis Intern",
       company: "Cognifyz Technologies",
-      duration: "May 2025 – June 2025 (2 Months)",
+      duration: "May 2025 – May 2025 (1 Month)",
       location: "Remote, Virtual",
       responsibilities: [
         "Worked on data analysis projects as part of internship under Cognifyz Technologies.",
@@ -78,44 +113,50 @@ const Experience = () => {
 
   return (
     <div
-      className={`${showAnimation ? "fade-in" : "opacity-0"} py-16 relative overflow-hidden`}
+      className={`${
+        showAnimation ? "fade-in" : "opacity-0"
+      } py-16 relative overflow-hidden`}
       id="experience"
     >
       <ParallaxElement speed={0.3}>
-        <h1 className="text-5xl text-center lg:text-7xl font-bold">EXPERIENCE</h1>
+        <h1 className="text-5xl text-center lg:text-7xl font-bold">
+          EXPERIENCE
+        </h1>
       </ParallaxElement>
 
       <ParallaxElement speed={0.2}>
         <div className="experience-list mt-12 grid grid-cols-1 gap-6 lg:gap-8 w-full max-w-7xl mx-auto">
-        {experienceData.map((experience, index) => (
-          <ParallaxElement speed={0.1 * (index + 1)} direction={index % 2 === 0 ? 'horizontal' : 'vertical'} key={index}>
-            <div
-              className="card w-full h-full min-h-[320px] md:min-h-[360px] lg:min-h-[280px] rounded-xl overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:bg-[#2726262e] text-white flex flex-col"
+          {experienceData.map((experience, index) => (
+            <ParallaxElement
+              speed={0.1 * (index + 1)}
+              direction={index % 2 === 0 ? "horizontal" : "vertical"}
+              key={index}
             >
-              <div className="p-6 flex flex-col h-full">
-                <div className="flex-shrink-0 mb-4">
-                  <h2 className="text-xl md:text-2xl font-semibold text-white mb-2 leading-tight">
-                    {experience.title}
-                  </h2>
-                  <p className="text-[#948A8A] text-sm mb-1 font-medium">
-                    {experience.company}
-                  </p>
-                  <p className="text-[#948A8A] text-sm mb-2">
-                    {experience.duration}
-                  </p>
-                </div>
-                <div className="flex-grow">
-                  <ul className="text-sm text-[#bfbaba] list-disc ml-6 space-y-1 leading-relaxed">
-                    {experience.responsibilities.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
-                  </ul>
+              <div className="card w-full h-full min-h-[320px] md:min-h-[360px] lg:min-h-[280px] rounded-xl overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:bg-[#2726262e] text-white flex flex-col">
+                <div className="p-6 flex flex-col h-full">
+                  <div className="flex-shrink-0 mb-4">
+                    <h2 className="text-xl md:text-2xl font-semibold text-white mb-2 leading-tight">
+                      {experience.title}
+                    </h2>
+                    <p className="text-[#948A8A] text-sm mb-1 font-medium">
+                      {experience.company}
+                    </p>
+                    <p className="text-[#948A8A] text-sm mb-2">
+                      {experience.duration}
+                    </p>
+                  </div>
+                  <div className="flex-grow">
+                    <ul className="text-sm text-[#bfbaba] list-disc ml-6 space-y-1 leading-relaxed">
+                      {experience.responsibilities.map((item, i) => (
+                        <li key={i}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
-            </div>
-          </ParallaxElement>
-        ))}
-      </div>
+            </ParallaxElement>
+          ))}
+        </div>
       </ParallaxElement>
 
       <style jsx>{`

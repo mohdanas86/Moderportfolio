@@ -55,6 +55,36 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      keyframes: {
+        moveUp: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-5px)' },
+        },
+        moveDown: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(5px)' },
+        },
+        moveLeft: {
+          '0%, 100%': { transform: 'translateX(0)' },
+          '50%': { transform: 'translateX(-5px)' },
+        },
+        moveRight: {
+          '0%, 100%': { transform: 'translateX(0)' },
+          '50%': { transform: 'translateX(5px)' },
+        },
+        wave: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+      },
+      animation: {
+        'move-up': 'moveUp ease-in-out infinite',
+        'move-down': 'moveDown ease-in-out infinite',
+        'move-left': 'moveLeft ease-in-out infinite',
+        'move-right': 'moveRight ease-in-out infinite',
+        'wave': 'wave 2.5s ease-in-out infinite',
+
+      },
     },
   },
   daisyui: {

@@ -5,10 +5,6 @@ import CursorFollower from "./_components/CursorFollower";
 import TechUI from "./_components/TechUI";
 import SmoothScroll from "./_components/SmoothScroll";
 import ScrollToTop from "./_components/ScrollToTop";
-import InstallPWAWrapper from "./_components/InstallPWAWrapper";
-import ServiceWorkerRegistration from "./_components/ServiceWorkerRegistration";
-import MobileScrollOptimizer from "./_components/MobileScrollOptimizer";
-import TouchGestureHandler from "./_components/TouchGestureHandler";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,56 +18,40 @@ const geistMono = Geist_Mono({
   display: 'swap',
 });
 
-// Separate viewport export as per Next.js guidelines
+// Viewport configuration
 export const viewport = {
   width: 'device-width',
+  themeColor: "#151312",
   initialScale: 1,
   maximumScale: 5,
-  userScalable: false, // Prevent pinch zooming for app-like feel
-  themeColor: '#151312',
+  userScalable: true, // Allow user scaling for accessibility
 };
 
 export const metadata = {
   title: "Anas Alam - Portfolio",
   description: "A portfolio website built by Anas Alam.",
-  manifest: '/manifest.json', // For PWA support
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: 'black-translucent',
-    title: 'Anas Alam'
-  },
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({ children }) {
 
   return (
     <html lang="en" data-theme="light" className="no-scrollbar">
-      <head>
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="Anas Alam" />
-        <link rel="apple-touch-icon" href="/icons/favicon.ico" />
-        <link rel="manifest" href="/manifest.json" />
-      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#151312] text-white min-h-screen overflow-x-hidden no-scrollbar overscroll-none`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#151312] text-white min-h-screen overflow-x-hidden no-scrollbar`}
       >
         <SmoothScroll>
           <CursorFollower />
-          <TechUI />
+          {/* <TechUI /> */}
           <ScrollToTop />
-          <InstallPWAWrapper />
-          <ServiceWorkerRegistration />
-          <MobileScrollOptimizer />
-          <TouchGestureHandler />
           <div className="flex flex-col min-h-screen w-full relative main-content">
             {/* Header - Fixed positioning and mobile optimized */}
-            <div className="header-fixed top-0 z-50 w-full">
+            <div className="fixed top-0 left-0 right-0 z-50 w-full">
               <Header />
             </div>
 
             {/* Main Layout - Mobile-first responsive design */}
-            <div className="flex-1 w-full min-w-0 pt-[60px]">
+            <div className="flex-1 w-full min-w-0 pt-[60px] mt-0">
               <div className="w-full max-w-7xl mx-auto min-h-0">
                 {/* Main Content with mobile-optimized spacing */}
                 <main className="w-full px-3 sm:px-4 lg:px-8 py-4 sm:py-6 lg:py-8 min-w-0">
