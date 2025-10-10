@@ -9,17 +9,25 @@ const Project = () => {
   const [showAnimation, setShowAnimation] = useState(false);
   const Projects = [
     {
-      img: "/agrilense.png",
-      title: "AgriLenses",
+      id: "POWERGRID Inventory Management System",
+      img: "/dashboard.png",
+      title: "POWERGRID Inventory Management System",
+      des: "The POWERGRID Inventory Management System is a comprehensive, production-ready solution designed for enterprise-level inventory management, demand forecasting, and procurement optimization.",
+      repo: "https://github.com/mohdanas86/POWERGRID-Inventory-Management-System",
+      link: "",
+    },
+    {
+      img: "/smartcrop.png",
+      title: "Smart Crop Advisory System",
       des: "AI-powered crop disease detection platform that provides instant diagnosis and treatment recommendations for farmers.",
-      repo: "#",
+      repo: "https://github.com/mohdanas86/agrilenses_frontend",
       link: "https://agrilenses.netlify.app/",
     },
     {
       img: "imgrithm.png",
-      title: "ImgRithm",
+      title: "Image Compression Tool",
       des: "Free online image compression tool supporting bulk optimization and WebP conversion with minimal quality loss.",
-      repo: "#",
+      repo: "",
       link: "https://imgrithm.tech/",
     },
     {
@@ -48,7 +56,7 @@ const Project = () => {
       title: "Blog API Platform",
       des: "RESTful blog backend with Express.js, MongoDB, and Redis featuring caching and Docker containerization.",
       repo: "https://github.com/mohdanas86/Blog-CRUD",
-      link: "#",
+      link: "",
     },
   ];
 
@@ -101,16 +109,20 @@ const Project = () => {
                         <p className="text-[#948A8A] text-sm">{v?.des}</p>
                       </div>
                       <div className="flex items-center justify-end mt-4 gap-4">
-                        <Link href={`${v.link}`} target="_blank">
-                          <button className="cursor-pointer flex items-center justify-center w-12 h-12 rounded-full border border-gray-300 dark:border-gray-600 bg-transparent text-white hover:border-[#FF7A00] hover:text-[#FF7A00] transition-all duration-300 hover:translate-y-1">
-                            <MoveUpRight size={20} />
-                          </button>
-                        </Link>
-                        <Link href={`${v.repo}`} target="_blank">
-                          <button className="cursor-pointer flex items-center justify-center w-12 h-12 rounded-full border border-gray-300 dark:border-gray-600 bg-transparent text-white hover:border-[#FF7A00] hover:text-[#FF7A00] transition-all duration-300 hover:translate-y-1">
-                            <Github size={20} />
-                          </button>
-                        </Link>
+                        {v.link && v.link.trim() !== "" && (
+                          <Link href={`${v.link}`} target="_blank">
+                            <button className="cursor-pointer flex items-center justify-center w-12 h-12 rounded-full border border-gray-300 dark:border-gray-600 bg-transparent text-white hover:border-[#FF7A00] hover:text-[#FF7A00] transition-all duration-300 hover:translate-y-1">
+                              <MoveUpRight size={20} />
+                            </button>
+                          </Link>
+                        )}
+                        {v.repo && v.repo.trim() !== "" && (
+                          <Link href={`${v.repo}`} target="_blank">
+                            <button className="cursor-pointer flex items-center justify-center w-12 h-12 rounded-full border border-gray-300 dark:border-gray-600 bg-transparent text-white hover:border-[#FF7A00] hover:text-[#FF7A00] transition-all duration-300 hover:translate-y-1">
+                              <Github size={20} />
+                            </button>
+                          </Link>
+                        )}
                       </div>
                     </div>
                   </div>
