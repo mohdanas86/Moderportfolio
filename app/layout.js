@@ -36,9 +36,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
 
   return (
-    <html lang="en" data-theme="light" className="no-scrollbar">
+    <html lang="en" data-theme="light" className="no-scrollbar" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#151312] text-white min-h-screen overflow-x-hidden no-scrollbar`}
+        suppressHydrationWarning
       >
         <SmoothScroll>
           <CursorFollower />

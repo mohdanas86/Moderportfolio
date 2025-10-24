@@ -21,6 +21,18 @@ const Experience = () => {
 
   const experienceData = [
     {
+      title: "Google Student Ambassador",
+      company: "Google",
+      duration: "Sep 2025 - Present",
+      location: "Remote",
+      responsibilities: [
+        "Promote Google technologies and initiatives within the university community.",
+        "Organize workshops, tech talks, and events to engage students with Google products.",
+        "Collaborate with other ambassadors to share best practices and enhance outreach efforts.",
+        "Serve as a liaison between Google and the student body, providing feedback and insights.",
+      ],
+    },
+    {
       title: "Full Stack Developer Intern",
       company: "Blue Planet Infosolutions Pvt. Ltd., India",
       duration: "Jun 2025 - Present · 2 mos",
