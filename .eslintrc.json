@@ -1,0 +1,95 @@
+{
+    "extends": [
+        "next/core-web-vitals",
+        "eslint:recommended"
+    ],
+    "rules": {
+        // Code Quality
+        "no-console": [
+            "warn",
+            {
+                "allow": [
+                    "warn",
+                    "error"
+                ]
+            }
+        ],
+        "no-unused-vars": [
+            "warn",
+            {
+                "argsIgnorePattern": "^_",
+                "varsIgnorePattern": "^_"
+            }
+        ],
+        "no-var": "error",
+        "prefer-const": "warn",
+        "prefer-arrow-callback": "warn",
+        // React Best Practices
+        "react/prop-types": "off",
+        "react/react-in-jsx-scope": "off",
+        "react/jsx-no-target-blank": "warn",
+        "react/jsx-key": [
+            "error",
+            {
+                "checkFragmentShorthand": true
+            }
+        ],
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
+        // Next.js Specific
+        "@next/next/no-html-link-for-pages": "error",
+        "@next/next/no-img-element": "warn",
+        // Code Style
+        "semi": [
+            "warn",
+            "always"
+        ],
+        "quotes": [
+            "warn",
+            "double",
+            {
+                "avoidEscape": true
+            }
+        ],
+        "comma-dangle": [
+            "warn",
+            "only-multiline"
+        ],
+        "arrow-spacing": [
+            "warn",
+            {
+                "before": true,
+                "after": true
+            }
+        ],
+        "object-curly-spacing": [
+            "warn",
+            "always"
+        ],
+        "array-bracket-spacing": [
+            "warn",
+            "never"
+        ],
+        // Best Practices
+        "eqeqeq": [
+            "error",
+            "always"
+        ],
+        "no-eval": "error",
+        "no-implied-eval": "error",
+        "no-new-func": "error",
+        "no-alert": "warn"
+    },
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true
+    },
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    }
+}

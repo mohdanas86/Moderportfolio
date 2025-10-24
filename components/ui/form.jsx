@@ -24,16 +24,19 @@ const FormField = (
 
 const useFormField = () => {
   const fieldContext = React.useContext(FormFieldContext)
-  const itemContext = React.useContext(FormItemContext)
-  const { getFieldState, formState } = useFormContext()
-
-  const fieldState = getFieldState(fieldContext.name, formState)
 
   if (!fieldContext) {
     throw new Error("useFormField should be used within <FormField>")
   }
 
-  const { id } = itemContext
+  const itemContext = React.useContext(FormItemContext)
+  const { getFieldState, formState } = useFormContext()
+
+  const fieldState = getFieldState(fieldContext.name, formState)
+
+  // Always use deterministic IDs based on field name to prevent hydration mismatches
+  // React.useId() can generate different IDs on server vs client, causing hydration errors
+  const id = `field-${String(fieldContext.name).replace(/\s+/g, "-").toLowerCase()}`
 
   return {
     id,
@@ -48,7 +51,9 @@ const useFormField = () => {
 const FormItemContext = React.createContext({})
 
 const FormItem = React.forwardRef(({ className, ...props }, ref) => {
-  const id = React.useId()
+  // Don't use React.useId() to avoid hydration mismatches
+  // The id will be generated deterministically in useFormField based on field name
+  const id = undefined
 
   return (
     (<FormItemContext.Provider value={{ id }}>

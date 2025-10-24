@@ -3,6 +3,11 @@
 import { useEffect, useState } from "react";
 import ParallaxElement from "./ParallaxElement";
 
+/**
+ * Experience component displays professional work history
+ * in a grid layout with parallax effects
+ * @component
+ */
 const Experience = () => {
   const [showAnimation, setShowAnimation] = useState(false);
 

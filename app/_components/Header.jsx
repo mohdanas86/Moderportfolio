@@ -26,9 +26,6 @@ import { usePathname } from "next/navigation";
 const Header = () => {
   const pathname = usePathname(); // Use to determine active navigation
 
-  // Debug logging to see what pathname we're getting
-  console.log("Current pathname:", pathname);
-
   return (
     <header className="w-full bg-[#1e1e1e] border-b border-gray-800/50 backdrop-blur-sm">
       <div className="w-full h-[60px] lg:h-[60px] flex items-center justify-between px-3 sm:px-4 lg:px-8 max-w-7xl mx-auto">

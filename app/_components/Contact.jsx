@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useEffect, useState } from "react";
 import ParallaxElement from "./ParallaxElement";
+import axios from "axios";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -16,14 +17,21 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import axios from "axios";
 
+/**
+ * Contact form validation schema
+ */
 const FormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
   email: z.string().email("Please enter a valid email address."),
   message: z.string().min(10, "Message must be at least 10 characters long."),
 });
 
+/**
+ * Contact component with form validation and API integration
+ * @component
+ * @returns {JSX.Element} Contact form section
+ */
 function Contact() {
   const form = useForm({
     resolver: zodResolver(FormSchema),
@@ -54,7 +62,9 @@ function Contact() {
           timeout: 10000, // 10 second timeout
         });
       } catch (mainApiError) {
-        console.log('Main API failed, trying simple API...', mainApiError.message);
+        if (process.env.NODE_ENV === 'development') {
+          console.log('Main API failed, trying simple API...', mainApiError.message);
+        }
         
         // Fallback to simple API
         response = await axios.post("/api/contact-simple", data, {
@@ -77,7 +87,9 @@ function Contact() {
         throw new Error(response.data.error || 'Unknown error occurred');
       }
     } catch (err) {
-      console.error('Contact form error:', err);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Contact form error:', err);
+      }
       
       let errorMessage = 'Failed to send message. Please try again.';
       

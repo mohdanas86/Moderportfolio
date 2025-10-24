@@ -2,9 +2,15 @@
 
 import { Github, MoveUpRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import ParallaxElement from "./ParallaxElement";
 
+/**
+ * Project component displays a grid of portfolio projects
+ * with parallax effects and hover animations
+ * @component
+ */
 const Project = () => {
   const [showAnimation, setShowAnimation] = useState(false);
   const Projects = [
@@ -24,35 +30,35 @@ const Project = () => {
       link: "https://agrilenses.netlify.app/",
     },
     {
-      img: "imgrithm.png",
+      img: "/imgrithm.png",
       title: "Image Compression Tool",
       des: "Free online image compression tool supporting bulk optimization and WebP conversion with minimal quality loss.",
       repo: "",
       link: "https://imgrithm.tech/",
     },
     {
-      img: "fynsera.png",
+      img: "/fynsera.png",
       title: "Fynnsera – AI Financial Assistant",
       des: "AI platform with real-time financial analytics and personalized chatbot assistance.",
       repo: "https://github.com/mohdanas86/fynnsera",
       link: "https://fynsera.netlify.app/",
     },
     {
-      img: "ainotestaker.png",
+      img: "/ainotestaker.png",
       title: "AI Notes Taker",
       des: "PDF text analysis tool that generates summaries and answers with integrated auth and payment system.",
       repo: "https://github.com/mohdanas86/ainotestaker",
       link: "https://ainotestaker.netlify.app/",
     },
     {
-      img: "anaspice.png",
+      img: "/anaspice.png",
       title: "AnaSpice – Food Delivery App",
       des: "Food delivery platform with real-time order tracking and responsive design.",
       repo: "https://github.com/mohdanas86/anaspiceFood.git",
       link: "https://anaspice.netlify.app/",
     },
     {
-      img: "blog-backend.png",
+      img: "/blog-backend.png",
       title: "Blog API Platform",
       des: "RESTful blog backend with Express.js, MongoDB, and Redis featuring caching and Docker containerization.",
       repo: "https://github.com/mohdanas86/Blog-CRUD",
@@ -94,11 +100,14 @@ const Project = () => {
               return (
                 <ParallaxElement speed={0.1} key={i} disabled={true}>
                   <div className="card w-full z-50 rounded-xl overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:bg-[#2726262e] text-white">
-                    <figure className="h-[100%]">
-                      <img
-                        src={`${v?.img}`}
-                        alt={`${v?.title}`}
-                        className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
+                    <figure className="h-[100%] relative w-full aspect-video">
+                      <Image
+                        src={v?.img || '/placeholder.png'}
+                        alt={`${v?.title} project screenshot`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-300 hover:scale-110"
+                        loading="lazy"
                       />
                     </figure>
                     <div className="p-6 flex flex-col justify-between h-full">

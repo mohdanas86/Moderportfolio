@@ -6,7 +6,7 @@ import ScrollReveal from "./_components/ScrollReveal";
 // Dynamically import components
 const Hero = dynamic(() => import("./_components/Hero"));
 const Project = dynamic(() => import("./_components/Project"));
-const Experience = dynamic(() => import("./_components/Expreance"));
+const Experience = dynamic(() => import("./_components/Experience"));
 const Techstack = dynamic(() => import("./_components/Techstack"));
 const Contact = dynamic(() => import("./_components/Contact"));
 const Badges = dynamic(() => import("./_components/Badges"));

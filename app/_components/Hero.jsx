@@ -6,6 +6,11 @@ import ParallaxElement from "./ParallaxElement";
 import { FaLinkedin, FaGithub, FaYoutube, FaInstagram } from "react-icons/fa6";
 import Link from "next/link";
 
+/**
+ * Hero section component displaying main introduction,
+ * social links, and statistics
+ * @component
+ */
 const Hero = () => {
   const [showAnimation, setShowAnimation] = useState(false);
 
@@ -34,7 +39,7 @@ const Hero = () => {
         </h1>
       </ParallaxElement>
       <ParallaxElement speed={0.2} direction="horizontal">
-        <p className="text-lg text-[#948A8A] lg:mt-6 mt-4 w-full</ParallaxElement> text-center lg:px-0 px-2">
+        <p className="text-lg text-[#948A8A] lg:mt-6 mt-4 w-full text-center lg:px-0 px-2">
           Specializing in React, Node.js, and modern frameworks to build
           scalable web solutions. I transform complex requirements into clean,
           maintainable code with a focus on performance, accessibility, and user
@@ -98,6 +103,11 @@ const Hero = () => {
 
 export default Hero;
 
+/**
+ * SocialLinks component displays animated social media links
+ * @component
+ * @returns {JSX.Element} Social media links with wave animation
+ */
 const SocialLinks = () => {
   const SocialLinks = [
     {

@@ -4,13 +4,20 @@ import { useRef, useEffect, useState } from "react";
 
 /**
  * ParallaxElement - A component that adds parallax scrolling effect to its children
- *
- * @param {Object} props
+ * 
+ * @component
+ * @param {Object} props - Component props
  * @param {React.ReactNode} props.children - The content to apply parallax effect to
- * @param {number} props.speed - The speed of parallax effect (negative values move in opposite direction)
- * @param {string} props.direction - Direction of movement: 'vertical' or 'horizontal'
- * @param {boolean} props.disabled - Disable parallax on mobile devices if true
- * @param {string} props.className - Additional classes for the wrapper
+ * @param {number} [props.speed=0.5] - The speed of parallax effect (negative values move in opposite direction)
+ * @param {'vertical'|'horizontal'} [props.direction='vertical'] - Direction of movement
+ * @param {boolean} [props.disabled=false] - Disable parallax on mobile devices if true
+ * @param {string} [props.className=''] - Additional CSS classes for the wrapper
+ * @returns {JSX.Element} Parallax wrapper element
+ * 
+ * @example
+ * <ParallaxElement speed={0.3} direction="horizontal">
+ *   <h1>Parallax Title</h1>
+ * </ParallaxElement>
  */
 export default function ParallaxElement({
   children,
