@@ -5,6 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import ParallaxElement from "./ParallaxElement";
+import { GlowingEffect } from "@/components/ui/glowing-effect";
+import { cn } from "@/lib/utils";
 
 /**
  * Project component displays a grid of portfolio projects
@@ -18,7 +20,7 @@ const Project = () => {
       id: "POWERGRID Inventory Management System",
       img: "/dashboard.png",
       title: "POWERGRID Inventory Management System",
-      des: "The POWERGRID Inventory Management System is a comprehensive, production-ready solution designed for enterprise-level inventory management, demand forecasting, and procurement optimization.",
+      des: "A comprehensive, inventory management, demand forecasting, and procurement optimization.",
       repo: "https://github.com/mohdanas86/POWERGRID-Inventory-Management-System",
       link: "",
     },
@@ -78,68 +80,33 @@ const Project = () => {
     <div
       className={`${
         showAnimation ? "fade-in" : "opacity-0"
-      } py-16 relative overflow-hidden`}
+      } py-16 relative overflow-hidden w-full`}
       id="project"
     >
-      <ParallaxElement speed={0.3}>
+      {/* Projects Section Container */}
+      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ParallaxElement speed={0.3}>
         <h1 className="text-5xl text-center lg:text-7xl font-bold">RECENT</h1>
-      </ParallaxElement>
+        </ParallaxElement>
 
-      <ParallaxElement speed={0.5}>
-        <h1 className="text-5xl text-center lg:text-7xl font-bold text-[#353334]">
-          PROJECTS
-        </h1>
-      </ParallaxElement>
+        <ParallaxElement speed={0.5}>
+          <h1 className="text-5xl text-center lg:text-7xl font-bold text-[#353334]">
+            PROJECTS
+          </h1>
+        </ParallaxElement>
 
-      {/* === PROJECTS === */}
-      <ParallaxElement speed={0.2}>
-        <div className="projects lg:pr-8 mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
-          {/* <div className="projects pr-8 mt-12 flex flex-wrap items-center justify-center border gap-8 w-full"> */}
-          {Projects &&
-            Projects.map((v, i) => {
-              return (
-                <ParallaxElement speed={0.1} key={i} disabled={true}>
-                  <div className="card w-full z-50 rounded-xl overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:bg-[#2726262e] text-white">
-                    <figure className="h-[100%] relative w-full aspect-video">
-                      <Image
-                        src={v?.img || '/placeholder.png'}
-                        alt={`${v?.title} project screenshot`}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className="object-cover transition-transform duration-300 hover:scale-110"
-                        loading="lazy"
-                      />
-                    </figure>
-                    <div className="p-6 flex flex-col justify-between h-full">
-                      <div className="prodes">
-                        <h2 className="text-2xl font-semibold text-white mb-2">
-                          {v?.title}
-                        </h2>
-                        <p className="text-[#948A8A] text-sm">{v?.des}</p>
-                      </div>
-                      <div className="flex items-center justify-end mt-4 gap-4">
-                        {v.link && v.link.trim() !== "" && (
-                          <Link href={`${v.link}`} target="_blank">
-                            <button className="cursor-pointer flex items-center justify-center w-12 h-12 rounded-full border border-gray-300 dark:border-gray-600 bg-transparent text-white hover:border-[#FF7A00] hover:text-[#FF7A00] transition-all duration-300 hover:translate-y-1">
-                              <MoveUpRight size={20} />
-                            </button>
-                          </Link>
-                        )}
-                        {v.repo && v.repo.trim() !== "" && (
-                          <Link href={`${v.repo}`} target="_blank">
-                            <button className="cursor-pointer flex items-center justify-center w-12 h-12 rounded-full border border-gray-300 dark:border-gray-600 bg-transparent text-white hover:border-[#FF7A00] hover:text-[#FF7A00] transition-all duration-300 hover:translate-y-1">
-                              <Github size={20} />
-                            </button>
-                          </Link>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </ParallaxElement>
-              );
-            })}
-        </div>
-      </ParallaxElement>
+        {/* === PROJECTS === */}
+        <ParallaxElement speed={0.2}>
+          <div className="projects mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 w-full">
+            {Projects &&
+              Projects.map((v, i) => {
+                return (
+                  <ProjectCard key={i} project={v} index={i} />
+                );
+              })}
+          </div>
+        </ParallaxElement>
+      </div>
 
       <style jsx>{`
         .fade-in {
@@ -151,16 +118,76 @@ const Project = () => {
           opacity: 0;
           transform: translateY(20px);
         }
-        .card {
-          transform: translateY(5px);
-          transition: transform 0.4s ease-in-out;
-        }
-        .card:hover {
-          transform: translateY(0px);
-        }
       `}</style>
     </div>
   );
 };
 
 export default Project;
+
+/**
+ * ProjectCard component with glowing effect
+ * @component
+ */
+const ProjectCard = ({ project, index }) => {
+  return (
+    <ParallaxElement speed={0.1} disabled={true}>
+      <div className={cn("min-h-[24rem] list-none")}>
+        <div className="relative h-full rounded-[1.25rem] border-[0.75px] border-white/10 p-2 md:rounded-[1.5rem] md:p-3">
+          <GlowingEffect
+            spread={40}
+            glow={true}
+            disabled={false}
+            proximity={64}
+            inactiveZone={0.01}
+            borderWidth={3}
+          />
+          <div className="relative flex h-full flex-col justify-between gap-4 overflow-hidden rounded-xl border-[0.75px] border-white/10  shadow-lg">
+            {/* Project Image */}
+            <figure className="relative w-full aspect-video overflow-hidden rounded-t-xl">
+              <Image
+                src={project?.img || '/placeholder.png'}
+                alt={`${project?.title} project screenshot`}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover transition-transform duration-500 hover:scale-110"
+                loading="lazy"
+              />
+            </figure>
+
+            {/* Content */}
+            <div className="relative flex flex-1 flex-col justify-between gap-3 p-6">
+              {/* Title and Description */}
+              <div className="space-y-3">
+                <h3 className="pt-0.5 text-xl leading-[1.375rem] font-semibold font-sans tracking-[-0.04em] md:text-2xl md:leading-[1.875rem] text-balance text-white">
+                  {project?.title}
+                </h3>
+                <p className="font-sans text-sm leading-[1.125rem] md:text-base md:leading-[1.375rem] text-gray-400">
+                  {project?.des}
+                </p>
+              </div>
+
+              {/* Links */}
+              <div className="flex items-center justify-end gap-3 pt-2">
+                {project.link && project.link.trim() !== "" && (
+                  <Link href={project.link} target="_blank">
+                    <button className="cursor-pointer flex items-center justify-center w-10 h-10 rounded-full border border-white/20 bg-white/5 text-gray-300 hover:border-blue-500 hover:text-blue-500 hover:bg-blue-500/10 transition-all duration-300">
+                      <MoveUpRight size={18} />
+                    </button>
+                  </Link>
+                )}
+                {project.repo && project.repo.trim() !== "" && (
+                  <Link href={project.repo} target="_blank">
+                    <button className="cursor-pointer flex items-center justify-center w-10 h-10 rounded-full border border-white/20 bg-white/5 text-gray-300 hover:border-blue-500 hover:text-blue-500 hover:bg-blue-500/10 transition-all duration-300">
+                      <Github size={18} />
+                    </button>
+                  </Link>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ParallaxElement>
+  );
+};

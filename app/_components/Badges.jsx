@@ -249,8 +249,10 @@ const Badges = () => {
       } relative overflow-hidden w-full`}
       id="badges"
     >
-      {/* Professional Certificates Section */}
-      <section className="py-16 px-4 md:px-8 w-full mx-auto">
+      {/* Badges Section Container */}
+      <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Professional Certificates Section */}
+        <section className="py-16 w-full">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-2 text-[#353334]">
             Professional
@@ -375,7 +377,8 @@ const Badges = () => {
             </div>
           )
         )}
-      </section>
+        </section>
+      </div>
 
       <style jsx>{`
         .fade-in {

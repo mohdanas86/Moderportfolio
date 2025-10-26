@@ -24,68 +24,72 @@ const Hero = () => {
 
   return (
     <div
-      className={`${showAnimation ? "fade-in" : "opacity-0"} py-16 relative`}
+      className={`${showAnimation ? "fade-in" : "opacity-0"} py-16 relative w-full`}
       id="home"
-    >
-      <ParallaxElement speed={0.2} direction="horizontal">
-        <h1 className="text-7xl text-center lg:text-8xl font-bold">
-          {/* Full-Stack */}
-          Software
-        </h1>
-      </ParallaxElement>
-      <ParallaxElement speed={0.2} direction="horizontal">
-        <h1 className="text-7xl text-center lg:text-8xl font-bold text-[#353334]">
-          Engineer
-        </h1>
-      </ParallaxElement>
-      <ParallaxElement speed={0.2} direction="horizontal">
-        <p className="text-lg text-[#948A8A] lg:mt-6 mt-4 w-full text-center lg:px-0 px-2">
-          Specializing in React, Node.js, and modern frameworks to build
-          scalable web solutions. I transform complex requirements into clean,
-          maintainable code with a focus on performance, accessibility, and user
-          experience. From database architecture to responsive interfaces, I
-          deliver end-to-end solutions that drive business value.
-        </p>
-      </ParallaxElement>
-      <ParallaxElement speed={0.2} direction="horizontal">
-        <SocialLinks />
-      </ParallaxElement>
-      {/* STAT */}
-      <ParallaxElement speed={0.2} direction="horizontal">
-        <div className="flex flex-wrap justify-center lg:justify-center items-center lg:gap-8 gap-6 mt-12">
-          {/* Experience */}
-          <ParallaxElement speed={-0.2} direction="horizontal">
-            <div className="shadow lg:border overflow-hidden bg-transparent text-white lg:px-8 px-0 py-4 rounded-lg lg:rounded-xl flex flex-col">
-              <h2 className="text-4xl lg:text-5xl font-bold">+13</h2>
-              <p className="text-[#948A8A] font-semibold text-sm mt-2">
-                MONTHS OF <br /> EXPERIENCE
-              </p>
-            </div>
-          </ParallaxElement>
+    >      
+      {/* Content with higher z-index */}
+      <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ParallaxElement speed={0.2} direction="horizontal">
+          <h1 className="text-7xl text-center lg:text-8xl font-bold text-white">
+            {/* Full-Stack */}
+            Software
+          </h1>
+        </ParallaxElement>
+        <ParallaxElement speed={0.2} direction="horizontal">
+          <h1 className="text-7xl text-center lg:text-8xl font-bold text-[#5A5A5A]">
+            Engineer
+          </h1>
+        </ParallaxElement>
+        <ParallaxElement speed={0.2} direction="horizontal">
+          <p className="text-lg text-[#A8A8A8] lg:mt-6 mt-4 w-full text-center lg:px-0 px-2">
+            Specializing in React, Node.js, and modern frameworks to build
+            scalable web solutions. I transform complex requirements into clean,
+            maintainable code with a focus on performance, accessibility, and user
+            experience. From database architecture to responsive interfaces, I
+            deliver end-to-end solutions that drive business value.
+          </p>
+        </ParallaxElement>
+        <ParallaxElement speed={0.2} direction="horizontal">
+          <SocialLinks />
+        </ParallaxElement>
+        {/* STAT */}
+        <ParallaxElement speed={0.2} direction="horizontal">
+          <div className="flex flex-wrap justify-center lg:justify-center items-center lg:gap-8 gap-6 mt-12">
+            {/* Experience */}
+            <ParallaxElement speed={-0.2} direction="horizontal">
+              <div className="shadow-lg lg:border border-white/10 overflow-hidden bg-white/5 backdrop-blur-sm text-white lg:px-8 px-6 py-4 rounded-lg lg:rounded-xl flex flex-col">
+                <h2 className="text-4xl lg:text-5xl font-bold text-white">+13</h2>
+                <p className="text-[#B8B8B8] font-semibold text-sm mt-2">
+                  MONTHS OF <br /> EXPERIENCE
+                </p>
+              </div>
+            </ParallaxElement>
 
-          {/* Projects */}
-          <ParallaxElement speed={0.2}>
-            <div className="shadow lg:border overflow-hidden bg-transparent text-white lg:px-8 px-0 py-4 rounded-lg lg:rounded-xl flex flex-col">
-              <h2 className="text-4xl lg:text-5xl font-bold">+10</h2>
-              <p className="text-[#948A8A] font-semibold text-sm mt-2">
-                PROJECTS <br /> COMPLETED
-              </p>
-            </div>
-          </ParallaxElement>
+            {/* Projects */}
+            <ParallaxElement speed={0.2}>
+              <div className="shadow-lg lg:border border-white/10 overflow-hidden bg-white/5 backdrop-blur-sm text-white lg:px-8 px-6 py-4 rounded-lg lg:rounded-xl flex flex-col">
+                <h2 className="text-4xl lg:text-5xl font-bold text-white">+10</h2>
+                <p className="text-[#B8B8B8] font-semibold text-sm mt-2">
+                  PROJECTS <br /> COMPLETED
+                </p>
+              </div>
+            </ParallaxElement>
 
-          {/* Clients */}
-          <ParallaxElement speed={-0.2} direction="horizontal">
-            <div className="shadow lg:border overflow-hidden bg-transparent text-white lg:px-8 px-0 py-4 rounded-lg lg:rounded-xl flex flex-col">
-              <h2 className="text-4xl lg:text-5xl font-bold">+4</h2>
-              <p className="text-[#948A8A] font-semibold text-sm mt-2">
-                WORLDWIDE <br /> CLIENTS
-              </p>
-            </div>
-          </ParallaxElement>
-        </div>
-      </ParallaxElement>
-      {/* Scroll down button */}
-      <ScrollDownButton />
+            {/* Clients */}
+            <ParallaxElement speed={-0.2} direction="horizontal">
+              <div className="shadow-lg lg:border border-white/10 overflow-hidden bg-white/5 backdrop-blur-sm text-white lg:px-8 px-6 py-4 rounded-lg lg:rounded-xl flex flex-col">
+                <h2 className="text-4xl lg:text-5xl font-bold text-white">+4</h2>
+                <p className="text-[#B8B8B8] font-semibold text-sm mt-2">
+                  WORLDWIDE <br /> CLIENTS
+                </p>
+              </div>
+            </ParallaxElement>
+          </div>
+        </ParallaxElement>
+        {/* Scroll down button */}
+        <ScrollDownButton />
+      </div>
+      
       <style jsx>{`
         .fade-in {
           opacity: 1;
@@ -153,7 +157,7 @@ const SocialLinks = () => {
                   target="_blank"
                   // The magic happens here: apply the wave animation and a staggered delay
                   className={`flex justify-center items-center border rounded-full w-[30px] h-[30px] lg:w-[40px] lg:h-[40px] lg:text-xl 
-                         animate-wave hover:animate-none duration-[1500ms] hover:text-[#FF7A00] hover:border-[#FF7A00]
+                         animate-wave hover:animate-none duration-[1500ms] hover:text-blue-500 hover:border-blue-500
                          [animation-delay:${index * 150}ms]`}
                 >
                   {item.icon}

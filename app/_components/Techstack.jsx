@@ -140,14 +140,16 @@ const Techstack = () => {
     <div
       className={`${
         showAnimation ? "fade-in" : "opacity-0"
-      } py-16 relative overflow-hidden`}
+      } py-16 relative overflow-hidden w-full`}
       id="tools"
     >
-      <ParallaxElement speed={0.3}>
-        <h1 className="text-5xl text-center lg:text-7xl font-bold uppercase">
-          Tools &
-        </h1>
-      </ParallaxElement>
+      {/* Techstack Section Container */}
+      <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ParallaxElement speed={0.3}>
+          <h1 className="text-5xl text-center lg:text-7xl font-bold uppercase">
+            Tools &
+          </h1>
+        </ParallaxElement>
 
       <ParallaxElement speed={0.5}>
         <h1 className="text-5xl text-center lg:text-7xl font-bold text-[#353334] uppercase">
@@ -179,6 +181,7 @@ const Techstack = () => {
           ))}
         </div>
       </ParallaxElement>
+      </div>
 
       <style jsx>{`
         .fade-in {

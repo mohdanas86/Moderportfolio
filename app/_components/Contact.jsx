@@ -131,8 +131,10 @@ function Contact() {
   }, []);
 
   return (
-    <div className={`${showAnimation ? "fade-in" : "opacity-0"} py-16 relative overflow-hidden`} id="contact">
-      <ParallaxElement speed={0.3}>
+    <div className={`${showAnimation ? "fade-in" : "opacity-0"} py-16 relative overflow-hidden w-full`} id="contact">
+      {/* Contact Section Container */}
+      <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ParallaxElement speed={0.3}>
         <h1 className="text-center text-5xl lg:text-7xl font-bold uppercase">
           LET'S WORK
         </h1>
@@ -261,7 +263,8 @@ function Contact() {
           </Form>
         </div>
       </div>
-      </ParallaxElement>
+        </ParallaxElement>
+      </div>
 
       <style jsx>{`
         .fade-in {

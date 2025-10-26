@@ -6,15 +6,22 @@
   --image-quality: 'high';
 }
 
-html, body {
+html,
+body {
   font-family: Arial, Helvetica, sans-serif;
   min-height: 100%;
-  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
-  overscroll-behavior-y: auto; /* Allow native scrolling behavior */
-  touch-action: pan-y pinch-zoom; /* Allow vertical scrolling and pinch zoom */
-  -webkit-touch-callout: none; /* Disable callout on long-press */
-  -webkit-user-select: text; /* Allow text selection */
-  user-select: text; /* Allow text selection */
+  -webkit-tap-highlight-color: transparent;
+  /* Remove tap highlight on mobile */
+  overscroll-behavior-y: auto;
+  /* Allow native scrolling behavior */
+  touch-action: pan-y pinch-zoom;
+  /* Allow vertical scrolling and pinch zoom */
+  -webkit-touch-callout: none;
+  /* Disable callout on long-press */
+  -webkit-user-select: text;
+  /* Allow text selection */
+  user-select: text;
+  /* Allow text selection */
 }
 
 html.lenis {
@@ -39,18 +46,24 @@ html.lenis {
 
 /* Custom animations for TechUI */
 @keyframes pulse-slow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.2;
   }
+
   50% {
     opacity: 0.8;
   }
 }
 
 @keyframes float-slow {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-10px);
   }
@@ -60,6 +73,7 @@ html.lenis {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -105,6 +119,7 @@ html.lenis {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -137,32 +152,35 @@ html.lenis {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
-  
+
   /* Optimized scroll behavior */
   html {
     scroll-behavior: smooth;
     overflow-x: hidden;
   }
-  
+
   /* Better text rendering */
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
-  
+
   /* Mobile-specific optimizations */
   @media (max-width: 768px) {
     body {
-      font-size: 16px; /* Prevent zoom on iOS */
+      font-size: 16px;
+      /* Prevent zoom on iOS */
     }
   }
-  
+
   /* Prevent horizontal scroll */
-  body, html {
+  body,
+  html {
     overflow-x: hidden;
     width: 100%;
   }
@@ -170,21 +188,29 @@ html.lenis {
 
 /* Custom scrollbar styles */
 .no-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
+
 .no-scrollbar::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, and Opera */
+  display: none;
+  /* Chrome, Safari, and Opera */
 }
 
 /* Hide scrollbar for the entire page */
 * {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
-*::-webkit-scrollbar, body::-webkit-scrollbar {
-  display: none;  /* Chrome, Safari, and Opera */
+*::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, and Opera */
 }
 
 /* Better mobile touch targets */
@@ -193,30 +219,30 @@ html.lenis {
     min-height: 44px;
     min-width: 44px;
   }
-  
+
   /* Responsive spacing utilities */
   .section-spacing {
     @apply mt-8 sm:mt-12 lg:mt-16 xl:mt-20;
   }
-  
+
   .container-padding {
     @apply px-4 sm:px-6 lg:px-8;
   }
-  
+
   /* Smooth transitions for performance */
   .smooth-transition {
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  
+
   /* Fix for mobile navigation items */
   .mobile-nav-item {
     @apply text-white;
   }
-  
+
   .mobile-nav-item:hover {
     @apply text-[#FF7A00];
   }
-  
+
   .mobile-nav-item.active {
     @apply text-[#FF7A00] bg-[#FF7A00]/10;
   }
@@ -224,17 +250,19 @@ html.lenis {
 
 /* Mobile Header Optimizations */
 @media (max-width: 640px) {
+
   /* Prevent horizontal overflow on mobile */
   header {
     overflow-x: hidden;
   }
-  
+
   /* Ensure proper touch targets */
-  button, a {
+  button,
+  a {
     min-height: 44px;
     min-width: 44px;
   }
-  
+
   /* Better text handling on small screens */
   .truncate {
     overflow: hidden;
@@ -245,12 +273,13 @@ html.lenis {
 
 /* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
+
   /* Larger touch targets for mobile */
   .touch-target {
     min-height: 48px;
     min-width: 48px;
   }
-  
+
   /* Remove hover effects on touch devices */
   *:hover {
     transition: none !important;
@@ -268,7 +297,7 @@ html.lenis {
   .mobile-menu-enter {
     animation: slideInRight 0.2s ease-out;
   }
-  
+
   .mobile-menu-exit {
     animation: slideOutRight 0.2s ease-in;
   }
@@ -279,6 +308,7 @@ html.lenis {
     transform: translateX(100%);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;
@@ -290,6 +320,7 @@ html.lenis {
     transform: translateX(0);
     opacity: 1;
   }
+
   to {
     transform: translateX(100%);
     opacity: 0;
@@ -298,21 +329,23 @@ html.lenis {
 
 /* Mobile-specific layout fixes */
 @media (max-width: 768px) {
+
   /* Prevent horizontal scrolling issues */
   body {
     overflow-x: hidden;
   }
-  
+
   /* Ensure TechUI elements don't interfere with content */
   .tech-ui-mobile {
     opacity: 0.3 !important;
   }
-  
+
   /* Better spacing for mobile content */
   main {
-    padding-top: 80px; /* Account for header height */
+    padding-top: 80px;
+    /* Account for header height */
   }
-  
+
   /* Smoother animations on mobile */
   .animate-pulse-slow,
   .animate-float-slow,
@@ -324,6 +357,7 @@ html.lenis {
 
 /* Accessibility improvements */
 @media (prefers-reduced-motion: reduce) {
+
   .animate-pulse-slow,
   .animate-float-slow,
   .animate-spin-very-slow {
@@ -349,14 +383,17 @@ html.lenis {
 
 /* Mobile App-specific styles */
 @media (display-mode: standalone) {
+
   /* Styles for when the app is running in standalone mode */
   body {
-    padding-top: env(safe-area-inset-top); /* Handle iOS notches */
-    padding-bottom: env(safe-area-inset-bottom); /* Handle iOS home indicator */
+    padding-top: env(safe-area-inset-top);
+    /* Handle iOS notches */
+    padding-bottom: env(safe-area-inset-bottom);
+    /* Handle iOS home indicator */
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
   }
-  
+
   .header-fixed {
     padding-top: env(safe-area-inset-top);
   }
@@ -364,12 +401,14 @@ html.lenis {
 
 /* Image quality optimization during scrolling */
 @media (max-width: 768px) {
+
   /* When --image-quality is low (during scrolling) */
-  :root[style*="--image-quality:low"] img, 
+  :root[style*="--image-quality:low"] img,
   :root[style*="--image-quality: low"] img {
     image-rendering: optimizeSpeed;
     filter: blur(0.5px);
-    transform: translateZ(0); /* Force GPU acceleration */
+    transform: translateZ(0);
+    /* Force GPU acceleration */
     backface-visibility: hidden;
   }
 
@@ -378,16 +417,23 @@ html.lenis {
     will-change: transform;
     transform: translateZ(0);
   }
-  
+
   /* Better touch feedback */
-  a, button, [role="button"] {
+  a,
+  button,
+  [role="button"] {
     touch-action: manipulation;
     -webkit-tap-highlight-color: rgba(255, 122, 0, 0.3);
   }
-  
+
   /* Ensure interactive elements are touchable */
-  button, a, input, textarea, select {
-    min-height: 44px; /* Minimum touch target size */
+  button,
+  a,
+  input,
+  textarea,
+  select {
+    min-height: 44px;
+    /* Minimum touch target size */
     min-width: 44px;
   }
 }
@@ -409,26 +455,29 @@ html.lenis {
 
 /* Mobile scrolling fixes */
 @media (max-width: 768px) {
-  html, body {
+
+  html,
+  body {
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
     touch-action: pan-y pinch-zoom !important;
   }
-  
+
   /* Ensure main content is scrollable */
   .main-content {
     overflow-y: visible;
     height: auto;
   }
-  
+
   /* Remove any scroll preventing styles on mobile */
   .lenis.lenis-stopped {
     overflow: visible !important;
   }
-  
+
   /* Remove sticky hover effects on mobile */
-  a:hover, button:hover {
+  a:hover,
+  button:hover {
     transition: none !important;
   }
 }
@@ -438,4 +487,17 @@ html.lenis {
   transform: translateZ(0);
   backface-visibility: hidden;
   perspective: 1000px;
+}
+
+
+
+
+.heroBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
 }
