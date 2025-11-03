@@ -4,6 +4,7 @@ import "./globals.css";
 import CursorFollower from "./_components/CursorFollower";
 import SmoothScroll from "./_components/SmoothScroll";
 import ScrollToTop from "./_components/ScrollToTop";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,6 +41,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#151312] text-white min-h-screen no-scrollbar`}
         suppressHydrationWarning
       >
+        <Toaster position="bottom-right" richColors closeButton expand={false} />
         <SmoothScroll>
           <CursorFollower />
           <ScrollToTop />

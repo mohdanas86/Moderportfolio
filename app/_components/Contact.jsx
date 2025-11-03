@@ -47,6 +47,8 @@ const formSchema = z.object({
 })
 
 const Contact = () => {
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -57,6 +59,7 @@ const Contact = () => {
   })
 
   async function onSubmit(data) {
+    setIsSubmitting(true);
     const url = '/api/contact';
     try {
       const response = await fetch(url, {
@@ -74,21 +77,23 @@ const Contact = () => {
       if (response.ok) {
         toast.success(result.message || "Message sent successfully!", {
           description: "Thank you for reaching out! I'll get back to you soon.",
-          position: "bottom-right",
+          duration: 5000,
         });
         form.reset(); // Reset form on success
       } else {
         toast.error(result.error || "Failed to send message", {
           description: "Please try again or contact me directly.",
-          position: "bottom-right",
+          duration: 5000,
         });
       }
     } catch (error) {
       toast.error("An unexpected error occurred", {
         description: "Please try again later.",
-        position: "bottom-right",
+        duration: 5000,
       });
       console.error("Contact form submission error:", error);
+    } finally {
+      setIsSubmitting(false);
     }
   }
   return (
@@ -202,15 +207,27 @@ const Contact = () => {
                   <Button
                     type="submit"
                     form="form-rhf-demo"
-                    className="text-black bg-white hover:bg-white-600 w-full"
+                    disabled={isSubmitting}
+                    className="text-black bg-white hover:bg-white-600 w-full disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Submit
+                    {isSubmitting ? (
+                      <span className="flex items-center gap-2">
+                        <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Sending...
+                      </span>
+                    ) : (
+                      "Submit"
+                    )}
                   </Button>
                   <Button
                     type="button"
                     variant="outline"
                     onClick={() => form.reset()}
-                    className="text-black bg-white hover:bg-white-600"
+                    disabled={isSubmitting}
+                    className="text-white hover:text-gray-300 hover:bg-white-600 disabled:opacity-50 disabled:cursor-not-allowed bg-transparent"
                   >
                     Reset
                   </Button>
