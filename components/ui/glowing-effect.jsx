@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useCallback, useEffect, useRef } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { animate } from "motion/react";
 
@@ -20,9 +20,25 @@ const GlowingEffect = memo(
     const containerRef = useRef(null);
     const lastPosition = useRef({ x: 0, y: 0 });
     const animationFrameRef = useRef(0);
+    const [isMobile, setIsMobile] = useState(false);
+
+    // Check if device is mobile
+    useEffect(() => {
+      const checkMobile = () => {
+        const mobile = window.innerWidth < 768 || 
+                       (window.matchMedia("(pointer: coarse)").matches);
+        setIsMobile(mobile);
+      };
+      
+      checkMobile();
+      window.addEventListener("resize", checkMobile);
+      return () => window.removeEventListener("resize", checkMobile);
+    }, []);
 
     const handleMove = useCallback(
       (e) => {
+        // Disable on mobile for performance
+        if (isMobile) return;
         if (!containerRef.current) return;
 
         if (animationFrameRef.current) {
@@ -77,16 +93,18 @@ const GlowingEffect = memo(
             duration: movementDuration,
             ease: [0.16, 1, 0.3, 1],
             onUpdate: (value) => {
-              element.style.setProperty("--start", String(value));
+              if (element) {
+                element.style.setProperty("--start", String(value));
+              }
             },
           });
         });
       },
-      [inactiveZone, proximity, movementDuration]
+      [inactiveZone, proximity, movementDuration, isMobile]
     );
 
     useEffect(() => {
-      if (disabled) return;
+      if (disabled || isMobile) return;
 
       const handleScroll = () => handleMove();
       const handlePointerMove = (e) => handleMove(e);
@@ -103,7 +121,18 @@ const GlowingEffect = memo(
         window.removeEventListener("scroll", handleScroll);
         document.body.removeEventListener("pointermove", handlePointerMove);
       };
-    }, [handleMove, disabled]);
+    }, [handleMove, disabled, isMobile]);
+
+    // Simplified rendering for mobile
+    if (isMobile) {
+      return (
+        <div
+          className={cn(
+            "pointer-events-none absolute -inset-px rounded-[inherit] border border-blue-500/20 opacity-50 transition-opacity"
+          )}
+        />
+      );
+    }
 
     return (
       <>

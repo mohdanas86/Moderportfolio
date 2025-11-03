@@ -3,6 +3,7 @@ const nextConfig = {
     // Image optimization configuration
     images: {
         formats: ['image/avif', 'image/webp'],
+        qualities: [75, 85, 90, 100],
         remotePatterns: [
             {
                 protocol: 'https',
@@ -25,8 +26,11 @@ const nextConfig = {
                 pathname: '/**',
             },
         ],
-        deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-        imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+        deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+        imageSizes: [16, 32, 48, 64, 96, 128, 256],
+        minimumCacheTTL: 60,
+        dangerouslyAllowSVG: true,
+        contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     },
 
     // Compiler options
@@ -44,7 +48,65 @@ const nextConfig = {
 
     // Experimental features
     experimental: {
-        optimizePackageImports: ['lucide-react', 'react-icons'],
+        optimizePackageImports: ['lucide-react', 'react-icons', 'framer-motion', '@radix-ui/react-dialog', '@radix-ui/react-label'],
+        optimizeCss: true,
+    },
+
+    // Performance optimizations
+    compress: true,
+    poweredByHeader: false,
+
+    // Webpack optimizations
+    webpack: (config, { dev, isServer }) => {
+        // Production optimizations
+        if (!dev && !isServer) {
+            config.optimization = {
+                ...config.optimization,
+                moduleIds: 'deterministic',
+                runtimeChunk: 'single',
+                splitChunks: {
+                    chunks: 'all',
+                    cacheGroups: {
+                        default: false,
+                        vendors: false,
+                        // Vendor chunk for react and related libraries
+                        framework: {
+                            name: 'framework',
+                            chunks: 'all',
+                            test: /[\\/]node_modules[\\/](react|react-dom|scheduler)[\\/]/,
+                            priority: 40,
+                            enforce: true,
+                        },
+                        // Separate chunk for Three.js (large library)
+                        three: {
+                            name: 'three',
+                            chunks: 'all',
+                            test: /[\\/]node_modules[\\/](three)[\\/]/,
+                            priority: 35,
+                            enforce: true,
+                        },
+                        // Separate chunk for motion libraries
+                        motion: {
+                            name: 'motion',
+                            chunks: 'all',
+                            test: /[\\/]node_modules[\\/](framer-motion|motion)[\\/]/,
+                            priority: 30,
+                            enforce: true,
+                        },
+                        // UI libraries chunk
+                        lib: {
+                            test: /[\\/]node_modules[\\/]/,
+                            name: 'lib',
+                            priority: 20,
+                            minChunks: 1,
+                            reuseExistingChunk: true,
+                        },
+                    },
+                },
+            };
+        }
+
+        return config;
     },
 };
 

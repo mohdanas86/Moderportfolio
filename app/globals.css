@@ -11,17 +11,11 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   min-height: 100%;
   -webkit-tap-highlight-color: transparent;
-  /* Remove tap highlight on mobile */
   overscroll-behavior-y: auto;
-  /* Allow native scrolling behavior */
   touch-action: pan-y pinch-zoom;
-  /* Allow vertical scrolling and pinch zoom */
   -webkit-touch-callout: none;
-  /* Disable callout on long-press */
   -webkit-user-select: text;
-  /* Allow text selection */
   user-select: text;
-  /* Allow text selection */
 }
 
 html.lenis {
@@ -44,7 +38,7 @@ html.lenis {
   pointer-events: none;
 }
 
-/* Custom animations for TechUI */
+/* Performance: Use GPU acceleration for animations */
 @keyframes pulse-slow {
 
   0%,
@@ -61,34 +55,37 @@ html.lenis {
 
   0%,
   100% {
-    transform: translateY(0px);
+    transform: translate3d(0, 0, 0);
   }
 
   50% {
-    transform: translateY(-10px);
+    transform: translate3d(0, -10px, 0);
   }
 }
 
 @keyframes spin-very-slow {
   from {
-    transform: rotate(0deg);
+    transform: rotate3d(0, 0, 1, 0deg);
   }
 
   to {
-    transform: rotate(360deg);
+    transform: rotate3d(0, 0, 1, 360deg);
   }
 }
 
 .animate-pulse-slow {
   animation: pulse-slow 3s ease-in-out infinite;
+  will-change: opacity;
 }
 
 .animate-float-slow {
   animation: float-slow 4s ease-in-out infinite;
+  will-change: transform;
 }
 
 .animate-spin-very-slow {
   animation: spin-very-slow 20s linear infinite;
+  will-change: transform;
 }
 
 @layer base {

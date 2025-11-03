@@ -5,7 +5,6 @@ import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Progress } from "@/components/ui/progress";
 
 const Badges = () => {
   const [showAnimation, setShowAnimation] = useState(false);
@@ -295,6 +294,10 @@ const Badges = () => {
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      loading="lazy"
+                      quality={85}
+                      placeholder="blur"
+                      blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4="
                     />
                   </div>
                   <CardHeader className="pb-2">
@@ -365,6 +368,10 @@ const Badges = () => {
                           fill
                           className="object-contain"
                           sizes="(max-width: 768px) 64px, 80px"
+                          loading="lazy"
+                          quality={90}
+                          placeholder="blur"
+                          blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmVyc2lvbj0iMS4xIi8+"
                         />
                       </div>
                       <h4 className="text-xs md:text-sm font-medium text-[#353334] text-center leading-tight line-clamp-3">

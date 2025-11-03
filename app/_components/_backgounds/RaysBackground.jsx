@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 
 export function RaysBackground() {
@@ -13,6 +13,25 @@ export function RaysBackground() {
     uniforms: null,
     animationId: null,
   });
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    // Intersection Observer to only animate when in view
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (canvasRef.current) {
+      observer.observe(canvasRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -28,7 +47,7 @@ export function RaysBackground() {
     `;
 
     const fragmentShader = `
-      precision highp float;
+      precision mediump float;
       uniform vec2 resolution;
       uniform float time;
       uniform float xScale;
@@ -55,9 +74,17 @@ export function RaysBackground() {
 
     const initScene = () => {
       refs.scene = new THREE.Scene();
-      refs.renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
-      refs.renderer.setPixelRatio(window.devicePixelRatio);
-      // Transparent background to match theme
+      
+      // Lower pixel ratio for better performance
+      const pixelRatio = Math.min(window.devicePixelRatio, 2);
+      
+      refs.renderer = new THREE.WebGLRenderer({ 
+        canvas, 
+        alpha: true,
+        antialias: false, // Disable for performance
+        powerPreference: "high-performance",
+      });
+      refs.renderer.setPixelRatio(pixelRatio);
       refs.renderer.setClearColor(new THREE.Color(0x000000), 0);
 
       refs.camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, -1);
@@ -97,10 +124,15 @@ export function RaysBackground() {
     };
 
     const animate = () => {
-      if (refs.uniforms) refs.uniforms.time.value += 0.01;
-      if (refs.renderer && refs.scene && refs.camera) {
+      // Only animate if visible
+      if (isVisible && refs.uniforms) {
+        refs.uniforms.time.value += 0.01;
+      }
+      
+      if (refs.renderer && refs.scene && refs.camera && isVisible) {
         refs.renderer.render(refs.scene, refs.camera);
       }
+      
       refs.animationId = requestAnimationFrame(animate);
     };
 
@@ -114,11 +146,20 @@ export function RaysBackground() {
 
     initScene();
     animate();
-    window.addEventListener("resize", handleResize);
+    
+    // Debounced resize handler
+    let resizeTimeout;
+    const debouncedResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(handleResize, 150);
+    };
+    
+    window.addEventListener("resize", debouncedResize);
 
     return () => {
       if (refs.animationId) cancelAnimationFrame(refs.animationId);
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", debouncedResize);
+      clearTimeout(resizeTimeout);
       if (refs.mesh) {
         refs.scene?.remove(refs.mesh);
         refs.mesh.geometry.dispose();
@@ -128,7 +169,7 @@ export function RaysBackground() {
       }
       refs.renderer?.dispose();
     };
-  }, []);
+  }, [isVisible]);
 
   return (
     <canvas
