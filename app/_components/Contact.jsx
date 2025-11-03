@@ -1,284 +1,227 @@
-"use client";
+"use client"
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { useEffect, useState } from "react";
-import ParallaxElement from "./ParallaxElement";
-import axios from "axios";
+import * as React from "react"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Controller, useForm } from "react-hook-form"
+import { toast } from "sonner"
+import * as z from "zod"
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import {
+  Field,
+  FieldDescription,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field"
+import { Input } from "@/components/ui/input"
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupText,
+  InputGroupTextarea,
+} from "@/components/ui/input-group"
+import ParallaxElement from "./ParallaxElement";
 
-/**
- * Contact form validation schema
- */
-const FormSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters."),
-  email: z.string().email("Please enter a valid email address."),
-  message: z.string().min(10, "Message must be at least 10 characters long."),
-});
+const formSchema = z.object({
+  fullName: z
+    .string()
+    .min(2, "Name must be at least 2 characters.")
+    .max(50, "Name must be at most 50 characters."),
+  email: z
+    .string()
+    .email("Please enter a valid email address.")
+    .min(5, "Email must be at least 5 characters."),
+  message: z
+    .string()
+    .min(10, "Message must be at least 10 characters.")
+    .max(500, "Message must be at most 500 characters."),
+})
 
-/**
- * Contact component with form validation and API integration
- * @component
- * @returns {JSX.Element} Contact form section
- */
-function Contact() {
+const Contact = () => {
   const form = useForm({
-    resolver: zodResolver(FormSchema),
+    resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
+      fullName: "",
       email: "",
-      message: "",
+      message: ""
     },
-  });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', null
-  const [errorMessage, setErrorMessage] = useState('');
+  })
 
   async function onSubmit(data) {
-    setIsSubmitting(true);
-    setSubmitStatus(null);
-    setErrorMessage('');
-    
+    const url = '/api/contact';
     try {
-      // Try the main API first, fallback to simple API if it fails
-      let response;
-      try {
-        response = await axios.post("/api/contact", data, {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          timeout: 10000, // 10 second timeout
-        });
-      } catch (mainApiError) {
-        if (process.env.NODE_ENV === 'development') {
-          console.log('Main API failed, trying simple API...', mainApiError.message);
-        }
-        
-        // Fallback to simple API
-        response = await axios.post("/api/contact-simple", data, {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          timeout: 5000,
-        });
-      }
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
 
-      if (response.data.success) {
-        setSubmitStatus('success');
-        form.reset(); // Clear the form
-        
-        // Auto-hide success message after 5 seconds
-        setTimeout(() => {
-          setSubmitStatus(null);
-        }, 5000);
+      const result = await response.json();
+      console.log("Form Data:", data);
+      console.log("Response:", result);
+
+      if (response.ok) {
+        toast.success(result.message || "Message sent successfully!", {
+          description: "Thank you for reaching out! I'll get back to you soon.",
+          position: "bottom-right",
+        });
+        form.reset(); // Reset form on success
       } else {
-        throw new Error(response.data.error || 'Unknown error occurred');
+        toast.error(result.error || "Failed to send message", {
+          description: "Please try again or contact me directly.",
+          position: "bottom-right",
+        });
       }
-    } catch (err) {
-      if (process.env.NODE_ENV === 'development') {
-        console.error('Contact form error:', err);
-      }
-      
-      let errorMessage = 'Failed to send message. Please try again.';
-      
-      if (err.response?.status === 429) {
-        errorMessage = 'Too many requests. Please wait a moment before trying again.';
-      } else if (err.response?.status === 400) {
-        errorMessage = err.response.data.error || 'Please check your input and try again.';
-      } else if (err.response?.status === 409) {
-        errorMessage = 'Duplicate message detected. Please wait before sending the same message again.';
-      } else if (err.response?.status === 503) {
-        errorMessage = 'Service temporarily unavailable. Please try again in a few minutes.';
-      } else if (err.code === 'ECONNABORTED') {
-        errorMessage = 'Request timed out. Please check your connection and try again.';
-      } else if (!navigator.onLine) {
-        errorMessage = 'No internet connection. Please check your connection and try again.';
-      }
-      
-      setSubmitStatus('error');
-      setErrorMessage(errorMessage);
-      
-      // Auto-hide error message after 7 seconds
-      setTimeout(() => {
-        setSubmitStatus(null);
-        setErrorMessage('');
-      }, 7000);
-    } finally {
-      setIsSubmitting(false);
+    } catch (error) {
+      toast.error("An unexpected error occurred", {
+        description: "Please try again later.",
+        position: "bottom-right",
+      });
+      console.error("Contact form submission error:", error);
     }
   }
-
-  const [showAnimation, setShowAnimation] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowAnimation(true);
-    }, 200);
-    
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
-    <div className={`${showAnimation ? "fade-in" : "opacity-0"} py-16 relative overflow-hidden w-full`} id="contact">
-      {/* Contact Section Container */}
-      <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="py-16 relative overflow-hidden w-full" id="contact">
+      {/* Content Container */}
+      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <ParallaxElement speed={0.3}>
-        <h1 className="text-center text-5xl lg:text-7xl font-bold uppercase">
-          LET'S WORK
-        </h1>
-      </ParallaxElement>
-      
-      <ParallaxElement speed={0.5}>
-        <h1 className="text-center text-5xl lg:text-7xl font-bold text-[#353334] uppercase">
-          TOGETHER
-        </h1>
-      </ParallaxElement>
-      
-      <ParallaxElement speed={0.2}>
-        <div className="mt-12 lg:w-[45%] w-[95%] mx-auto">
-        <div
-          className={
-            "relative overflow-hidden z-10 bg-[#2726262e] p-8 rounded-lg shadow-md " +
-            "before:w-24 before:h-24 before:absolute before:bg-purple-500 before:rounded-full before:-z-10 before:blur-2xl " +
-            "after:w-32 after:h-32 after:absolute after:bg-sky-400 after:rounded-full after:-z-10 after:blur-xl after:top-24 after:-right-12"
-          }
-        >
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              {/* Name Field */}
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    {/* <label className="block text-sm font-medium text-gray-600">
-                    Full Name
-                  </label> */}
-                    <FormControl>
-                      <Input
-                        placeholder="Your Name"
-                        {...field}
-                        className="mt-1 p-4 py-5 w-full rounded-md bg-[#504f4f00] border border-white placeholder:text-white"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+          <h1 className="text-5xl text-center lg:text-7xl font-bold">GET IN</h1>
+        </ParallaxElement>
 
-              {/* Email Field */}
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    {/* <label className="block text-sm font-medium text-gray-600">
-                    Email Address
-                  </label> */}
-                    <FormControl>
-                      <Input
-                        placeholder="Your@email.com"
-                        {...field}
-                        className="mt-1 p-4 py-5 w-full rounded-md bg-[#504f4f00] border border-white placeholder:text-white"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+        <ParallaxElement speed={0.5}>
+          <h1 className="text-5xl text-center lg:text-7xl font-bold text-[#353334]">
+            TOUCH
+          </h1>
+        </ParallaxElement>
 
-              {/* Bio Field */}
-              <FormField
-                control={form.control}
-                name="message"
-                render={({ field }) => (
-                  <FormItem>
-                    {/* <label className="block text-sm font-medium text-gray-600">
-                    Bio
-                  </label> */}
-                    <FormControl>
-                      <Textarea
-                        placeholder="Message"
-                        {...field}
-                        className="mt-1 p-4 w-full rounded-md bg-[#504f4f00] border border-white placeholder:text-white"
-                        rows="3"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              {/* Submit Button */}
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-blue-600 text-white px-4 py-2 font-bold rounded-md hover:opacity-80 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? (
-                  <div className="flex items-center justify-center">
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                    Sending...
-                  </div>
-                ) : (
-                  'Send Message'
-                )}
-              </Button>
-
-              {/* Status Messages */}
-              {submitStatus === 'success' && (
-                <div className="p-4 bg-green-100 border border-green-400 text-green-700 rounded-md">
-                  <div className="flex items-center">
-                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    Message sent successfully! I'll get back to you soon.
-                  </div>
+        {/* FORM */}
+        <ParallaxElement speed={0.2}>
+          <div className="mt-12 flex justify-center">
+            <Card className="w-full sm:max-w-md border-white/10 bg-white/5 backdrop-blur-sm">
+              <CardHeader>
+                <CardTitle className="text-white">Contact Me</CardTitle>
+                <CardDescription className="text-gray-400">
+                  Have a project in mind? Let&apos;s work together.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <form id="form-rhf-demo" onSubmit={form.handleSubmit(onSubmit)}>
+                  <FieldGroup>
+                    <Controller
+                      name="fullName"
+                      control={form.control}
+                      render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
+                          <FieldLabel htmlFor="form-rhf-demo-fullName" className="text-gray-300">
+                            Full Name
+                          </FieldLabel>
+                          <Input
+                            {...field}
+                            id="form-rhf-demo-fullName"
+                            aria-invalid={fieldState.invalid}
+                            placeholder="Your full name"
+                            autoComplete="off"
+                            className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-blue-500"
+                          />
+                          {fieldState.invalid && (
+                            <FieldError errors={[fieldState.error]} />
+                          )}
+                        </Field>
+                      )}
+                    />
+                    <Controller
+                      name="email"
+                      control={form.control}
+                      render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
+                          <FieldLabel htmlFor="form-rhf-demo-email" className="text-gray-300">
+                            Email
+                          </FieldLabel>
+                          <Input
+                            {...field}
+                            id="form-rhf-demo-email"
+                            aria-invalid={fieldState.invalid}
+                            placeholder="Your email"
+                            autoComplete="off"
+                            className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-blue-500"
+                          />
+                          {fieldState.invalid && (
+                            <FieldError errors={[fieldState.error]} />
+                          )}
+                        </Field>
+                      )}
+                    />
+                    <Controller
+                      name="message"
+                      control={form.control}
+                      render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
+                          <FieldLabel htmlFor="form-rhf-demo-message" className="text-gray-300">
+                            Your Message
+                          </FieldLabel>
+                          <InputGroup>
+                            <InputGroupTextarea
+                              {...field}
+                              id="form-rhf-demo-message"
+                              placeholder="Tell me about your project..."
+                              rows={6}
+                              className="min-h-24 resize-none bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-blue-500"
+                              aria-invalid={fieldState.invalid}
+                            />
+                            <InputGroupAddon align="block-end">
+                              <InputGroupText className="tabular-nums text-gray-400">
+                                {field.value.length}/500 characters
+                              </InputGroupText>
+                            </InputGroupAddon>
+                          </InputGroup>
+                          <FieldDescription className="text-gray-500">
+                            Share your project details, requirements, or any questions you have.
+                          </FieldDescription>
+                          {fieldState.invalid && (
+                            <FieldError errors={[fieldState.error]} />
+                          )}
+                        </Field>
+                      )}
+                    />
+                  </FieldGroup>
+                </form>
+              </CardContent>
+              <CardFooter>
+                <div className="flex w-full gap-4">
+                  <Button
+                    type="submit"
+                    form="form-rhf-demo"
+                    className="text-black bg-white hover:bg-white-600 w-full"
+                  >
+                    Submit
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => form.reset()}
+                    className="text-black bg-white hover:bg-white-600"
+                  >
+                    Reset
+                  </Button>
                 </div>
-              )}
-
-              {submitStatus === 'error' && (
-                <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded-md">
-                  <div className="flex items-center">
-                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                    </svg>
-                    {errorMessage || 'Failed to send message. Please try again or contact me directly.'}
-                  </div>
-                </div>
-              )}
-            </form>
-          </Form>
-        </div>
-      </div>
+              </CardFooter>
+            </Card>
+          </div>
         </ParallaxElement>
       </div>
-
-      <style jsx>{`
-        .fade-in {
-          opacity: 1;
-          transform: translateY(0);
-          transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-        }
-        .opacity-0 {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-      `}</style>
     </div>
-  );
+  )
 }
 
 export default Contact;
