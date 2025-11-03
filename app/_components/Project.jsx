@@ -130,29 +130,43 @@ export default Project;
  * @component
  */
 const ProjectCard = ({ project, index }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <ParallaxElement speed={0.1} disabled={true}>
       <div className={cn("min-h-[24rem] list-none")}>
         <div className="relative h-full rounded-[1.25rem] border-[0.75px] border-white/10 p-2 md:rounded-[1.5rem] md:p-3">
-          <GlowingEffect
-            spread={40}
-            glow={true}
-            disabled={false}
-            proximity={64}
-            inactiveZone={0.01}
-            borderWidth={3}
-          />
-          <div className="relative flex h-full flex-col justify-between gap-4 overflow-hidden rounded-xl border-[0.75px] border-white/10  shadow-lg">
+          {/* Disable glowing effect on mobile for performance */}
+          {!isMobile && (
+            <GlowingEffect
+              spread={40}
+              glow={true}
+              disabled={false}
+              proximity={64}
+              inactiveZone={0.01}
+              borderWidth={3}
+            />
+          )}
+          <div className="relative flex h-full flex-col justify-between gap-4 overflow-hidden rounded-xl border-[0.75px] border-white/10 shadow-lg">
             {/* Project Image */}
-            <figure className="relative w-full aspect-video overflow-hidden rounded-t-xl">
+            <figure className="relative w-full aspect-video overflow-hidden rounded-t-xl bg-gray-900">
               <Image
                 src={project?.img || '/placeholder.png'}
                 alt={`${project?.title} project screenshot`}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover transition-transform duration-500 hover:scale-110"
+                className="object-cover md:transition-transform md:duration-500 md:hover:scale-110"
                 loading="lazy"
-                quality={85}
+                quality={isMobile ? 75 : 85}
                 placeholder="blur"
                 blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzAwIiBoZWlnaHQ9IjQ3NSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4="
               />

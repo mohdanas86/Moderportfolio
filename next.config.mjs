@@ -55,59 +55,6 @@ const nextConfig = {
     // Performance optimizations
     compress: true,
     poweredByHeader: false,
-
-    // Webpack optimizations
-    webpack: (config, { dev, isServer }) => {
-        // Production optimizations
-        if (!dev && !isServer) {
-            config.optimization = {
-                ...config.optimization,
-                moduleIds: 'deterministic',
-                runtimeChunk: 'single',
-                splitChunks: {
-                    chunks: 'all',
-                    cacheGroups: {
-                        default: false,
-                        vendors: false,
-                        // Vendor chunk for react and related libraries
-                        framework: {
-                            name: 'framework',
-                            chunks: 'all',
-                            test: /[\\/]node_modules[\\/](react|react-dom|scheduler)[\\/]/,
-                            priority: 40,
-                            enforce: true,
-                        },
-                        // Separate chunk for Three.js (large library)
-                        three: {
-                            name: 'three',
-                            chunks: 'all',
-                            test: /[\\/]node_modules[\\/](three)[\\/]/,
-                            priority: 35,
-                            enforce: true,
-                        },
-                        // Separate chunk for motion libraries
-                        motion: {
-                            name: 'motion',
-                            chunks: 'all',
-                            test: /[\\/]node_modules[\\/](framer-motion|motion)[\\/]/,
-                            priority: 30,
-                            enforce: true,
-                        },
-                        // UI libraries chunk
-                        lib: {
-                            test: /[\\/]node_modules[\\/]/,
-                            name: 'lib',
-                            priority: 20,
-                            minChunks: 1,
-                            reuseExistingChunk: true,
-                        },
-                    },
-                },
-            };
-        }
-
-        return config;
-    },
 };
 
 export default nextConfig;

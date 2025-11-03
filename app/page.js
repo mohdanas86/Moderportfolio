@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import ScrollReveal from "./_components/ScrollReveal";
 import { RaysBackground } from "./_components/_backgounds/RaysBackground";
+import { BackgroundPaths } from "./_components/_backgounds/linesBackgounds";
 
 // Dynamically import components with loading states for better performance
 const Hero = dynamic(() => import("./_components/Hero"), {
@@ -35,7 +36,8 @@ export default function Home() {
       <section id="hero" className="snap-start relative min-h-screen overflow-hidden">
         {/* Rays Background - Confined to Hero Section */}
         <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
-          <RaysBackground />
+          {/* <RaysBackground /> */}
+          <BackgroundPaths />
         </div>
         {/* Hero Content */}
         <div className="relative z-10">

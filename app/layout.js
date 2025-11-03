@@ -2,7 +2,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Header from "./_components/Header";
 import "./globals.css";
 import CursorFollower from "./_components/CursorFollower";
-import TechUI from "./_components/TechUI";
 import SmoothScroll from "./_components/SmoothScroll";
 import ScrollToTop from "./_components/ScrollToTop";
 
