@@ -20,6 +20,7 @@ import {
   Home,
   Wrench,
   Award,
+  FileText,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 
@@ -36,6 +37,27 @@ const scrollToSection = (sectionId) => {
     } else {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
+  }
+};
+
+/**
+ * Handle resume click - opens in new tab on desktop, downloads on mobile
+ */
+const handleResumeClick = () => {
+  const resumeUrl = "/AnasAlamResumeSoftwareEngineer.pdf";
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+  if (isMobile) {
+    // On mobile, trigger download
+    const link = document.createElement('a');
+    link.href = resumeUrl;
+    link.download = 'AnasAlamResumeSoftwareEngineer.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  } else {
+    // On desktop, open in new tab
+    window.open(resumeUrl, '_blank', 'noopener,noreferrer');
   }
 };
 
@@ -151,10 +173,8 @@ const Header = () => {
             </li>
             <li>
               <button
-                className={`px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium cursor-pointer whitespace-nowrap ${activeSection === "contact"
-                  ? "text-white bg-[#FF7A00] shadow-lg shadow-[#FF7A00]/30"
-                  : "text-white/70 hover:text-white hover:bg-white/10"
-                  }`}
+                onClick={handleResumeClick}
+                className="px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium cursor-pointer whitespace-nowrap text-white/70 hover:text-white hover:bg-white/10"
               >
                 Resume
               </button>
@@ -282,6 +302,17 @@ const Header = () => {
                       >
                         <Headset className="w-5 h-5 flex-shrink-0" />
                         <span className="font-medium text-sm">Contact</span>
+                      </button>
+                    </SheetClose>
+                  </li>
+                  <li>
+                    <SheetClose asChild>
+                      <button
+                        onClick={() => setTimeout(() => handleResumeClick(), 350)}
+                        className="group flex items-center gap-4 w-full px-4 py-3 rounded-lg transition-all duration-300 text-white/60 hover:text-white hover:bg-white/5"
+                      >
+                        <FileText className="w-5 h-5 flex-shrink-0" />
+                        <span className="font-medium text-sm">Resume</span>
                       </button>
                     </SheetClose>
                   </li>
