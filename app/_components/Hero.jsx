@@ -26,7 +26,7 @@ const Hero = () => {
     <div
       className={`${showAnimation ? "fade-in" : "opacity-0"} py-16 relative w-full`}
       id="home"
-    >      
+    >
       {/* Content with higher z-index */}
       <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <ParallaxElement speed={0.2} direction="horizontal">
@@ -89,7 +89,7 @@ const Hero = () => {
         {/* Scroll down button */}
         <ScrollDownButton />
       </div>
-      
+
       <style jsx>{`
         .fade-in {
           opacity: 1;
@@ -126,7 +126,7 @@ const SocialLinks = () => {
     },
     {
       name: "Instagram",
-      url: "https://instagram.com/@_anas__86",
+      url: "https://instagram.com/_anas__86",
       icon: <FaInstagram />,
     },
     {
