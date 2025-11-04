@@ -1,24 +1,24 @@
 // app/api/contact/route.js
 import { NextResponse } from "next/server";
-import { connectToDatabase } from "../../../util/mongodb";
 import Contact from "@/models/Contact";
+import { connectToDatabase } from "@/util/mongodb";
 
 // Input validation function
 function validateContactData(data) {
-  const { name, email, message } = data;
-  
-  if (!name || name.trim().length < 2) {
-    return { isValid: false, error: "Name must be at least 2 characters long" };
+  const { fullName, email, message } = data;
+
+  if (!fullName || fullName.trim().length < 2) {
+    return { isValid: false, error: "Full name must be at least 2 characters long" };
   }
-  
+
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return { isValid: false, error: "Please provide a valid email address" };
   }
-  
+
   if (!message || message.trim().length < 10) {
     return { isValid: false, error: "Message must be at least 10 characters long" };
   }
-  
+
   return { isValid: true };
 }
 
@@ -28,15 +28,15 @@ const requestTimestamps = new Map();
 function isRateLimited(ip) {
   const now = Date.now();
   const timestamps = requestTimestamps.get(ip) || [];
-  
+
   // Remove timestamps older than 1 hour
   const recentTimestamps = timestamps.filter(timestamp => now - timestamp < 3600000);
-  
+
   // Allow max 5 requests per hour per IP
   if (recentTimestamps.length >= 5) {
     return true;
   }
-  
+
   recentTimestamps.push(now);
   requestTimestamps.set(ip, recentTimestamps);
   return false;
@@ -45,7 +45,8 @@ function isRateLimited(ip) {
 export async function POST(req) {
   try {
     console.log('Contact API: Starting request processing...');
-    
+    console.log('Contact API: MongoDB URI exists:', !!process.env.MONGODB_URI);
+
     // Parse request body first
     let body;
     try {
@@ -62,7 +63,7 @@ export async function POST(req) {
     // Get client IP for rate limiting
     const clientIP = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown';
     console.log('Contact API: Client IP:', clientIP);
-    
+
     // Check rate limiting
     if (isRateLimited(clientIP)) {
       console.log('Contact API: Rate limited for IP:', clientIP);
@@ -82,12 +83,12 @@ export async function POST(req) {
       );
     }
 
-    const { name, email, message } = body;
+    const { fullName, email, message } = body;
     console.log('Contact API: Data validated successfully');
 
     // Sanitize input data
     const sanitizedData = {
-      name: name.trim(),
+      fullName: fullName.trim(),
       email: email.trim().toLowerCase(),
       message: message.trim(),
     };
@@ -97,10 +98,12 @@ export async function POST(req) {
       console.log('Contact API: Attempting MongoDB connection...');
       await connectToDatabase();
       console.log('Contact API: MongoDB connected successfully');
+      console.log('Contact API: Mongoose connection state:', require('mongoose').connection.readyState);
     } catch (dbError) {
       console.error('Contact API: MongoDB connection failed:', dbError);
+      console.error('Contact API: Full error:', dbError.stack);
       return NextResponse.json(
-        { error: "Database connection failed. Please try again later." },
+        { error: "Database connection failed. Please try again later.", details: dbError.message },
         { status: 503 }
       );
     }
@@ -156,7 +159,7 @@ export async function POST(req) {
   } catch (err) {
     console.error('Contact API: Unexpected error:', err);
     console.error('Contact API: Error stack:', err.stack);
-    
+
     // Return generic error message to client
     return NextResponse.json(
       { error: "An error occurred while processing your request. Please try again later." },

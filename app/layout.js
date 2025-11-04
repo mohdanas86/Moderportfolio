@@ -2,9 +2,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Header from "./_components/Header";
 import "./globals.css";
 import CursorFollower from "./_components/CursorFollower";
-import TechUI from "./_components/TechUI";
 import SmoothScroll from "./_components/SmoothScroll";
 import ScrollToTop from "./_components/ScrollToTop";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,13 +36,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
 
   return (
-    <html lang="en" data-theme="light" className="no-scrollbar">
+    <html lang="en" data-theme="light" className="no-scrollbar" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#151312] text-white min-h-screen overflow-x-hidden no-scrollbar`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#151312] text-white min-h-screen no-scrollbar`}
+        suppressHydrationWarning
       >
+        <Toaster position="bottom-right" richColors closeButton expand={false} />
         <SmoothScroll>
           <CursorFollower />
-          {/* <TechUI /> */}
           <ScrollToTop />
           <div className="flex flex-col min-h-screen w-full relative main-content">
             {/* Header - Fixed positioning and mobile optimized */}
@@ -52,10 +53,10 @@ export default function RootLayout({ children }) {
 
             {/* Main Layout - Mobile-first responsive design */}
             <div className="flex-1 w-full min-w-0 pt-[60px] mt-0">
-              <div className="w-full max-w-7xl mx-auto min-h-0">
+              <div className="w-full mx-auto min-h-0">
                 {/* Main Content with mobile-optimized spacing */}
-                <main className="w-full px-3 sm:px-4 lg:px-8 py-4 sm:py-6 lg:py-8 min-w-0">
-                  <div className="max-w-4xl mx-auto min-w-0">
+                <main className="w-full min-w-0">
+                  <div className="w-full min-w-0">
                     {children}
                   </div>
                 </main>

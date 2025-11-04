@@ -17,9 +17,9 @@ export default function ScrollDownButton() {
   };
 
   return (
-    <button 
+    <button
       onClick={handleScrollDown}
-      className="flex items-center justify-center w-12 h-12 rounded-full bg-[#FF7A00]/10 hover:bg-[#FF7A00]/20 text-[#FF7A00] transition-colors duration-300 animate-bounce mt-8 mx-auto"
+      className="flex items-center justify-center w-12 h-12 rounded-full bg-[#FF7A00]/10 hover:bg-[#FF7A00]/20 text-[#FF7A00] transition-colors duration-900 animate-bounce mt-8 mx-auto"
       aria-label="Scroll Down"
     >
       <ChevronDown className="w-6 h-6" />

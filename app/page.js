@@ -2,20 +2,45 @@
 
 import dynamic from "next/dynamic";
 import ScrollReveal from "./_components/ScrollReveal";
+import { BackgroundPaths } from "./_components/_backgounds/linesBackgounds";
 
-// Dynamically import components
-const Hero = dynamic(() => import("./_components/Hero"));
-const Project = dynamic(() => import("./_components/Project"));
-const Experience = dynamic(() => import("./_components/Expreance"));
-const Techstack = dynamic(() => import("./_components/Techstack"));
-const Contact = dynamic(() => import("./_components/Contact"));
-const Badges = dynamic(() => import("./_components/Badges"));
+// Dynamically import components with loading states for better performance
+const Hero = dynamic(() => import("./_components/Hero"), {
+  loading: () => <div className="min-h-screen" />,
+});
+const Project = dynamic(() => import("./_components/Project"), {
+  loading: () => <div className="min-h-[50vh]" />,
+  ssr: true,
+});
+const Experience = dynamic(() => import("./_components/Experience"), {
+  loading: () => <div className="min-h-[50vh]" />,
+  ssr: true,
+});
+const Techstack = dynamic(() => import("./_components/Techstack"), {
+  loading: () => <div className="min-h-[50vh]" />,
+  ssr: true,
+});
+const Contact = dynamic(() => import("./_components/Contact"), {
+  loading: () => <div className="min-h-[50vh]" />,
+  ssr: true,
+});
+const Badges = dynamic(() => import("./_components/Badges"), {
+  loading: () => <div className="min-h-[50vh]" />,
+  ssr: true,
+});
 
 export default function Home() {
   return (
     <div className="relative">
-      <section id="hero" className="snap-start relative">
-        <Hero />
+      <section id="hero" className="snap-start relative min-h-screen overflow-hidden">
+        {/* Background - Confined to Hero Section */}
+        <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
+          <BackgroundPaths />
+        </div>
+        {/* Hero Content */}
+        <div className="relative z-10">
+          <Hero />
+        </div>
       </section>
 
       <section id="projects" className="snap-start relative">

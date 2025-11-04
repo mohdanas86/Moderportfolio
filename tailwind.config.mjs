@@ -76,6 +76,10 @@ export default {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
         },
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
       },
       animation: {
         'move-up': 'moveUp ease-in-out infinite',
@@ -83,7 +87,7 @@ export default {
         'move-left': 'moveLeft ease-in-out infinite',
         'move-right': 'moveRight ease-in-out infinite',
         'wave': 'wave 2.5s ease-in-out infinite',
-
+        'float': 'float 3s ease-in-out infinite',
       },
     },
   },

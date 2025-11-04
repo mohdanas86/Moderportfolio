@@ -5,16 +5,25 @@ import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Progress } from "@/components/ui/progress";
 
 const Badges = () => {
   const [showAnimation, setShowAnimation] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowAnimation(true);
     }, 200);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   // Google Cloud Skill Badges organized by category
@@ -249,8 +258,10 @@ const Badges = () => {
       } relative overflow-hidden w-full`}
       id="badges"
     >
-      {/* Professional Certificates Section */}
-      <section className="py-16 px-4 md:px-8 w-full mx-auto">
+      {/* Badges Section Container */}
+      <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Professional Certificates Section */}
+        <section className="py-16 w-full">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-2 text-[#353334]">
             Professional
@@ -284,15 +295,19 @@ const Badges = () => {
               {certs.map((cert) => (
                 <Card
                   key={cert.id}
-                  className="group transition-all duration-300 hover:scale-[1.02] bg-transparent text-white hover:bg-[#2726262e] rounded-xl overflow-hidden border-0"
+                  className="group md:transition-all md:duration-300 md:hover:scale-[1.02] bg-transparent text-white hover:bg-[#2726262e] rounded-xl overflow-hidden border-0"
                 >
-                  <div className="relative aspect-[4/3] bg-gray-50">
+                  <div className="relative aspect-[4/3] bg-gray-900">
                     <Image
                       src={cert.image}
                       alt={cert.title}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="object-cover md:group-hover:scale-105 md:transition-transform md:duration-300"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      loading="lazy"
+                      quality={isMobile ? 75 : 85}
+                      placeholder="blur"
+                      blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4="
                     />
                   </div>
                   <CardHeader className="pb-2">
@@ -353,16 +368,20 @@ const Badges = () => {
                 {badges.map((badge, badgeIndex) => (
                   <Card
                     key={badge.id}
-                    className="group transition-all duration-300 hover:shadow-lg hover:scale-105 border border-gray-200 bg-white rounded-xl"
+                    className="group md:transition-all md:duration-300 md:hover:shadow-lg md:hover:scale-105 border border-gray-200 bg-white rounded-xl"
                   >
                     <CardContent className="p-3 md:p-4 flex flex-col items-center">
-                      <div className="relative w-16 h-16 md:w-20 md:h-20 mb-3">
+                      <div className="relative w-16 h-16 md:w-20 md:h-20 mb-3 bg-gray-100 rounded">
                         <Image
                           src={badge.image}
                           alt={badge.alt}
                           fill
                           className="object-contain"
                           sizes="(max-width: 768px) 64px, 80px"
+                          loading="lazy"
+                          quality={isMobile ? 75 : 90}
+                          placeholder="blur"
+                          blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmVyc2lvbj0iMS4xIi8+"
                         />
                       </div>
                       <h4 className="text-xs md:text-sm font-medium text-[#353334] text-center leading-tight line-clamp-3">
@@ -375,7 +394,8 @@ const Badges = () => {
             </div>
           )
         )}
-      </section>
+        </section>
+      </div>
 
       <style jsx>{`
         .fade-in {
