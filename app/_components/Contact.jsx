@@ -100,7 +100,7 @@ const Contact = () => {
     }
   }
   return (
-    <div className="py-16 relative overflow-hidden w-full" id="contact">
+    <div className="py-16 relative overflow-hidden w-full">
       {/* Content Container */}
       <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <ParallaxElement speed={0.3}>
