@@ -30,6 +30,9 @@ import {
   InputGroupTextarea,
 } from "@/components/ui/input-group"
 import ParallaxElement from "./ParallaxElement";
+import { Separator } from "@/components/ui/separator"
+import Link from "next/link"
+import { Mail } from "lucide-react"
 
 const formSchema = z.object({
   fullName: z
@@ -97,7 +100,7 @@ const Contact = () => {
     }
   }
   return (
-    <div className="py-16 relative overflow-hidden w-full" id="contact">
+    <div className="py-16 relative overflow-hidden w-full">
       {/* Content Container */}
       <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <ParallaxElement speed={0.3}>
@@ -232,6 +235,16 @@ const Contact = () => {
                     Reset
                   </Button>
                 </div>
+              </CardFooter>
+              <div className="sepratorBoth w-full items-center p-2 flex gap-4 text-white">
+                <Separator className="w-[30%] mx-auto" />
+                <p>Send Email</p>
+                <Separator className="w-[30%] mx-auto" />
+              </div>
+              <CardFooter className="pt-4 text-white">
+                <Link href="mailto:coadanas@gmail.com" className="w-full">
+                  <Button className="flex items-center gap-2 bg-white text-black w-full hover:bg-white-600"><Mail className="w-4 h-4" /> <span>Email Me</span></Button>
+                </Link>
               </CardFooter>
             </Card>
           </div>
