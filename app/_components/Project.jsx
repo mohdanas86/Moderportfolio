@@ -78,15 +78,14 @@ const Project = () => {
 
   return (
     <div
-      className={`${
-        showAnimation ? "fade-in" : "opacity-0"
-      } py-16 relative overflow-hidden w-full`}
+      className={`${showAnimation ? "fade-in" : "opacity-0"
+        } py-16 relative overflow-hidden w-full`}
       id="project"
     >
       {/* Projects Section Container */}
       <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <ParallaxElement speed={0.3}>
-        <h1 className="text-5xl text-center lg:text-7xl font-bold">RECENT</h1>
+          <h1 className="text-5xl text-center lg:text-7xl font-bold">RECENT</h1>
         </ParallaxElement>
 
         <ParallaxElement speed={0.5}>
@@ -156,7 +155,7 @@ const ProjectCard = ({ project, index }) => {
               borderWidth={3}
             />
           )}
-          <div className="relative flex h-full flex-col justify-between gap-4 overflow-hidden rounded-xl border-[0.75px] border-white/10 shadow-lg">
+          <div className="relative flex h-full flex-col justify-between gap-4 overflow-hidden">
             {/* Project Image */}
             <figure className="relative w-full aspect-video overflow-hidden rounded-t-xl bg-gray-900">
               <Image
@@ -173,7 +172,7 @@ const ProjectCard = ({ project, index }) => {
             </figure>
 
             {/* Content */}
-            <div className="relative flex flex-1 flex-col justify-between gap-3 p-6">
+            <div className="relative flex flex-1 flex-col justify-between gap-3 p-2">
               {/* Title and Description */}
               <div className="space-y-3">
                 <h3 className="pt-0.5 text-xl leading-[1.375rem] font-semibold font-sans tracking-[-0.04em] md:text-2xl md:leading-[1.875rem] text-balance text-white">
