@@ -13,6 +13,8 @@ import Link from "next/link";
  */
 const Hero = () => {
   const [showAnimation, setShowAnimation] = useState(false);
+  const [visitCount, setVisitCount] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -20,6 +22,27 @@ const Hero = () => {
     }, 0.2); // Delay animation by 200ms
 
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const fetchVisitCount = async () => {
+      try {
+        // First increment the count
+        await fetch('/api/visits', { method: 'POST' });
+        // Then get the updated count
+        const response = await fetch('/api/visits');
+        if (response.ok) {
+          const data = await response.json();
+          setVisitCount(data.count);
+        }
+      } catch (error) {
+        console.error('Error fetching visit count:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchVisitCount();
   }, []);
 
   return (
@@ -48,6 +71,13 @@ const Hero = () => {
             experience. From database architecture to responsive interfaces, I
             deliver end-to-end solutions that drive business value.
           </p>
+        </ParallaxElement>
+        <ParallaxElement speed={0.2} direction="horizontal" disabled>
+          <div className="mt-6 text-center">
+            <p className="text-sm text-[#A8A8A8]">
+              Site Visits: {loading ? 'Loading...' : visitCount.toLocaleString()}
+            </p>
+          </div>
         </ParallaxElement>
         <ParallaxElement speed={0.2} direction="horizontal" disabled className="ml-4 lg:ml-0">
           <SocialLinks />
