@@ -24,7 +24,7 @@ const Experience = () => {
       title: "Google Student Ambassador",
       company: "Google",
       duration: "Sep 2025 - Present",
-      location: "Remote",
+      location: "SRM Institute of Science and Technology",
       responsibilities: [
         "Promote Google technologies and initiatives within the university community.",
         "Organize workshops, tech talks, and events to engage students with Google products.",
@@ -33,21 +33,9 @@ const Experience = () => {
       ],
     },
     {
-      title: "Full Stack Developer Intern",
-      company: "Blue Planet Infosolutions Pvt. Ltd., India",
-      duration: "Jun 2025 - Present · 2 mos",
-      location: "Remote",
-      responsibilities: [
-        "Develop and maintain both front-end and back-end components of web applications",
-        "Collaborate with the team to design scalable and efficient software solutions",
-        "Participate in code reviews and provide technical input",
-        "Debug and optimize existing applications for performance and scalability",
-      ],
-    },
-    {
       title: "Club President & Founder",
       company: "NextGen Crews",
-      duration: "Jul 2025 - Present · 1 mos",
+      duration: "Jul 2025 - Present",
       location: "SRM Institute of Science and Technology",
       responsibilities: [
         "Founded and established NextGen Crews, a student-led community bridging tech and non-tech domains",
@@ -59,7 +47,7 @@ const Experience = () => {
     {
       title: "Executive Member - Institute Innovation Entrepreneur Council",
       company: "SRM Institute of Science and Technology (SRMIST)",
-      duration: "Jan 2025 - Present · 7 mos",
+      duration: "Jan 2025 - Present",
       location: "SRM IST Chennai",
       responsibilities: [
         "Organized and managed events to foster innovation and entrepreneurship at SRM IST Chennai.",
@@ -70,8 +58,8 @@ const Experience = () => {
     {
       title: "Data Analysis Intern",
       company: "Cognifyz Technologies",
-      duration: "May 2025 – May 2025 (1 Month)",
-      location: "Remote, Virtual",
+      duration: "May 2025 – Jun 2025",
+      location: "Remote",
       responsibilities: [
         "Worked on data analysis projects as part of internship under Cognifyz Technologies.",
         "Demonstrated strong analytical and problem-solving skills using relevant data tools.",
@@ -83,8 +71,8 @@ const Experience = () => {
     {
       title: "Frontend Development Intern",
       company: "ChartsMaze",
-      duration: "February 2025 – February 2025 (1 Month)",
-      location: "Remote, Virtual",
+      duration: "Feb 2025 – Mar 2025",
+      location: "Remote",
       responsibilities: [
         "Built and launched the 'Trade Journal' feature from scratch for multiple brokerage platforms.",
         "Designed a dynamic dashboard with interactive charts to enhance trade tracking and data visualization.",
@@ -94,8 +82,8 @@ const Experience = () => {
     {
       title: "Frontend Development Intern",
       company: "CODEXINTERN",
-      duration: "November 2024 – November 2024 (1 Month)",
-      location: "Remote, Virtual",
+      duration: "Nov 2024 – Dec 2024",
+      location: "Remote",
       responsibilities: [
         "Designed and implemented responsive, user-friendly interfaces using HTML5, CSS3, and JavaScript.",
         "Enhanced frontend performance by redesigning components with React.js and Tailwind CSS.",
@@ -105,7 +93,7 @@ const Experience = () => {
     {
       title: "Open-Source Contributor",
       company: "GirlScript Summer of Code 2024 - Extended Edition",
-      duration: "October 2024 – October 2024 (1 Month)",
+      duration: "Oct 2024 – Nov 2024",
       location: "Remote",
       responsibilities: [
         "Developed and maintained code for open-source repositories, enhancing features and resolving issues.",
@@ -117,8 +105,8 @@ const Experience = () => {
     {
       title: "Web Developer",
       company: "Fiverr - Freelance",
-      duration: "March 2021 – May 2021 (3 Months)",
-      location: "Remote",
+      duration: "",
+      location: "",
       responsibilities: [
         "Completed freelance projects building responsive web apps tailored to client requirements.",
         "Delivered custom solutions using React.js, HTML5, CSS3, and JavaScript.",
@@ -130,9 +118,8 @@ const Experience = () => {
 
   return (
     <div
-      className={`${
-        showAnimation ? "fade-in" : "opacity-0"
-      } py-16 relative overflow-hidden w-full`}
+      className={`${showAnimation ? "fade-in" : "opacity-0"
+        } py-16 relative overflow-hidden w-full`}
       id="experience"
     >
       {/* Experience Section Container */}
@@ -151,30 +138,30 @@ const Experience = () => {
                 direction={index % 2 === 0 ? "horizontal" : "vertical"}
                 key={index}
               >
-              <div className="card w-full h-full min-h-[320px] md:min-h-[360px] lg:min-h-[280px] rounded-xl overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:bg-[#2726262e] text-white flex flex-col">
-                <div className="p-6 flex flex-col h-full">
-                  <div className="flex-shrink-0 mb-4">
-                    <h2 className="text-xl md:text-2xl font-semibold text-white mb-2 leading-tight">
-                      {experience.title}
-                    </h2>
-                    <p className="text-[#948A8A] text-sm mb-1 font-medium">
-                      {experience.company}
-                    </p>
-                    <p className="text-[#948A8A] text-sm mb-2">
-                      {experience.duration}
-                    </p>
-                  </div>
-                  <div className="flex-grow">
-                    <ul className="text-sm text-[#bfbaba] list-disc ml-6 space-y-1 leading-relaxed">
-                      {experience.responsibilities.map((item, i) => (
-                        <li key={i}>{item}</li>
-                      ))}
-                    </ul>
+                <div className="card w-full h-full min-h-[320px] md:min-h-[360px] lg:min-h-[280px] rounded-xl overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:bg-[#2726262e] text-white flex flex-col">
+                  <div className="p-6 flex flex-col h-full">
+                    <div className="flex-shrink-0 mb-4">
+                      <h2 className="text-xl md:text-2xl font-semibold text-white mb-2 leading-tight">
+                        {experience.title}
+                      </h2>
+                      <p className="text-[#948A8A] text-sm mb-1 font-medium">
+                        {experience.company}
+                      </p>
+                      <p className="text-[#948A8A] text-sm mb-2">
+                        {experience.duration}
+                      </p>
+                    </div>
+                    <div className="flex-grow">
+                      <ul className="text-sm text-[#bfbaba] list-disc ml-6 space-y-1 leading-relaxed">
+                        {experience.responsibilities.map((item, i) => (
+                          <li key={i}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </ParallaxElement>
-          ))}
+              </ParallaxElement>
+            ))}
           </div>
         </ParallaxElement>
       </div>
