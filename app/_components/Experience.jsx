@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import ParallaxElement from "./ParallaxElement";
 import { experienceData } from "@/data/userData";
+import TextAnimateReveal from "./_animations/TextAnimateReveal";
 
 /**
  * Experience component displays professional work history
@@ -31,7 +32,7 @@ const Experience = () => {
       <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <ParallaxElement speed={0.3}>
           <h1 className="text-5xl text-center lg:text-7xl font-bold">
-            EXPERIENCE
+            <TextAnimateReveal text="EXPERIENCE" />
           </h1>
         </ParallaxElement>
 
