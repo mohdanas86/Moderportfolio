@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import ParallaxElement from "./ParallaxElement";
+import { experienceData } from "@/data/userData";
 
 /**
  * Experience component displays professional work history
@@ -19,102 +20,6 @@ const Experience = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const experienceData = [
-    {
-      title: "Google Student Ambassador",
-      company: "Google",
-      duration: "Sep 2025 - Present",
-      location: "SRM Institute of Science and Technology",
-      responsibilities: [
-        "Promote Google technologies and initiatives within the university community.",
-        "Organize workshops, tech talks, and events to engage students with Google products.",
-        "Collaborate with other ambassadors to share best practices and enhance outreach efforts.",
-        "Serve as a liaison between Google and the student body, providing feedback and insights.",
-      ],
-    },
-    {
-      title: "Club President & Founder",
-      company: "NextGen Crews",
-      duration: "Jul 2025 - Present",
-      location: "SRM Institute of Science and Technology",
-      responsibilities: [
-        "Founded and established NextGen Crews, a student-led community bridging tech and non-tech domains",
-        "Lead interdisciplinary initiatives including Full Stack Development, AI/Data Science, UI/UX Design, and Content Creation",
-        "Mentor students in developing both technical skills and soft skills for industry readiness",
-        "Organize weekly Tech x Talk sessions, bootcamps",
-      ],
-    },
-    {
-      title: "Executive Member - Institute Innovation Entrepreneur Council",
-      company: "SRM Institute of Science and Technology (SRMIST)",
-      duration: "Jan 2025 - Present",
-      location: "SRM IST Chennai",
-      responsibilities: [
-        "Organized and managed events to foster innovation and entrepreneurship at SRM IST Chennai.",
-        "Collaborated with stakeholders to develop strategies and provide mentorship for students and faculty.",
-        "Facilitated resources to promote innovative thinking and entrepreneurial growth within the institution.",
-      ],
-    },
-    {
-      title: "Data Analysis Intern",
-      company: "Cognifyz Technologies",
-      duration: "May 2025 – Jun 2025",
-      location: "Remote",
-      responsibilities: [
-        "Worked on data analysis projects as part of internship under Cognifyz Technologies.",
-        "Demonstrated strong analytical and problem-solving skills using relevant data tools.",
-        "Showcased effective communication, attention to detail, and coordination throughout the internship.",
-        "Proactively took on new challenges with enthusiasm and a desire to learn.",
-        "Gained practical exposure to data cleaning, interpretation, and reporting.",
-      ],
-    },
-    {
-      title: "Frontend Development Intern",
-      company: "ChartsMaze",
-      duration: "Feb 2025 – Mar 2025",
-      location: "Remote",
-      responsibilities: [
-        "Built and launched the 'Trade Journal' feature from scratch for multiple brokerage platforms.",
-        "Designed a dynamic dashboard with interactive charts to enhance trade tracking and data visualization.",
-        "Collaborated closely with designers and backend developers to ensure seamless integration.",
-      ],
-    },
-    {
-      title: "Frontend Development Intern",
-      company: "CODEXINTERN",
-      duration: "Nov 2024 – Dec 2024",
-      location: "Remote",
-      responsibilities: [
-        "Designed and implemented responsive, user-friendly interfaces using HTML5, CSS3, and JavaScript.",
-        "Enhanced frontend performance by redesigning components with React.js and Tailwind CSS.",
-        "Improved API response times and integrated new features for a smoother user experience.",
-      ],
-    },
-    {
-      title: "Open-Source Contributor",
-      company: "GirlScript Summer of Code 2024 - Extended Edition",
-      duration: "Oct 2024 – Nov 2024",
-      location: "Remote",
-      responsibilities: [
-        "Developed and maintained code for open-source repositories, enhancing features and resolving issues.",
-        "Collaborated with project maintainers to align contributions with community needs.",
-        "Created documentation to improve project accessibility and ensured code quality through reviews.",
-        "Enhanced project functionality while maintaining high code standards and community guidelines.",
-      ],
-    },
-    {
-      title: "Web Developer",
-      company: "Fiverr - Freelance",
-      duration: "",
-      location: "",
-      responsibilities: [
-        "Completed freelance projects building responsive web apps tailored to client requirements.",
-        "Delivered custom solutions using React.js, HTML5, CSS3, and JavaScript.",
-        "Achieved high client satisfaction by meeting deadlines and providing quality results.",
-        "Collaborated with global clients, improving communication and project management skills.",
-      ],
-    },
-  ];
 
   return (
     <div
