@@ -8,6 +8,7 @@ import ParallaxElement from "./ParallaxElement";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { cn } from "@/lib/utils";
 import { Projects } from "@/data/userData";
+import TextAnimateReveal from "./_animations/TextAnimateReveal";
 
 /**
  * Project component displays a grid of portfolio projects
@@ -35,12 +36,14 @@ const Project = () => {
       {/* Projects Section Container */}
       <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <ParallaxElement speed={0.3}>
-          <h1 className="text-5xl text-center lg:text-7xl font-bold">RECENT</h1>
+          <h1 className="text-5xl text-center lg:text-7xl font-bold">
+            <TextAnimateReveal text="RECENT" />
+          </h1>
         </ParallaxElement>
 
         <ParallaxElement speed={0.5}>
           <h1 className="text-5xl text-center lg:text-7xl font-bold text-[#353334]">
-            PROJECTS
+            <TextAnimateReveal text="PROJECTS" />
           </h1>
         </ParallaxElement>
 
