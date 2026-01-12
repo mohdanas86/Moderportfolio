@@ -5,6 +5,10 @@ import ScrollDownButton from "./ScrollDownButton";
 import ParallaxElement from "./ParallaxElement";
 import { FaLinkedin, FaGithub, FaYoutube, FaInstagram } from "react-icons/fa6";
 import Link from "next/link";
+import {
+  ScrollVelocityContainer,
+  ScrollVelocityRow,
+} from "@/components/ui/scroll-based-velocity"
 
 /**
  * Hero section component displaying main introduction,
@@ -42,7 +46,7 @@ const Hero = () => {
       }
     };
 
-    fetchVisitCount();
+    // fetchVisitCount();
   }, []);
 
   return (
@@ -52,17 +56,18 @@ const Hero = () => {
     >
       {/* Content with higher z-index */}
       <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:items-center items-start">
-        <ParallaxElement speed={0.2} direction="horizontal" disabled>
-          <h1 className="text-7xl text-left lg:text-center lg:text-8xl font-bold text-white">
-            {/* Full-Stack */}
-            Software
-          </h1>
-        </ParallaxElement>
-        <ParallaxElement speed={0.2} direction="horizontal" disabled>
-          <h1 className="text-7xl text-left lg:text-center lg:text-8xl font-bold text-[#5A5A5A]">
-            Engineer
-          </h1>
-        </ParallaxElement>
+        <ScrollVelocityContainer className="text-4xl font-bold md:text-7xl mt-12">
+          <ScrollVelocityRow baseVelocity={5} direction={1}>
+            <h1 className="text-7xl text-left lg:text-center lg:text-8xl font-bold text-white">
+              Software
+            </h1>
+          </ScrollVelocityRow>
+          <ScrollVelocityRow baseVelocity={20} direction={-1}>
+            <h1 className="text-7xl text-left lg:text-center lg:text-8xl font-bold text-[#5A5A5A]">
+              Developer
+            </h1>
+          </ScrollVelocityRow>
+        </ScrollVelocityContainer>
         <ParallaxElement speed={0.2} direction="horizontal" disabled>
           <p className="text-lg text-[#A8A8A8] lg:mt-6 mt-4 text-left lg:text-center lg:px-0 px-2">
             Specializing in React, Node.js, and modern frameworks to build
