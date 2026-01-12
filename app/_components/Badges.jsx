@@ -6,6 +6,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { certificates, skillBadges } from "@/data/userData";
+import TextAnimateReveal from "./_animations/TextAnimateReveal";
+import ParallaxElement from "./ParallaxElement";
 
 const Badges = () => {
   const [showAnimation, setShowAnimation] = useState(false);
@@ -40,15 +42,19 @@ const Badges = () => {
         {/* Professional Certificates Section */}
         <section className="py-16 w-full">
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-2 text-[#353334]">
-              Professional
-            </h1>
+            <ParallaxElement speed={0.3}>
+              <h1 className="text-5xl text-center lg:text-7xl font-bold uppercase">
+                <TextAnimateReveal text="Professional" />
+              </h1>
+            </ParallaxElement>
 
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-semibold text-[#948A8A] mb-6 tracking-tight">
-              Certificates
-            </h2>
+            <ParallaxElement speed={0.5}>
+              <h1 className="text-5xl text-center lg:text-7xl font-bold uppercase text-[#353334]">
+                <TextAnimateReveal text="Certificate" />
+              </h1>
+            </ParallaxElement>
 
-            <p className="text-base md:text-lg text-[#948A8A] max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base md:text-lg text-[#948A8A] max-w-3xl mx-auto leading-relaxed mt-4">
               Industry-recognized certifications from leading companies and
               institutions, validating expertise across multiple domains and
               showcasing commitment to professional growth.
@@ -62,7 +68,7 @@ const Badges = () => {
                 <Separator className="flex-1 bg-[#948A8A]" />
                 <Badge
                   variant="outline"
-                  className="mx-4 px-5 py-1.5 text-base font-medium border-[#FF7A00] text-[#FF7A00] bg-white"
+                  className="mx-4 px-5 py-1.5 text-base font-medium border-[#FF7A00] text-[#000] bg-white"
                 >
                   {categoryName}
                 </Badge>
