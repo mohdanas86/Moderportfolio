@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import ParallaxElement from "./ParallaxElement";
 import { techIcons } from "@/data/userData";
+import TextAnimateReveal from "./_animations/TextAnimateReveal";
 
 /**
  * Techstack component displays a grid of technology icons
@@ -30,15 +31,18 @@ const Techstack = () => {
     >
       {/* Techstack Section Container */}
       <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
         <ParallaxElement speed={0.3}>
           <h1 className="text-5xl text-center lg:text-7xl font-bold uppercase">
-            Tools &
+
+            <TextAnimateReveal text="Tools &" />
           </h1>
         </ParallaxElement>
 
         <ParallaxElement speed={0.5}>
           <h1 className="text-5xl text-center lg:text-7xl font-bold text-[#353334] uppercase">
-            Stacks
+
+            <TextAnimateReveal text="Stacks" />
           </h1>
         </ParallaxElement>
 
