@@ -43,9 +43,6 @@ const nextConfig = {
     // React strict mode for better development experience
     reactStrictMode: true,
 
-    // Production optimizations
-    swcMinify: true,
-
     // Experimental features
     experimental: {
         optimizePackageImports: ['lucide-react', 'react-icons', 'framer-motion', '@radix-ui/react-dialog', '@radix-ui/react-label'],
