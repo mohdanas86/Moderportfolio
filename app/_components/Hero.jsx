@@ -8,7 +8,8 @@ import Link from "next/link";
 import {
   ScrollVelocityContainer,
   ScrollVelocityRow,
-} from "@/components/ui/scroll-based-velocity"
+} from "@/components/ui/scroll-based-velocity";
+import { AnimatedSocialBeam } from "./_animations/AnimatedSocialBeam";
 
 /**
  * Hero section component displaying main introduction,
@@ -85,7 +86,7 @@ const Hero = () => {
           </div>
         </ParallaxElement>
         <ParallaxElement speed={0.2} direction="horizontal" disabled className="ml-4 lg:ml-0">
-          <SocialLinks />
+          <AnimatedSocialBeam />
         </ParallaxElement>
         {/* Scroll down button */}
         <ScrollDownButton />

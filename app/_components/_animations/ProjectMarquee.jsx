@@ -70,20 +70,22 @@ const ProjectCard = ({ img, title, des, repo, link }) => {
 };
 
 export function ProjectMarquee() {
+    if (!Projects || Projects.length === 0) {
+        return null;
+    }
+
     return (
         <div className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-lg py-8">
             <Marquee pauseOnHover className="[--duration:40s]">
                 {firstRow.map((project, index) => (
-                    <ProjectCard key={index} {...project} />
+                    <ProjectCard {...project} />
                 ))}
             </Marquee>
             <Marquee reverse pauseOnHover className="[--duration:40s]">
                 {secondRow.map((project, index) => (
-                    <ProjectCard key={index} {...project} />
+                    <ProjectCard {...project} />
                 ))}
             </Marquee>
-            {/* <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div> */}
         </div>
     );
 }
