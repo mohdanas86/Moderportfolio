@@ -9,6 +9,7 @@ import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { cn } from "@/lib/utils";
 import { Projects } from "@/data/userData";
 import TextAnimateReveal from "./_animations/TextAnimateReveal";
+import { ProjectMarquee } from "./_animations/ProjectMarquee";
 
 /**
  * Project component displays a grid of portfolio projects
@@ -47,8 +48,15 @@ const Project = () => {
           </h1>
         </ParallaxElement>
 
-        {/* === PROJECTS === */}
+        {/* Marquee Section */}
         <ParallaxElement speed={0.2}>
+          <div className="mt-12">
+            <ProjectMarquee />
+          </div>
+        </ParallaxElement>
+
+        {/* === PROJECTS GRID === */}
+        {/* <ParallaxElement speed={0.2}>
           <div className="projects mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 w-full">
             {Projects &&
               Projects.map((v, i) => {
@@ -57,7 +65,7 @@ const Project = () => {
                 );
               })}
           </div>
-        </ParallaxElement>
+        </ParallaxElement> */}
       </div>
 
       <style jsx>{`
