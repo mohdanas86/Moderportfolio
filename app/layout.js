@@ -5,6 +5,7 @@ import CursorFollower from "./_components/CursorFollower";
 import SmoothScroll from "./_components/SmoothScroll";
 import ScrollToTop from "./_components/ScrollToTop";
 import { Toaster } from "@/components/ui/sonner";
+import CanvasCursor from "./_components/_animations/CanvasCursor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,7 +44,8 @@ export default function RootLayout({ children }) {
       >
         <Toaster position="bottom-right" richColors closeButton expand={false} />
         <SmoothScroll>
-          <CursorFollower />
+          {/* <CursorFollower /> */}
+          <CanvasCursor />
           <ScrollToTop />
           <div className="flex flex-col min-h-screen w-full relative main-content">
             {/* Header - Fixed positioning and mobile optimized */}
