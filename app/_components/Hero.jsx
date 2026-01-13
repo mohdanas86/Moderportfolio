@@ -10,6 +10,7 @@ import {
   ScrollVelocityRow,
 } from "@/components/ui/scroll-based-velocity";
 import { AnimatedSocialBeam } from "./_animations/AnimatedSocialBeam";
+import { SparklesText } from "@/components/ui/sparkles-text";
 
 /**
  * Hero section component displaying main introduction,
@@ -59,12 +60,14 @@ const Hero = () => {
       <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:items-center items-start">
         <ScrollVelocityContainer className="text-4xl font-bold md:text-7xl mt-12">
           <ScrollVelocityRow baseVelocity={5} direction={1}>
-            <h1 className="text-7xl text-left lg:text-center lg:text-8xl font-bold text-white">
-              Software
-            </h1>
+            <SparklesText>
+              <h1 className="text-7xl text-left lg:text-center lg:text-8xl font-bold text-white tracking-wider">
+                Software
+              </h1>
+            </SparklesText>
           </ScrollVelocityRow>
           <ScrollVelocityRow baseVelocity={20} direction={-1}>
-            <h1 className="text-7xl text-left lg:text-center lg:text-8xl font-bold text-[#5A5A5A]">
+            <h1 className="text-7xl text-left lg:text-center lg:text-8xl font-bold text-[#5A5A5A] tracking-wider">
               Developer
             </h1>
           </ScrollVelocityRow>
