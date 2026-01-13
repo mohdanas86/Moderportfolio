@@ -80,6 +80,14 @@ export default {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-10px)' },
         },
+        orbit: {
+          '0%': {
+            transform: 'rotate(0deg) translateY(calc(var(--radius) * 1px)) rotate(0deg)',
+          },
+          '100%': {
+            transform: 'rotate(360deg) translateY(calc(var(--radius) * 1px)) rotate(-360deg)',
+          },
+        },
       },
       animation: {
         'move-up': 'moveUp ease-in-out infinite',
@@ -88,6 +96,7 @@ export default {
         'move-right': 'moveRight ease-in-out infinite',
         'wave': 'wave 2.5s ease-in-out infinite',
         'float': 'float 3s ease-in-out infinite',
+        'orbit': 'orbit calc(var(--duration) * 1s) linear infinite',
       },
     },
   },
