@@ -3,8 +3,12 @@
 import React, { useEffect, useState } from "react";
 import ScrollDownButton from "./ScrollDownButton";
 import ParallaxElement from "./ParallaxElement";
-import { FaLinkedin, FaGithub, FaYoutube, FaInstagram } from "react-icons/fa6";
-import Link from "next/link";
+import {
+  ScrollVelocityContainer,
+  ScrollVelocityRow,
+} from "@/components/ui/scroll-based-velocity";
+import { AnimatedSocialBeam } from "./_animations/AnimatedSocialBeam";
+import { SparklesText } from "@/components/ui/sparkles-text";
 
 /**
  * Hero section component displaying main introduction,
@@ -13,6 +17,8 @@ import Link from "next/link";
  */
 const Hero = () => {
   const [showAnimation, setShowAnimation] = useState(false);
+  const [visitCount, setVisitCount] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -22,24 +28,48 @@ const Hero = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    const fetchVisitCount = async () => {
+      try {
+        // First increment the count
+        await fetch('/api/visits', { method: 'POST' });
+        // Then get the updated count
+        const response = await fetch('/api/visits');
+        if (response.ok) {
+          const data = await response.json();
+          setVisitCount(data.count);
+        }
+      } catch (error) {
+        console.error('Error fetching visit count:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    // fetchVisitCount();
+  }, []);
+
   return (
     <div
-      className={`${showAnimation ? "fade-in" : "opacity-0"} py-16 relative w-full `}
+      className={`${showAnimation ? "fade-in" : "opacity-0"} py-4 lg:py-16 relative w-full `}
       id="home"
     >
       {/* Content with higher z-index */}
       <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:items-center items-start">
-        <ParallaxElement speed={0.2} direction="horizontal" disabled>
-          <h1 className="text-7xl text-left lg:text-center lg:text-8xl font-bold text-white">
-            {/* Full-Stack */}
-            Software
-          </h1>
-        </ParallaxElement>
-        <ParallaxElement speed={0.2} direction="horizontal" disabled>
-          <h1 className="text-7xl text-left lg:text-center lg:text-8xl font-bold text-[#5A5A5A]">
-            Engineer
-          </h1>
-        </ParallaxElement>
+        <ScrollVelocityContainer className="text-4xl font-bold md:text-7xl lg:mt-12 mt-0">
+          <ScrollVelocityRow baseVelocity={5} direction={1}>
+            <SparklesText>
+              <h1 className="text-7xl text-left lg:text-center lg:text-8xl font-bold text-white tracking-wider">
+                Software
+              </h1>
+            </SparklesText>
+          </ScrollVelocityRow>
+          <ScrollVelocityRow baseVelocity={20} direction={-1}>
+            <h1 className="text-7xl text-left lg:text-center lg:text-8xl font-bold text-[#5A5A5A] tracking-wider">
+              Developer
+            </h1>
+          </ScrollVelocityRow>
+        </ScrollVelocityContainer>
         <ParallaxElement speed={0.2} direction="horizontal" disabled>
           <p className="text-lg text-[#A8A8A8] lg:mt-6 mt-4 text-left lg:text-center lg:px-0 px-2">
             Specializing in React, Node.js, and modern frameworks to build
@@ -49,8 +79,15 @@ const Hero = () => {
             deliver end-to-end solutions that drive business value.
           </p>
         </ParallaxElement>
+        <ParallaxElement speed={0.2} direction="horizontal" disabled>
+          <div className="mt-6 text-center">
+            <p className="text-sm text-[#A8A8A8]">
+              Site Visits: {loading ? 'Loading...' : visitCount.toLocaleString()}
+            </p>
+          </div>
+        </ParallaxElement>
         <ParallaxElement speed={0.2} direction="horizontal" disabled className="ml-4 lg:ml-0">
-          <SocialLinks />
+          <AnimatedSocialBeam />
         </ParallaxElement>
         {/* Scroll down button */}
         <ScrollDownButton />
@@ -72,66 +109,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
-/**
- * SocialLinks component displays animated social media links
- * @component
- * @returns {JSX.Element} Social media links with wave animation
- */
-const SocialLinks = () => {
-  const SocialLinks = [
-    {
-      name: "LinkedIn",
-      url: "https://www.linkedin.com/in/anas86",
-      icon: <FaLinkedin />,
-    },
-    {
-      name: "GitHub",
-      url: "https://github.com/mohdanas86",
-      icon: <FaGithub />,
-    },
-    {
-      name: "Instagram",
-      url: "https://instagram.com/_anas__86",
-      icon: <FaInstagram />,
-    },
-    {
-      name: "YouTube",
-      url: "https://youtube.com/c/AG4444YT",
-      icon: <FaYoutube />,
-    },
-  ];
-
-  const animations = [
-    "animate-move-up",
-    "animate-move-right",
-    "animate-move-down",
-    "animate-move-left",
-  ];
-
-  return (
-    <>
-      <div className="flex justify-start lg:justify-center items-center gap-4 mt-6 w-full lg:h-[80px] h-[60px]">
-        {/* social container */}
-        <div className="socialContainer w-full relative overflow-hidden flex justify-start lg:justify-center items-center gap-4 py-4">
-          {SocialLinks &&
-            SocialLinks.map((item, index) => {
-              return (
-                <Link
-                  key={index}
-                  href={item.url}
-                  target="_blank"
-                  // The magic happens here: apply the wave animation and a staggered delay
-                  className={`flex justify-center items-center border rounded-full w-[30px] h-[30px] lg:w-[40px] lg:h-[40px] lg:text-xl 
-                         animate-wave hover:animate-none duration-[1500ms] hover:text-blue-500 hover:border-blue-500
-                         [animation-delay:${index * 150}ms]`}
-                >
-                  {item.icon}
-                </Link>
-              );
-            })}
-        </div>
-      </div>
-    </>
-  );
-};

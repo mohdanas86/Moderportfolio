@@ -7,6 +7,9 @@ import React, { useEffect, useState } from "react";
 import ParallaxElement from "./ParallaxElement";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { cn } from "@/lib/utils";
+import { Projects } from "@/data/userData";
+import TextAnimateReveal from "./_animations/TextAnimateReveal";
+import { ProjectMarquee } from "./_animations/ProjectMarquee";
 
 /**
  * Project component displays a grid of portfolio projects
@@ -15,58 +18,7 @@ import { cn } from "@/lib/utils";
  */
 const Project = () => {
   const [showAnimation, setShowAnimation] = useState(false);
-  const Projects = [
-    {
-      id: "POWERGRID Inventory Management System",
-      img: "/dashboard.png",
-      title: "POWERGRID Inventory Management System",
-      des: "A comprehensive, inventory management, demand forecasting, and procurement optimization.",
-      repo: "https://github.com/mohdanas86/POWERGRID-Inventory-Management-System",
-      link: "",
-    },
-    {
-      img: "/smartcrop.png",
-      title: "Smart Crop Advisory System",
-      des: "AI-powered crop disease detection platform that provides instant diagnosis and treatment recommendations for farmers.",
-      repo: "https://github.com/mohdanas86/agrilenses_frontend",
-      link: "https://agrilenses.netlify.app/",
-    },
-    {
-      img: "/imgrithm.png",
-      title: "Image Compression Tool",
-      des: "Free online image compression tool supporting bulk optimization and WebP conversion with minimal quality loss.",
-      repo: "",
-      link: "https://imgrithm.tech/",
-    },
-    {
-      img: "/fynsera.png",
-      title: "Fynnsera – AI Financial Assistant",
-      des: "AI platform with real-time financial analytics and personalized chatbot assistance.",
-      repo: "https://github.com/mohdanas86/fynnsera",
-      link: "https://fynsera.netlify.app/",
-    },
-    {
-      img: "/ainotestaker.png",
-      title: "AI Notes Taker",
-      des: "PDF text analysis tool that generates summaries and answers with integrated auth and payment system.",
-      repo: "https://github.com/mohdanas86/ainotestaker",
-      link: "https://ainotestaker.netlify.app/",
-    },
-    {
-      img: "/anaspice.png",
-      title: "AnaSpice – Food Delivery App",
-      des: "Food delivery platform with real-time order tracking and responsive design.",
-      repo: "https://github.com/mohdanas86/anaspiceFood.git",
-      link: "https://anaspice.netlify.app/",
-    },
-    {
-      img: "/blog-backend.png",
-      title: "Blog API Platform",
-      des: "RESTful blog backend with Express.js, MongoDB, and Redis featuring caching and Docker containerization.",
-      repo: "https://github.com/mohdanas86/Blog-CRUD",
-      link: "",
-    },
-  ];
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -85,17 +37,26 @@ const Project = () => {
       {/* Projects Section Container */}
       <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <ParallaxElement speed={0.3}>
-          <h1 className="text-5xl text-center lg:text-7xl font-bold">RECENT</h1>
+          <h1 className="text-5xl text-center lg:text-7xl font-bold">
+            <TextAnimateReveal text="RECENT" />
+          </h1>
         </ParallaxElement>
 
         <ParallaxElement speed={0.5}>
           <h1 className="text-5xl text-center lg:text-7xl font-bold text-[#353334]">
-            PROJECTS
+            <TextAnimateReveal text="PROJECTS" />
           </h1>
         </ParallaxElement>
 
-        {/* === PROJECTS === */}
+        {/* Marquee Section */}
         <ParallaxElement speed={0.2}>
+          <div className="mt-12">
+            <ProjectMarquee />
+          </div>
+        </ParallaxElement>
+
+        {/* === PROJECTS GRID === */}
+        {/* <ParallaxElement speed={0.2}>
           <div className="projects mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 w-full">
             {Projects &&
               Projects.map((v, i) => {
@@ -104,7 +65,7 @@ const Project = () => {
                 );
               })}
           </div>
-        </ParallaxElement>
+        </ParallaxElement> */}
       </div>
 
       <style jsx>{`

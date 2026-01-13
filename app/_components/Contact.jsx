@@ -33,6 +33,7 @@ import ParallaxElement from "./ParallaxElement";
 import { Separator } from "@/components/ui/separator"
 import Link from "next/link"
 import { Mail } from "lucide-react"
+import TextAnimateReveal from "./_animations/TextAnimateReveal"
 
 const formSchema = z.object({
   fullName: z
@@ -104,12 +105,12 @@ const Contact = () => {
       {/* Content Container */}
       <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <ParallaxElement speed={0.3}>
-          <h1 className="text-5xl text-center lg:text-7xl font-bold">GET IN</h1>
+          <h1 className="text-5xl text-center lg:text-7xl font-bold"><TextAnimateReveal text="GET IN" /></h1>
         </ParallaxElement>
 
         <ParallaxElement speed={0.5}>
           <h1 className="text-5xl text-center lg:text-7xl font-bold text-[#353334]">
-            TOUCH
+            <TextAnimateReveal text="TOUCH" />
           </h1>
         </ParallaxElement>
 
