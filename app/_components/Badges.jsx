@@ -46,13 +46,13 @@ const Badges = () => {
         <section className="py-16 w-full">
           <div className="text-center mb-12">
             <ParallaxElement speed={0.3}>
-              <h1 className="text-5xl text-center lg:text-7xl font-bold uppercase">
+              <h1 className="text-4xl text-center lg:text-7xl font-bold uppercase">
                 <TextAnimateReveal text="Professional" />
               </h1>
             </ParallaxElement>
 
             <ParallaxElement speed={0.5}>
-              <h1 className="text-5xl text-center lg:text-7xl font-bold uppercase text-[#353334]">
+              <h1 className="text-4xl text-center lg:text-7xl font-bold uppercase text-[#353334]">
                 <TextAnimateReveal text="Certificates" />
               </h1>
             </ParallaxElement>
@@ -156,11 +156,11 @@ const Badges = () => {
         {/* Google Cloud Skill Badges Section */}
         <section className="py-16 pt-0 px-4 md:px-8 w-full mx-auto">
           <div className="text-center mb-12">
-            <h1 className="text-5xl text-center lg:text-7xl font-bold uppercase">
+            <h1 className="text-4xl text-center lg:text-7xl font-bold uppercase">
               <TextAnimateReveal text="Google Cloud" />
             </h1>
 
-            <h1 className="text-5xl text-center lg:text-7xl font-bold uppercase text-[#353334]">
+            <h1 className="text-4xl text-center lg:text-7xl font-bold uppercase text-[#353334]">
               <TextAnimateReveal text="Skill Badges" />
             </h1>
 
