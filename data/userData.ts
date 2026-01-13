@@ -427,11 +427,13 @@ export const techIcons = [
   { name: "CSS3", src: "/css-3.png" },
   {
     name: "React",
-    src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg",
+    src: "/icons/react.svg",
+    // src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg",
   },
   {
     name: "Next.js",
-    src: "https://cdn.worldvectorlogo.com/logos/nextjs-2.svg",
+    src: "/icons/next.svg",
+    // src: "https://cdn.worldvectorlogo.com/logos/nextjs-2.svg",
   },
   {
     name: "Tailwind CSS",
@@ -446,11 +448,13 @@ export const techIcons = [
   // Backend Development
   {
     name: "Node.js",
-    src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg",
+    src: "/icons/node.svg",
+    // src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg",
   },
   {
     name: "Express.js",
-    src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg",
+    // src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg",
+    src: "/icons/express.svg",
   },
 
   // Databases
@@ -460,7 +464,8 @@ export const techIcons = [
   },
   {
     name: "MySQL",
-    src: "/techicons/mysql.svg",
+    src: "/icons/sql.svg",
+    // src: "/techicons/mysql.svg",
   },
   {
     name: "Redis",
@@ -498,7 +503,7 @@ export const techIcons = [
     name: "Google Cloud",
     src: "https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg",
   },
-  { name: "Docker", src: "/techicons/docker.svg" },
+  { name: "Docker", src: "/icons/docker.svg" },
 
   // Development Tools
   {
