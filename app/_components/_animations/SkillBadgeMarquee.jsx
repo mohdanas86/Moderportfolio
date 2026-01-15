@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
 import { Marquee } from "@/components/ui/marquee";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
-import { Lens } from "@/components/ui/lens";
 
 const SkillBadgeCard = ({ image, title, alt }) => {
     return (
@@ -46,9 +45,7 @@ export function SkillBadgeMarquee({ badges }) {
         <div className="relative flex w-full items-center justify-center overflow-hidden rounded-lg py-4">
             <Marquee pauseOnHover className="[--duration:30s]">
                 {badges.map((badge, index) => (
-                    <Lens key={badge.id || index} zoomFactor={1.5} lensSize={140}>
-                        <SkillBadgeCard {...badge} />
-                    </Lens>
+                    <SkillBadgeCard key={badge.id || index} {...badge} />
                 ))}
             </Marquee>
         </div>

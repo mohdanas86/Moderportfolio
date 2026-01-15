@@ -2,7 +2,7 @@
 
 import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import { animate } from "motion/react";
+import { animate } from "framer-motion";
 
 const GlowingEffect = memo(
   ({
@@ -25,11 +25,11 @@ const GlowingEffect = memo(
     // Check if device is mobile
     useEffect(() => {
       const checkMobile = () => {
-        const mobile = window.innerWidth < 768 || 
-                       (window.matchMedia("(pointer: coarse)").matches);
+        const mobile = window.innerWidth < 768 ||
+          (window.matchMedia("(pointer: coarse)").matches);
         setIsMobile(mobile);
       };
-      
+
       checkMobile();
       window.addEventListener("resize", checkMobile);
       return () => window.removeEventListener("resize", checkMobile);
@@ -83,7 +83,7 @@ const GlowingEffect = memo(
             parseFloat(element.style.getPropertyValue("--start")) || 0;
           let targetAngle =
             (180 * Math.atan2(mouseY - center[1], mouseX - center[0])) /
-              Math.PI +
+            Math.PI +
             90;
 
           const angleDiff = ((targetAngle - currentAngle + 180) % 360) - 180;
