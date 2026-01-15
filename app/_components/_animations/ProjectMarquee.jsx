@@ -78,12 +78,12 @@ export function ProjectMarquee() {
         <div className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-lg py-8">
             <Marquee pauseOnHover className="[--duration:40s]">
                 {firstRow.map((project, index) => (
-                    <ProjectCard {...project} />
+                    <ProjectCard key={project.title || index} {...project} />
                 ))}
             </Marquee>
             <Marquee reverse pauseOnHover className="[--duration:40s]">
                 {secondRow.map((project, index) => (
-                    <ProjectCard {...project} />
+                    <ProjectCard key={project.title || index} {...project} />
                 ))}
             </Marquee>
         </div>
