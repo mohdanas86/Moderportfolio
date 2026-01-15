@@ -6,6 +6,7 @@ import SmoothScroll from "./_components/SmoothScroll";
 import ScrollToTop from "./_components/ScrollToTop";
 import { Toaster } from "@/components/ui/sonner";
 import CanvasCursor from "./_components/_animations/CanvasCursor";
+import { ScrollProgress } from "@/components/ui/scroll-progress.jsx"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,6 +48,7 @@ export default function RootLayout({ children }) {
           {/* <CursorFollower /> */}
           <CanvasCursor /> {/* Temporarily disabled to check if it causes animation issues */}
           <ScrollToTop />
+          <ScrollProgress />
           <div className="flex flex-col min-h-screen w-full relative main-content">
             {/* Header - Fixed positioning and mobile optimized */}
             <div className="fixed top-0 left-0 right-0 z-50 w-full">
