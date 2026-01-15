@@ -6,15 +6,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { Github, MoveUpRight } from "lucide-react";
 import { Projects } from "@/data/userData";
+import { Card } from "@/components/ui/card";
 
 const firstRow = Projects.slice(0, Math.ceil(Projects.length / 2));
 const secondRow = Projects.slice(Math.ceil(Projects.length / 2));
 
 const ProjectCard = ({ img, title, des, repo, link }) => {
     return (
-        <figure
+        <Card
             className={cn(
-                "relative h-[420px] w-80 cursor-pointer overflow-hidden rounded-2xl border p-4",
+                "relative h-[420px] w-80 cursor-pointer overflow-hidden rounded-2xl border p-4 bg-transparent",
                 // light styles
                 "border-gray-950/[.1]",
                 // dark styles
@@ -65,7 +66,7 @@ const ProjectCard = ({ img, title, des, repo, link }) => {
                     </div>
                 </div>
             </div>
-        </figure>
+        </Card>
     );
 };
 
@@ -75,7 +76,8 @@ export function ProjectMarquee() {
     }
 
     return (
-        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-lg py-8">
+        // <div className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-lg py-8">
+        <>
             <Marquee pauseOnHover>
                 {firstRow.map((project, index) => (
                     <ProjectCard key={project.title || index} {...project} />
@@ -86,6 +88,7 @@ export function ProjectMarquee() {
                     <ProjectCard key={project.title || index} {...project} />
                 ))}
             </Marquee>
-        </div>
+            {/* </div> */}
+        </>
     );
 }
