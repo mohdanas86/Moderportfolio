@@ -7,26 +7,27 @@ import { BackgroundPaths } from "./_components/_backgounds/linesBackgounds";
 // Dynamically import components with loading states for better performance
 const Hero = dynamic(() => import("./_components/Hero"), {
   loading: () => <div className="min-h-screen" />,
+  ssr: false, // Disable SSR for Hero component to prevent animation hydration issues
 });
 const Project = dynamic(() => import("./_components/Project"), {
   loading: () => <div className="min-h-[50vh]" />,
-  ssr: true,
+  ssr: false, // Disable SSR for Project component
 });
 const Experience = dynamic(() => import("./_components/Experience"), {
   loading: () => <div className="min-h-[50vh]" />,
-  ssr: true,
+  ssr: false, // Disable SSR for Experience component
 });
 const Techstack = dynamic(() => import("./_components/Techstack"), {
   loading: () => <div className="min-h-[50vh]" />,
-  ssr: true,
+  ssr: false, // Disable SSR for Techstack component
 });
 const Contact = dynamic(() => import("./_components/Contact"), {
   loading: () => <div className="min-h-[50vh]" />,
-  ssr: true,
+  ssr: false, // Disable SSR for Contact component
 });
 const Badges = dynamic(() => import("./_components/Badges"), {
   loading: () => <div className="min-h-[50vh]" />,
-  ssr: true,
+  ssr: false, // Disable SSR for Badges component to fix Google Cloud badge animations
 });
 
 export default function Home() {

@@ -45,7 +45,7 @@ export default function RootLayout({ children }) {
         <Toaster position="bottom-right" richColors closeButton expand={false} />
         <SmoothScroll>
           {/* <CursorFollower /> */}
-          <CanvasCursor />
+          <CanvasCursor /> {/* Temporarily disabled to check if it causes animation issues */}
           <ScrollToTop />
           <div className="flex flex-col min-h-screen w-full relative main-content">
             {/* Header - Fixed positioning and mobile optimized */}
