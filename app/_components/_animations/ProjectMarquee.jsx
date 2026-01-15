@@ -1,7 +1,6 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { Marquee } from "@/components/ui/marquee";
 import Image from "next/image";
 import Link from "next/link";
 import { Github, MoveUpRight } from "lucide-react";
@@ -76,16 +75,27 @@ export function ProjectMarquee() {
 
     return (
         <div className="relative flex w-full flex-col items-center justify-center overflow-hidden rounded-lg py-8">
-            <Marquee pauseOnHover className="[--duration:40s]">
-                {firstRow.map((project, index) => (
-                    <ProjectCard key={project.title || index} {...project} />
-                ))}
-            </Marquee>
-            <Marquee reverse pauseOnHover className="[--duration:40s]">
-                {secondRow.map((project, index) => (
-                    <ProjectCard key={project.title || index} {...project} />
-                ))}
-            </Marquee>
+            {/* First row - normal direction */}
+            <div className="relative flex overflow-hidden group w-full">
+                <div className="flex animate-marquee group-hover:[animation-play-state:paused] whitespace-nowrap">
+                    {[...firstRow, ...firstRow].map((project, index) => (
+                        <div key={`${project.title}-${index}`} className="flex-shrink-0 mr-4">
+                            <ProjectCard {...project} />
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Second row - reverse direction */}
+            <div className="relative flex overflow-hidden mt-4 group w-full">
+                <div className="flex animate-marquee-reverse group-hover:[animation-play-state:paused] whitespace-nowrap">
+                    {[...secondRow, ...secondRow].map((project, index) => (
+                        <div key={`${project.title}-${index}-reverse`} className="flex-shrink-0 mr-4">
+                            <ProjectCard {...project} />
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 }
