@@ -48,7 +48,7 @@ const useCanvasCursor = () => {
       for (var n, i = 0, a = this.nodes.length; i < a; i++)
         (t = this.nodes[i]),
           0 < i &&
-            ((n = this.nodes[i - 1]),
+          ((n = this.nodes[i - 1]),
             (t.vx += (n.x - t.x) * e),
             (t.vy += (n.y - t.y) * e),
             (t.vx += n.vx * E.dampening),

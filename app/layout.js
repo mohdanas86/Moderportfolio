@@ -1,7 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import Header from "./_components/Header";
 import "./globals.css";
-import CursorFollower from "./_components/CursorFollower";
 import SmoothScroll from "./_components/SmoothScroll";
 import ScrollToTop from "./_components/ScrollToTop";
 import { Toaster } from "@/components/ui/sonner";
@@ -117,7 +116,6 @@ export default function RootLayout({ children }) {
         </a>
         <Toaster position="bottom-right" richColors closeButton expand={false} />
         <SmoothScroll>
-          {/* <CursorFollower /> */}
           <CanvasCursor />
           <ScrollToTop />
           <ScrollProgress />

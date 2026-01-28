@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import ScrollReveal from "./_components/ScrollReveal";
-import { ParticalsBackground } from "./_components/_backgounds/ParticalsBackground";
+import { ParticalsBackground } from "./_components/_backgrounds/ParticalsBackground";
 
 // Dynamically import components with loading states for better performance
 const Hero = dynamic(() => import("./_components/Hero"), {

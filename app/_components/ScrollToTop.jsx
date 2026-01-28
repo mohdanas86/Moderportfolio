@@ -35,9 +35,8 @@ export default function ScrollToTop() {
   return (
     <button
       onClick={handleScrollToTop}
-      className={`fixed bottom-6 right-6 z-50 p-3 bg-[#FF7A00] rounded-full shadow-lg transition-all duration-300 transform ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
-      }`}
+      className={`fixed bottom-6 right-6 z-50 p-3 bg-[#FF7A00] rounded-full shadow-lg transition-all duration-300 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
+        }`}
       aria-label="Scroll to top"
     >
       <ArrowUp className="w-5 h-5 text-white" />

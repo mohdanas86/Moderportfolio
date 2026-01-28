@@ -15,11 +15,11 @@ const CursorFollower = () => {
   useEffect(() => {
     const checkMobile = () => {
       const mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-                     window.innerWidth < 768 ||
-                     (window.matchMedia("(pointer: coarse)").matches);
+        window.innerWidth < 768 ||
+        (window.matchMedia("(pointer: coarse)").matches);
       setIsMobile(mobile);
     };
-    
+
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
@@ -32,9 +32,9 @@ const CursorFollower = () => {
     const handleMouseOver = (e) => {
       const target = e.target;
       const isInteractive = target.tagName === "A" ||
-                           target.tagName === "BUTTON" ||
-                           target.closest("a") ||
-                           target.closest("button");
+        target.tagName === "BUTTON" ||
+        target.closest("a") ||
+        target.closest("button");
       setIsHovering(isInteractive);
     };
 
@@ -54,7 +54,7 @@ const CursorFollower = () => {
         const size = isHovering ? 16 : 8;
         cursorRef.current.style.transform = `translate3d(${x - size}px, ${y - size}px, 0)`;
       }
-      
+
       if (ringRef.current && isHovering) {
         ringRef.current.style.transform = `translate3d(${x - 24}px, ${y - 24}px, 0)`;
       }
@@ -77,9 +77,8 @@ const CursorFollower = () => {
       {/* Main cursor - subtle professional glow */}
       <div
         ref={cursorRef}
-        className={`fixed pointer-events-none z-50 transition-all duration-200 ease-out ${
-          isHovering ? "w-8 h-8" : "w-4 h-4"
-        }`}
+        className={`fixed pointer-events-none z-50 transition-all duration-200 ease-out ${isHovering ? "w-8 h-8" : "w-4 h-4"
+          }`}
         style={{
           background: isHovering
             ? "radial-gradient(circle, rgba(59, 130, 246, 0.6) 0%, rgba(59, 130, 246, 0.2) 50%, transparent 70%)"

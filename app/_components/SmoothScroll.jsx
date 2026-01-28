@@ -10,23 +10,23 @@ export default function SmoothScroll({ children }) {
 
   useEffect(() => {
     // Check if device is mobile
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || 
-                     (window.matchMedia("(max-width: 768px)").matches) ||
-                     (window.matchMedia("(pointer: coarse)").matches);
-                     
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ||
+      (window.matchMedia("(max-width: 768px)").matches) ||
+      (window.matchMedia("(pointer: coarse)").matches);
+
     // On mobile devices, use native scrolling instead of Lenis for better performance
     if (isMobile) {
       // Enable native scrolling on mobile
       document.documentElement.style.scrollBehavior = 'smooth';
       document.body.style.overflowY = 'auto';
       document.body.style.touchAction = 'pan-y pinch-zoom';
-      
+
       // Set a simple lenis-like object for context compatibility
       const simpleLenis = {
         scrollTo: (target, options = {}) => {
           const element = typeof target === 'string' ? document.querySelector(target) : target;
           if (element) {
-            element.scrollIntoView({ 
+            element.scrollIntoView({
               behavior: 'smooth',
               block: options.offset ? 'start' : 'center',
               ...options
@@ -38,20 +38,20 @@ export default function SmoothScroll({ children }) {
             });
           }
         },
-        on: () => {},
-        off: () => {},
-        destroy: () => {},
-        resize: () => {},
+        on: () => { },
+        off: () => { },
+        destroy: () => { },
+        resize: () => { },
       };
-      
+
       setLenis(simpleLenis);
       window.lenis = simpleLenis;
-      
+
       return () => {
         document.documentElement.style.scrollBehavior = '';
       };
     }
-                     
+
     // Initialize Lenis for smooth scrolling only on desktop
     lenisRef.current = new Lenis({
       duration: 1.2,
@@ -67,7 +67,7 @@ export default function SmoothScroll({ children }) {
       normalizeWheel: true,
       smoothWheel: true,
     });
-    
+
     setLenis(lenisRef.current);
 
     // Connect Lenis to the RAF (request animation frame) only for desktop
@@ -83,7 +83,7 @@ export default function SmoothScroll({ children }) {
     const resizeObserver = new ResizeObserver(() => {
       lenisRef.current?.resize();
     });
-    
+
     resizeObserver.observe(document.documentElement);
 
     // Optimize scrolling behavior based on scroll data
