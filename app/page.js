@@ -2,7 +2,6 @@
 
 import dynamic from "next/dynamic";
 import ScrollReveal from "./_components/ScrollReveal";
-import { BackgroundPaths } from "./_components/_backgounds/linesBackgounds";
 import { ParticalsBackground } from "./_components/_backgounds/ParticalsBackground";
 
 // Dynamically import components with loading states for better performance
@@ -37,7 +36,6 @@ export default function Home() {
       <section id="hero" className="snap-start relative min-h-screen overflow-hidden">
         {/* Background - Confined to Hero Section */}
         <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
-          {/* <BackgroundPaths /> */}
           <ParticalsBackground />
         </div>
         {/* Hero Content */}

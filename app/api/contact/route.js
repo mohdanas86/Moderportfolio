@@ -44,14 +44,10 @@ function isRateLimited(ip) {
 
 export async function POST(req) {
   try {
-    console.log('Contact API: Starting request processing...');
-    console.log('Contact API: MongoDB URI exists:', !!process.env.MONGODB_URI);
-
     // Parse request body first
     let body;
     try {
       body = await req.json();
-      console.log('Contact API: Request body parsed successfully', body);
     } catch (parseError) {
       console.error('Contact API: JSON parsing error:', parseError);
       return NextResponse.json(
@@ -62,11 +58,9 @@ export async function POST(req) {
 
     // Get client IP for rate limiting
     const clientIP = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown';
-    console.log('Contact API: Client IP:', clientIP);
 
     // Check rate limiting
     if (isRateLimited(clientIP)) {
-      console.log('Contact API: Rate limited for IP:', clientIP);
       return NextResponse.json(
         { error: "Too many requests. Please try again later." },
         { status: 429 }
@@ -76,7 +70,6 @@ export async function POST(req) {
     // Validate request data
     const validation = validateContactData(body);
     if (!validation.isValid) {
-      console.log('Contact API: Validation failed:', validation.error);
       return NextResponse.json(
         { error: validation.error },
         { status: 400 }
@@ -84,7 +77,6 @@ export async function POST(req) {
     }
 
     const { fullName, email, message } = body;
-    console.log('Contact API: Data validated successfully');
 
     // Sanitize input data
     const sanitizedData = {
@@ -95,13 +87,9 @@ export async function POST(req) {
 
     // Try to connect to MongoDB
     try {
-      console.log('Contact API: Attempting MongoDB connection...');
       await connectToDatabase();
-      console.log('Contact API: MongoDB connected successfully');
-      console.log('Contact API: Mongoose connection state:', require('mongoose').connection.readyState);
     } catch (dbError) {
       console.error('Contact API: MongoDB connection failed:', dbError);
-      console.error('Contact API: Full error:', dbError.stack);
       return NextResponse.json(
         { error: "Database connection failed. Please try again later.", details: dbError.message },
         { status: 503 }
@@ -118,7 +106,6 @@ export async function POST(req) {
       });
 
       if (existingContact) {
-        console.log('Contact API: Duplicate submission detected');
         return NextResponse.json(
           { error: "Duplicate submission detected. Please wait before sending the same message again." },
           { status: 409 }
@@ -137,9 +124,7 @@ export async function POST(req) {
         userAgent: req.headers.get('user-agent') || 'unknown',
       });
 
-      console.log('Contact API: Creating new contact document...');
       const savedContact = await newContact.save();
-      console.log('Contact API: Contact saved successfully:', savedContact._id);
 
       // Return success response
       return NextResponse.json({

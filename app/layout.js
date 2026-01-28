@@ -30,19 +30,91 @@ export const viewport = {
 };
 
 export const metadata = {
-  title: "Anas Alam - Portfolio",
-  description: "A portfolio website built by Anas Alam.",
+  metadataBase: new URL('https://anasalam.dev'),
+  title: {
+    default: "Anas Alam - Full Stack Software Developer Portfolio",
+    template: "%s | Anas Alam"
+  },
+  description: "Full Stack Software Developer specializing in React, Next.js, Node.js, and modern web technologies. Building scalable, performant web applications with focus on user experience and accessibility.",
+  keywords: ["Anas Alam", "Full Stack Developer", "Software Engineer", "React Developer", "Next.js", "Node.js", "Web Development", "Portfolio", "JavaScript", "TypeScript"],
+  authors: [{ name: "Anas Alam" }],
+  creator: "Anas Alam",
+  publisher: "Anas Alam",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://anasalam.dev',
+    title: 'Anas Alam - Full Stack Software Developer',
+    description: 'Full Stack Software Developer specializing in React, Next.js, Node.js. Building scalable web applications with modern technologies.',
+    siteName: 'Anas Alam Portfolio',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Anas Alam - Full Stack Developer',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Anas Alam - Full Stack Software Developer',
+    description: 'Full Stack Software Developer specializing in React, Next.js, Node.js',
+    images: ['/og-image.png'],
+    creator: '@anasalam',
+  },
   manifest: "/manifest.json",
+  alternates: {
+    canonical: 'https://anasalam.dev',
+  },
 };
 
 export default function RootLayout({ children }) {
 
   return (
     <html lang="en" data-theme="light" className="no-scrollbar" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Anas Alam",
+              "url": "https://anasalamportfolio.netlify.app",
+              "jobTitle": "Full Stack Software Developer",
+              "description": "Full Stack Software Developer specializing in React, Next.js, Node.js, and modern web technologies",
+              "sameAs": [
+                "https://github.com/mohdanas86",
+                "https://linkedin.com/in/anas86",
+              ],
+              "knowsAbout": ["React", "Next.js", "Node.js", "JavaScript", "TypeScript", "Web Development", "Java"],
+            })
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#151312] text-white min-h-screen no-scrollbar`}
         suppressHydrationWarning
       >
+        {/* Skip to main content link for accessibility */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:rounded"
+        >
+          Skip to main content
+        </a>
         <Toaster position="bottom-right" richColors closeButton expand={false} />
         <SmoothScroll>
           {/* <CursorFollower /> */}
@@ -59,7 +131,7 @@ export default function RootLayout({ children }) {
             <div className="flex-1 w-full min-w-0 pt-[60px] mt-0">
               <div className="w-full mx-auto min-h-0">
                 {/* Main Content with mobile-optimized spacing */}
-                <main className="w-full min-w-0">
+                <main id="main-content" className="w-full min-w-0" role="main">
                   <div className="w-full min-w-0">
                     {children}
                   </div>

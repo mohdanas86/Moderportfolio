@@ -65,24 +65,18 @@ html.lenis {
 
 /* Performance: Use GPU acceleration for animations */
 @keyframes pulse-slow {
-
-  0%,
-  100% {
+  0%, 100% {
     opacity: 0.2;
   }
-
   50% {
     opacity: 0.8;
   }
 }
 
 @keyframes float-slow {
-
-  0%,
-  100% {
+  0%, 100% {
     transform: translate3d(0, 0, 0);
   }
-
   50% {
     transform: translate3d(0, -10px, 0);
   }
@@ -92,7 +86,6 @@ html.lenis {
   from {
     transform: rotate3d(0, 0, 1, 0deg);
   }
-
   to {
     transform: rotate3d(0, 0, 1, 360deg);
   }
@@ -101,16 +94,19 @@ html.lenis {
 .animate-pulse-slow {
   animation: pulse-slow 3s ease-in-out infinite;
   will-change: opacity;
+  contain: layout style paint;
 }
 
 .animate-float-slow {
   animation: float-slow 4s ease-in-out infinite;
   will-change: transform;
+  contain: layout style paint;
 }
 
 .animate-spin-very-slow {
   animation: spin-very-slow 20s linear infinite;
   will-change: transform;
+  contain: layout style paint;
 }
 
 @layer base {

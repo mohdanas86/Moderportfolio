@@ -45,13 +45,67 @@ const nextConfig = {
 
     // Experimental features
     experimental: {
-        optimizePackageImports: ['lucide-react', 'react-icons', 'framer-motion', '@radix-ui/react-dialog', '@radix-ui/react-label'],
+        optimizePackageImports: [
+            'lucide-react',
+            'react-icons',
+            'framer-motion',
+            '@radix-ui/react-dialog',
+            '@radix-ui/react-label',
+            '@radix-ui/react-progress',
+            '@radix-ui/react-separator',
+            '@radix-ui/react-slot',
+            '@radix-ui/react-toast',
+        ],
         optimizeCss: true,
     },
 
     // Performance optimizations
     compress: true,
     poweredByHeader: false,
+
+    // Security and performance headers
+    async headers() {
+        return [
+            {
+                source: '/:path*',
+                headers: [
+                    {
+                        key: 'X-DNS-Prefetch-Control',
+                        value: 'on'
+                    },
+                    {
+                        key: 'Strict-Transport-Security',
+                        value: 'max-age=63072000; includeSubDomains; preload'
+                    },
+                    {
+                        key: 'X-Content-Type-Options',
+                        value: 'nosniff'
+                    },
+                    {
+                        key: 'X-Frame-Options',
+                        value: 'SAMEORIGIN'
+                    },
+                    {
+                        key: 'Referrer-Policy',
+                        value: 'strict-origin-when-cross-origin'
+                    },
+                    {
+                        key: 'Permissions-Policy',
+                        value: 'camera=(), microphone=(), geolocation=()'
+                    },
+                ],
+            },
+            {
+                source: '/public/:path*',
+                headers: [
+                    {
+                        key: 'Cache-Control',
+                        value: 'public, max-age=31536000, immutable'
+                    },
+                ],
+            },
+        ];
+    },
 };
 
 export default nextConfig;

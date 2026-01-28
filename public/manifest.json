@@ -1,25 +1,32 @@
 {
+    "name": "Anas Alam - Full Stack Developer Portfolio",
+    "short_name": "Anas Alam",
+    "description": "Full Stack Software Developer specializing in React, Next.js, Node.js. Building scalable web applications.",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "orientation": "any",
     "theme_color": "#151312",
     "background_color": "#151312",
+    "dir": "ltr",
+    "lang": "en-US",
+    "categories": [
+        "portfolio",
+        "business",
+        "developer"
+    ],
     "icons": [
         {
-            "purpose": "maskable",
-            "sizes": "512x512",
             "src": "logo.png",
-            "type": "image/png"
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
         },
         {
-            "purpose": "any",
-            "sizes": "512x512",
             "src": "logo.png",
-            "type": "image/png"
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
         }
-    ],
-    "orientation": "any",
-    "display": "standalone",
-    "dir": "auto",
-    "lang": "en-US",
-    "name": "Anas",
-    "short_name": "Anas",
-    "description": "Anas Alam - Portfolio"
+    ]
 }

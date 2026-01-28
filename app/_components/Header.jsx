@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -28,16 +28,18 @@ import { usePathname } from "next/navigation";
  * Smooth scroll to section
  * @param {string} sectionId - The ID of the section to scroll to
  */
-const scrollToSection = (sectionId) => {
-  const element = document.getElementById(sectionId);
-  if (element) {
-    // Use Lenis if available, otherwise fallback to native scrollIntoView
-    if (window.lenis) {
-      window.lenis.scrollTo(element, { duration: 1.5, offset: -80 });
-    } else {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
+const useScrollToSection = () => {
+  return useCallback((sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      // Use Lenis if available, otherwise fallback to native scrollIntoView
+      if (window.lenis) {
+        window.lenis.scrollTo(element, { duration: 1.5, offset: -80 });
+      } else {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     }
-  }
+  }, []);
 };
 
 /**
@@ -64,6 +66,7 @@ const handleResumeClick = () => {
 const Header = () => {
   const pathname = usePathname();
   const [activeSection, setActiveSection] = useState("hero");
+  const scrollToSection = useScrollToSection();
 
   // Track active section on scroll
   useEffect(() => {
@@ -97,13 +100,14 @@ const Header = () => {
           <button
             onClick={() => scrollToSection("hero")}
             className="text-sm sm:text-base lg:text-xl font-bold text-white hover:text-[#FF7A00] transition-colors duration-300 truncate"
+            aria-label="Go to homepage"
           >
             Anas Alam
           </button>
         </div>
 
         {/* Desktop Navigation - Hidden on mobile */}
-        <nav className="hidden lg:flex items-center">
+        <nav className="hidden lg:flex items-center" aria-label="Main navigation">
           <ul className="flex items-center gap-2">
             <li>
               <button

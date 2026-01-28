@@ -1,0 +1,9 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Disallow admin and API routes
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://anasalam.dev/sitemap.xml

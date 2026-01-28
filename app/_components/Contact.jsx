@@ -75,8 +75,6 @@ const Contact = () => {
       })
 
       const result = await response.json();
-      console.log("Form Data:", data);
-      console.log("Response:", result);
 
       if (response.ok) {
         toast.success(result.message || "Message sent successfully!", {
