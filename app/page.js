@@ -35,7 +35,7 @@ export default function Home() {
     <div className="relative">
       <section id="hero" className="snap-start relative min-h-screen overflow-hidden">
         {/* Background - Confined to Hero Section */}
-        <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
+        <div className="absolute inset-0 w-full h-full pointer-events-none z-0 border">
           <ParticalsBackground />
         </div>
         {/* Hero Content */}

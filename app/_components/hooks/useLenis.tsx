@@ -2,18 +2,25 @@
 
 import { createContext, useContext } from 'react';
 
+// Extend Window interface to include lenis
+declare global {
+  interface Window {
+    lenis?: any;
+  }
+}
+
 // Create a context for Lenis instance
 export const LenisContext = createContext(null);
 
 // Hook to use the Lenis instance in any component
 export const useLenis = () => {
   const lenis = useContext(LenisContext);
-  
+
   if (!lenis) {
     console.warn('useLenis must be used within a SmoothScroll component');
     return null;
   }
-  
+
   return lenis;
 };
 
@@ -38,11 +45,11 @@ export const scrollToElement = (element, options = {}) => {
 export const useScrollTrigger = (callback, deps = []) => {
   if (typeof window !== 'undefined' && window.lenis) {
     window.lenis.on('scroll', callback);
-    
+
     return () => {
       window.lenis.off('scroll', callback);
     };
   }
-  
-  return () => {};
+
+  return () => { };
 };

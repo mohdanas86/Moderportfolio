@@ -126,7 +126,7 @@ export default function RootLayout({ children }) {
             </div>
 
             {/* Main Layout - Mobile-first responsive design */}
-            <div className="flex-1 w-full min-w-0 pt-[60px] mt-0">
+            <div className="flex-1 w-full min-w-0 mt-0">
               <div className="w-full mx-auto min-h-0">
                 {/* Main Content with mobile-optimized spacing */}
                 <main id="main-content" className="w-full min-w-0" role="main">
