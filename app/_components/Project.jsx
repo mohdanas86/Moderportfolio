@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import ParallaxElement from "./ParallaxElement";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { cn } from "@/lib/utils";
+import { Projects } from "@/data/userData";
 
 /**
  * Project component displays a grid of portfolio projects
@@ -15,58 +16,6 @@ import { cn } from "@/lib/utils";
  */
 const Project = () => {
   const [showAnimation, setShowAnimation] = useState(false);
-  const Projects = [
-    {
-      id: "POWERGRID Inventory Management System",
-      img: "/dashboard.png",
-      title: "POWERGRID Inventory Management System",
-      des: "A comprehensive, inventory management, demand forecasting, and procurement optimization.",
-      repo: "https://github.com/mohdanas86/POWERGRID-Inventory-Management-System",
-      link: "",
-    },
-    {
-      img: "/smartcrop.png",
-      title: "Smart Crop Advisory System",
-      des: "AI-powered crop disease detection platform that provides instant diagnosis and treatment recommendations for farmers.",
-      repo: "https://github.com/mohdanas86/agrilenses_frontend",
-      link: "https://agrilenses.netlify.app/",
-    },
-    {
-      img: "/imgrithm.png",
-      title: "Image Compression Tool",
-      des: "Free online image compression tool supporting bulk optimization and WebP conversion with minimal quality loss.",
-      repo: "",
-      link: "https://imgrithm.tech/",
-    },
-    {
-      img: "/fynsera.png",
-      title: "Fynnsera – AI Financial Assistant",
-      des: "AI platform with real-time financial analytics and personalized chatbot assistance.",
-      repo: "https://github.com/mohdanas86/fynnsera",
-      link: "https://fynsera.netlify.app/",
-    },
-    {
-      img: "/ainotestaker.png",
-      title: "AI Notes Taker",
-      des: "PDF text analysis tool that generates summaries and answers with integrated auth and payment system.",
-      repo: "https://github.com/mohdanas86/ainotestaker",
-      link: "https://ainotestaker.netlify.app/",
-    },
-    {
-      img: "/anaspice.png",
-      title: "AnaSpice – Food Delivery App",
-      des: "Food delivery platform with real-time order tracking and responsive design.",
-      repo: "https://github.com/mohdanas86/anaspiceFood.git",
-      link: "https://anaspice.netlify.app/",
-    },
-    {
-      img: "/blog-backend.png",
-      title: "Blog API Platform",
-      des: "RESTful blog backend with Express.js, MongoDB, and Redis featuring caching and Docker containerization.",
-      repo: "https://github.com/mohdanas86/Blog-CRUD",
-      link: "",
-    },
-  ];
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -96,7 +45,7 @@ const Project = () => {
 
         {/* === PROJECTS === */}
         <ParallaxElement speed={0.2}>
-          <div className="projects mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 w-full">
+          <div className="projects mt-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 w-full">
             {Projects &&
               Projects.map((v, i) => {
                 return (
@@ -131,17 +80,17 @@ export default Project;
 const ProjectCard = ({ project, index }) => {
   return (
     <ParallaxElement speed={0.1} disabled={true}>
-      <div className={cn("min-h-[24rem] list-none")}>
-        <div className="relative h-full rounded-[1.25rem] border-[0.75px] border-white/10 p-2 md:rounded-[1.5rem] md:p-3">
+      <div className={cn("min-h-[26rem] list-none group")}>
+        <div className="relative h-full rounded-[1.25rem] border-[0.75px] border-white/10 p-2 md:rounded-[1.5rem] md:p-3 bg-gradient-to-br from-gray-900/50 to-black/50 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-500">
           <GlowingEffect
-            spread={40}
+            spread={50}
             glow={true}
             disabled={false}
-            proximity={64}
+            proximity={80}
             inactiveZone={0.01}
             borderWidth={3}
           />
-          <div className="relative flex h-full flex-col justify-between gap-4 overflow-hidden rounded-xl border-[0.75px] border-white/10  shadow-lg">
+          <div className="relative flex h-full flex-col justify-between gap-4 overflow-hidden rounded-xl border-[0.75px] border-white/10 shadow-lg backdrop-blur-sm">
             {/* Project Image */}
             <figure className="relative w-full aspect-video overflow-hidden rounded-t-xl">
               <Image
@@ -149,19 +98,20 @@ const ProjectCard = ({ project, index }) => {
                 alt={`${project?.title} project screenshot`}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover transition-transform duration-500 hover:scale-110"
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
                 loading="lazy"
               />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500"></div>
             </figure>
 
             {/* Content */}
-            <div className="relative flex flex-1 flex-col justify-between gap-3 p-6">
+            <div className="relative flex flex-1 flex-col justify-between gap-3 p-4 md:p-6">
               {/* Title and Description */}
               <div className="space-y-3">
-                <h3 className="pt-0.5 text-xl leading-[1.375rem] font-semibold font-sans tracking-[-0.04em] md:text-2xl md:leading-[1.875rem] text-balance text-white">
+                <h3 className="pt-0.5 text-lg leading-[1.375rem] font-semibold font-sans tracking-[-0.04em] md:text-xl md:leading-[1.875rem] text-balance text-white group-hover:text-blue-300 transition-colors duration-300">
                   {project?.title}
                 </h3>
-                <p className="font-sans text-sm leading-[1.125rem] md:text-base md:leading-[1.375rem] text-gray-400">
+                <p className="font-sans text-sm leading-[1.125rem] md:text-base md:leading-[1.375rem] text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
                   {project?.des}
                 </p>
               </div>
@@ -170,15 +120,17 @@ const ProjectCard = ({ project, index }) => {
               <div className="flex items-center justify-end gap-3 pt-2">
                 {project.link && project.link.trim() !== "" && (
                   <Link href={project.link} target="_blank">
-                    <button className="cursor-pointer flex items-center justify-center w-10 h-10 rounded-full border border-white/20 bg-white/5 text-gray-300 hover:border-blue-500 hover:text-blue-500 hover:bg-blue-500/10 transition-all duration-300">
-                      <MoveUpRight size={18} />
+                    <button className="cursor-pointer flex items-center justify-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/5 text-gray-300 hover:border-blue-500 hover:text-blue-500 hover:bg-blue-500/10 transition-all duration-300 text-sm font-medium">
+                      <MoveUpRight size={16} />
+                      Live
                     </button>
                   </Link>
                 )}
                 {project.repo && project.repo.trim() !== "" && (
                   <Link href={project.repo} target="_blank">
-                    <button className="cursor-pointer flex items-center justify-center w-10 h-10 rounded-full border border-white/20 bg-white/5 text-gray-300 hover:border-blue-500 hover:text-blue-500 hover:bg-blue-500/10 transition-all duration-300">
-                      <Github size={18} />
+                    <button className="cursor-pointer flex items-center justify-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/5 text-gray-300 hover:border-blue-500 hover:text-blue-500 hover:bg-blue-500/10 transition-all duration-300 text-sm font-medium">
+                      <Github size={16} />
+                      Code
                     </button>
                   </Link>
                 )}
