@@ -33,9 +33,9 @@ const Badges = dynamic(() => import("./_components/Badges"), {
 export default function Home() {
   return (
     <div className="relative">
-      <section id="hero" className="snap-start relative min-h-screen overflow-hidden">
-        {/* Background - Confined to Hero Section */}
-        <div className="absolute inset-0 w-full h-full pointer-events-none z-0 border">
+      {/* Background - Confined to Hero Section */}
+      <section id="hero" className="snap-start relative min-h-screen overflow-hidden mt-10 lg:mt-0">
+        <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
           <ParticalsBackground />
         </div>
         {/* Hero Content */}

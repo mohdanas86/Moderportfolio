@@ -32,7 +32,7 @@ const Hero = () => {
       id="home"
     >
       {/* Content with higher z-index */}
-      <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:items-center items-start">
+      <div className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:items-center items-start justify-center">
         <ScrollVelocityContainer className="text-4xl font-bold md:text-7xl lg:mt-12 mt-0">
           <ScrollVelocityRow baseVelocity={5} direction={1}>
             <SparklesText>
@@ -48,7 +48,7 @@ const Hero = () => {
           </ScrollVelocityRow>
         </ScrollVelocityContainer>
         <ParallaxElement speed={0.2} direction="horizontal" disabled>
-          <p className="text-lg text-[#A8A8A8] lg:mt-6 mt-4 text-left lg:text-center lg:px-0 px-2">
+          <p className="text-sm lg:text-lg text-[#A8A8A8] lg:mt-6 mt-4 text-left lg:text-center lg:px-0 px-2">
             Specializing in React, Node.js, and modern frameworks to build
             scalable web solutions. I transform complex requirements into clean,
             maintainable code with a focus on performance, accessibility, and user
