@@ -5,6 +5,7 @@ import SmoothScroll from "./_components/SmoothScroll";
 import ScrollToTop from "./_components/ScrollToTop";
 import { Toaster } from "@/components/ui/sonner";
 import CanvasCursor from "./_components/_animations/CanvasCursor";
+import { SmoothCursor } from "@/components/ui/smooth-cursor"
 import { ScrollProgress } from "@/components/ui/scroll-progress.jsx"
 
 const geistSans = Geist({
@@ -116,7 +117,8 @@ export default function RootLayout({ children }) {
         </a>
         <Toaster position="bottom-right" richColors closeButton expand={false} />
         <SmoothScroll>
-          <CanvasCursor />
+          {/* <CanvasCursor /> */}
+          <SmoothCursor />
           <ScrollToTop />
           <ScrollProgress />
           <div className="flex flex-col min-h-screen w-full relative main-content">

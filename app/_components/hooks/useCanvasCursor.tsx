@@ -118,6 +118,7 @@ const useCanvasCursor = () => {
         (e = lines[t]).update();
         e.draw();
       }
+
       ctx.frame++;
       window.requestAnimationFrame(render);
     }
