@@ -519,3 +519,30 @@ export const techIcons = [
     src: "/techicons/postman.png",
   },
 ];
+
+// Helper function to get tech icon by name
+export const getTechIcon = (name) => {
+  return techIcons.find((icon) => icon.name === name);
+};
+
+// Example: Organize tech icons by category for projects
+export const techCategories = {
+  frontend: ["React", "Next.js", "Tailwind CSS", "HTML5", "CSS3", "Bootstrap"],
+  backend: ["Node.js", "Express.js", "MongoDB", "MySQL", "Redis"],
+  languages: ["JavaScript", "TypeScript", "Python", "Java", "C++", "C"],
+  dataScience: [
+    "Python",
+    "NumPy",
+    "Pandas",
+    "Matplotlib",
+    "Seaborn",
+    "Scikit-learn",
+    "Jupyter",
+  ],
+  devops: ["Git", "GitHub", "Docker", "Google Cloud", "Postman"],
+};
+
+// Helper to get multiple tech icons by names
+export const getTechIcons = (names) => {
+  return names.map((name) => getTechIcon(name)).filter(Boolean);
+};
