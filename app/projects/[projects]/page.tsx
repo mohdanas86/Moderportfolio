@@ -17,10 +17,11 @@ export default function ProjectPage() {
     }, []);
     return (
         <div
-            className={`${showAnimation ? "fade-in" : "opacity-0"
-                } py-16 mt-0 lg:mt-16 relative overflow-hidden w-full min-h-screen border`}
-            id="project"
+            className={`${showAnimation ? "fade-in" : "opacity-0"}
+  py-16 mt-0 lg:mt-16 relative overflow-x-hidden overflow-y-visible w-full min-h-screen border`}
+        // id="project"
         >
+
             <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 border">
                 <div className="grid border border-red-600 gap-4 md:gap-6">
                     {/* Projects Mock and Image Gallery Container */}
@@ -33,7 +34,7 @@ export default function ProjectPage() {
                         </div>
 
                         {/* Image Gallery - Horizontal scroll on mobile, vertical on desktop */}
-                        <div className="border p-2 sm:p-4">
+                        <div className="border">
                             {/* Mobile: Horizontal scroll */}
                             <div className="md:hidden w-full flex gap-3 overflow-x-auto scrollbar-hide pb-2">
                                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((img, index) => (
@@ -43,13 +44,22 @@ export default function ProjectPage() {
                                 ))}
                             </div>
                             {/* Desktop: Vertical scroll */}
-                            <div className="hidden md:flex flex-col gap-3 h-[500px] overflow-y-scroll">
-                                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((img, index) => (
-                                    <button key={index} className="border p-2 flex items-center justify-center w-full aspect-video hover:border-gray-400 transition-colors flex-shrink-0">
+                            <div
+                                className="hidden md:block w-full border-2 border-blue-500 h-[500px] overflow-y-auto"
+                                data-lenis-prevent
+                                style={{ pointerEvents: 'auto' }}
+                            >
+                                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((img, index) => (
+                                    <div
+                                        key={index}
+                                        className="border p-2 flex items-center justify-center w-full mb-3"
+                                        style={{ aspectRatio: '16/9' }}
+                                    >
                                         img {index + 1}
-                                    </button>
+                                    </div>
                                 ))}
                             </div>
+
                         </div>
                     </div>
 
