@@ -1,5 +1,7 @@
 import dynamic from 'next/dynamic';
 import { getTechIcon, getTechIcons } from "@/data/userData";
+import AboutTheProject from '../_components/AboutTheProject';
+import ProjectGallery from '../_components/Projectgallery';
 
 // Dynamic imports for heavy client components with code splitting
 const SafariMocks = dynamic(() => import("@/app/_components/mocks/SafariMocks").then(mod => ({ default: mod.SafariMocks })), {
@@ -37,46 +39,14 @@ export default async function ProjectPage({ params }: { params: Promise<{ projec
                     </div>
 
                     {/* Projects Mock and Image Gallery Container */}
-                    <div className="grid grid-cols-1 md:grid-cols-[1fr,200px] gap-4 w-full p-0">
-                        {/* Projects Mock Container */}
-                        <div className="">
-                            <div className="w-full max-w-[1203px] mx-auto">
-                                <SafariMocks />
-                            </div>
-                        </div>
-
-                        {/* Image Gallery - Horizontal scroll on mobile, vertical on desktop */}
-                        <div className="">
-                            {/* Mobile: Horizontal scroll */}
-                            <div className="md:hidden w-full flex gap-3 overflow-x-auto scrollbar-hide pb-2">
-                                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((img, index) => (
-                                    <button key={index} className=" p-2 border flex items-center justify-center flex-shrink-0 w-[200px] aspect-video hover:border-gray-400 transition-colors">
-                                        img {index + 1}
-                                    </button>
-                                ))}
-                            </div>
-                            {/* Desktop: Vertical scroll */}
-                            <div
-                                className="hidden md:block w-full h-[550px] overflow-y-auto"
-                                data-lenis-prevent
-                                style={{ pointerEvents: 'auto' }}
-                            >
-                                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((img, index) => (
-                                    <div
-                                        key={index}
-                                        className="border p-2 flex items-center justify-center w-full mb-3"
-                                        style={{ aspectRatio: '16/9' }}
-                                    >
-                                        img {index + 1}
-                                    </div>
-                                ))}
-                            </div>
-
-                        </div>
-                    </div>
+                    <ProjectGallery />
 
                     {/* About the project */}
-                    <div className="flex border w-full p-4 sm:p-6 md:p-8">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur blanditiis provident, impedit autem temporibus ipsam est velit architecto quas vel totam assumenda commodi, voluptatem vero, perspiciatis a ipsum animi quidem!</div>
+                    <div className="flex flex-col gap-4 w-full text-white">
+                        <h1 className="text-2xl font-sans font-semibold">Project Description</h1>
+
+                        <AboutTheProject />
+                    </div>
 
                     {/* Tech Stack */}
                     <div className="flex flex-col border w-full p-4 sm:p-6 md:p-8">
