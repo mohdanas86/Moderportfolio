@@ -2,7 +2,7 @@
 
 import React, { forwardRef, useRef, useMemo } from "react"
 import Image from "next/image"
-import * as LucideIcons from "lucide-react"
+import { Sparkles } from "lucide-react" // Import only specific icons needed
 
 import { cn } from "@/lib/utils"
 import { AnimatedBeam } from "@/components/ui/animated-beam"
@@ -54,13 +54,7 @@ const TechIcon = ({ icon, className = "size-6" }: { icon: TechIconType; classNam
             )
         }
 
-        // Try to get Lucide icon by name
-        const LucideIcon = (LucideIcons as any)[icon]
-        if (LucideIcon) {
-            return <LucideIcon className={className} />
-        }
-
-        // Fallback text
+        // Fallback text for icon names
         return <span className="text-xs font-bold">{icon.slice(0, 2)}</span>
     }
 
@@ -140,8 +134,8 @@ export function TechStacks({ techs = [], centerIcon = null, className }: TechSta
         return organized
     }, [techs])
 
-    // Determine center icon
-    const centerTech = centerIcon || techs[0] || { icon: "Sparkles", name: "Center" }
+    // Determine center icon - use Sparkles component as default
+    const centerTech = centerIcon || techs[0] || <Sparkles className="size-8" />
 
     return (
         <div
