@@ -116,30 +116,29 @@ export default function RootLayout({ children }) {
           Skip to main content
         </a>
         <Toaster position="bottom-right" richColors closeButton expand={false} />
-        <SmoothScroll>
-          {/* <CanvasCursor /> */}
-          <SmoothCursor />
-          <ScrollToTop />
-          <ScrollProgress />
-          <div className="flex flex-col min-h-screen w-full relative main-content">
-            {/* Header - Fixed positioning and mobile optimized */}
-            <div className="fixed top-0 left-0 right-0 z-50 w-full">
-              <Header />
-            </div>
+        <SmoothScroll className="hidden lg:visible" />
+        {/* <CanvasCursor /> */}
+        <span className="hidden lg:block"><SmoothCursor /></span>
+        <ScrollToTop />
+        <ScrollProgress />
+        <div className="flex flex-col min-h-screen w-full relative main-content">
+          {/* Header - Fixed positioning and mobile optimized */}
+          <div className="fixed top-0 left-0 right-0 z-50 w-full">
+            <Header />
+          </div>
 
-            {/* Main Layout - Mobile-first responsive design */}
-            <div className="flex-1 w-full min-w-0 mt-0">
-              <div className="w-full mx-auto min-h-0">
-                {/* Main Content with mobile-optimized spacing */}
-                <main id="main-content" className="w-full min-w-0" role="main">
-                  <div className="w-full min-w-0">
-                    {children}
-                  </div>
-                </main>
-              </div>
+          {/* Main Layout - Mobile-first responsive design */}
+          <div className="flex-1 w-full min-w-0 mt-0">
+            <div className="w-full mx-auto min-h-0">
+              {/* Main Content with mobile-optimized spacing */}
+              <main id="main-content" className="w-full min-w-0" role="main">
+                <div className="w-full min-w-0">
+                  {children}
+                </div>
+              </main>
             </div>
           </div>
-        </SmoothScroll>
+        </div>
       </body>
     </html>
   );
