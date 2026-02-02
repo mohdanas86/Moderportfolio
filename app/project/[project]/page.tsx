@@ -1,6 +1,10 @@
+// "use client"
+
 import dynamic from 'next/dynamic';
 import { getTechIcon, getTechIcons } from "@/data/userData";
 import BackButton from '../_components/BackButton';
+import { projectsData } from '@/data/projectsData';
+// import { useState } from 'react';
 
 // Dynamic imports for better performance
 const AboutTheProject = dynamic(() => import('../_components/AboutTheProject'), {
@@ -23,6 +27,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ projec
     // Await params to get the project ID
     const { project: projectId } = await params;
 
+    // project data
+    const currentProject = projectsData[0];
+
     return (
         <div className="min-h-screen max-w-5xl mx-auto">
             {/* Hero Section */}
@@ -34,7 +41,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ projec
                             <BackButton />
                             <div className="flex-1">
                                 <h1 className="text-2xl lg:text-3xl font-bold font-sans text-white leading-tight">
-                                    Portfolio Project
+                                    {currentProject.title}
                                 </h1>
                             </div>
                         </div>
@@ -47,7 +54,10 @@ export default async function ProjectPage({ params }: { params: Promise<{ projec
                 <div className="space-y-6 lg:space-y-10">
                     {/* Project Gallery */}
                     <section className="relative">
-                        <ProjectGallery />
+                        <ProjectGallery
+                            images={currentProject.imageGallery}
+                            siteUrl={currentProject.siteUrl}
+                        />
                     </section>
 
                     {/* Demo Links */}
@@ -56,7 +66,10 @@ export default async function ProjectPage({ params }: { params: Promise<{ projec
                             <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-white mb-3 lg:mb-4">
                                 Live Demo & Source Code
                             </h2>
-                            <DemoLinks />
+                            <DemoLinks
+                                githubRepo={currentProject.githubRepo}
+                                livePreview={currentProject.previewLink}
+                            />
                         </div>
                     </section>
 
@@ -66,7 +79,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ projec
                             Project Overview
                         </h2>
                         <div className="text-[#bfbaba]">
-                            <AboutTheProject />
+                            <AboutTheProject content={currentProject.content} />
                         </div>
                     </section>
 
@@ -77,8 +90,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ projec
                         </h2>
                         <div className="flex justify-center">
                             <TechStacks
-                                techs={getTechIcons(["React", "Next.js", "TypeScript", "MongoDB", "Node.js", "Express.js", "Tailwind CSS", "Vercel"])}
-                                centerIcon={getTechIcon("JavaScript")}
+                                techs={getTechIcons(currentProject.techs)}
+                                centerIcon={getTechIcon(currentProject.centerIcon)}
                             />
                         </div>
                     </section>

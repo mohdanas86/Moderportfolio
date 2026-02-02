@@ -1,17 +1,13 @@
 "use client"
 
-import { SafariMocks } from "@/app/_components/mocks/SafariMocks";
 import { useState } from "react";
 import Image from "next/image";
 
-export const galleryImages = [
-    { src: "/anaspice.png", url: "anaspice.com" },
-    { src: "/anasufy.png", url: "anasufy.com" },
-    { src: "/ainotestaker.png", url: "ainotestaker.com" }
-];
-
-export default function ProjectGallery() {
-    const [currentImage, setCurrentImage] = useState(galleryImages[0]);
+export default function ProjectGallery({ images, siteUrl }: {
+    images: string[],
+    siteUrl: string
+}) {
+    const [currentImage, setCurrentImage] = useState(images[0]);
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-[1fr,200px] gap-4 w-full p-0 mb-0 overflow-hidden">
@@ -19,8 +15,8 @@ export default function ProjectGallery() {
             <div className="">
                 <div className="w-full aspect-video relative overflow-hidden rounded-[1px]">
                     <Image
-                        src={currentImage.src}
-                        alt={currentImage.url}
+                        src={currentImage}
+                        alt={siteUrl}
                         fill
                         className="object-cover"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 50vw"
@@ -32,15 +28,15 @@ export default function ProjectGallery() {
             <div className="">
                 {/* Mobile: Horizontal scroll */}
                 <div className="md:hidden w-full flex gap-3 overflow-x-auto scrollbar pb-2">
-                    {galleryImages.map((img, index) => (
+                    {images.map((img, index) => (
                         <button
                             key={index}
                             className="border border-white hover:border-gray-400 transition-colors flex-shrink-0 w-[200px] aspect-video relative overflow-hidden rounded-[1px]"
                             onClick={() => setCurrentImage(img)}
                         >
                             <Image
-                                src={img.src}
-                                alt={img.url}
+                                src={img}
+                                alt={siteUrl}
                                 fill
                                 className="object-cover"
                                 sizes="200px"
@@ -54,15 +50,15 @@ export default function ProjectGallery() {
                     data-lenis-prevent
                     style={{ pointerEvents: 'auto' }}
                 >
-                    {galleryImages.map((img, index) => (
+                    {images.map((img, index) => (
                         <button
                             key={index}
                             className="border border-white hover:border-gray-400 transition-colors w-full mb-3 aspect-video relative overflow-hidden rounded-[1px]"
                             onClick={() => setCurrentImage(img)}
                         >
                             <Image
-                                src={img.src}
-                                alt={img.url}
+                                src={img}
+                                alt={siteUrl}
                                 fill
                                 className="object-cover"
                                 sizes="200px"

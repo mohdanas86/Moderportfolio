@@ -138,13 +138,13 @@ export const mdxComponents = {
         return (
             <code
                 className="
-                    px-1 py-0.5
+                    p-4
                     rounded
-                    bg-gray-800
+                    bg-black/80
                     text-sm
                     font-mono
                     text-gray-200
-                    border border-gray-700
+                    border border-black/80
                 "
                 {...props}
             >
@@ -176,9 +176,9 @@ export const mdxComponents = {
                     className="
                         overflow-x-auto
                         rounded-lg
-                        bg-gray-900
-                        p-3
-                        border border-gray-800
+                        bg-black
+                        p-1
+                        border border-black
                         text-sm
                         leading-relaxed
                         font-mono
@@ -261,7 +261,7 @@ export const mdxComponents = {
     hr: (props: object) => (
         <hr
             className="
-                my-0
+                my-4
                 border-0
                 h-px
                 bg-white
@@ -273,7 +273,7 @@ export const mdxComponents = {
     /* ---------------- Tables ---------------- */
 
     table: ({ children, ...props }: { children: ReactNode }) => (
-        <div className="my-3 overflow-x-auto rounded-lg border border-gray-800">
+        <div className="my-3 overflow-x-auto rounded-lg border border-black/80">
             <table
                 className="
                     w-full
@@ -289,7 +289,7 @@ export const mdxComponents = {
     ),
 
     thead: ({ children, ...props }: { children: ReactNode }) => (
-        <thead className="bg-gray-900" {...props}>
+        <thead className="bg-black/80" {...props}>
             {children}
         </thead>
     ),
@@ -304,7 +304,7 @@ export const mdxComponents = {
                 uppercase
                 tracking-wider
                 text-white
-                border-b border-gray-800
+                border-b border-white
             "
             {...props}
         >
@@ -313,7 +313,7 @@ export const mdxComponents = {
     ),
 
     tbody: ({ children, ...props }: { children: ReactNode }) => (
-        <tbody className="bg-black divide-y divide-gray-800" {...props}>
+        <tbody className="bg-black divide-y divide-white/30" {...props}>
             {children}
         </tbody>
     ),
