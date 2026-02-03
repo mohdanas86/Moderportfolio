@@ -52,9 +52,22 @@ export default async function ProjectPage({ params }: { params: Promise<{ projec
     // Extract project ID from dynamic route parameters
     const { project: projectId } = await params;
 
-    // TODO: Implement dynamic project fetching based on projectId
-    // Currently using first project as placeholder - should fetch based on projectId
-    const currentProject = projectsData[0];
+    // Find the specific project based on the ID from URL
+    const currentProject = projectsData.find(project => project.id === projectId);
+
+    // If project not found, you might want to handle this case
+    if (!currentProject) {
+        console.error(`Project with ID "${projectId}" not found`);
+        // You could redirect to 404 or show error message
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="text-center text-white">
+                    <h1 className="text-2xl font-bold mb-4">Project Not Found</h1>
+                    <p>The project you're looking for doesn't exist.</p>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen max-w-5xl mx-auto">

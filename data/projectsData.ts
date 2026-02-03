@@ -1,7 +1,7 @@
 export const projectsData = [
   {
     id: "1",
-    title: "Anaspice — Full-Stack Food Ordering Web Application",
+    title: "Ai Notes Taker — AI-Powered Note Taking Application",
     githubRepo: "https://github.com/mohdanas86/anaspiceFood",
     previewLink: "https://anaspice.netlify.app",
     siteUrl: "anaspice.netlify.app",
