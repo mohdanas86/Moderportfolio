@@ -22,7 +22,7 @@ import {
   Award,
   FileText,
 } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 /**
  * Smooth scroll to section
@@ -65,11 +65,26 @@ const handleResumeClick = () => {
 
 const Header = () => {
   const pathname = usePathname();
+  const router = useRouter();
   const [activeSection, setActiveSection] = useState("hero");
   const scrollToSection = useScrollToSection();
 
-  // Track active section on scroll
+  // Check if user is on project pages
+  const isOnProjectPage = pathname.startsWith('/project');
+
+  // Handle logo click - go to home if on project page, scroll to hero if on home
+  const handleLogoClick = () => {
+    if (isOnProjectPage) {
+      router.push('/');
+    } else {
+      scrollToSection('hero');
+    }
+  };
+
+  // Track active section on scroll (only on home page)
   useEffect(() => {
+    if (isOnProjectPage) return; // Don't track sections on project pages
+
     const handleScroll = () => {
       const sections = ["hero", "projects", "experience", "badges", "tools", "contact"];
       const scrollPosition = window.scrollY + 100;
@@ -90,7 +105,7 @@ const Header = () => {
     handleScroll(); // Check initial position
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isOnProjectPage]);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 w-full px-3 sm:px-4 pt-3 sm:pt-4">
@@ -98,93 +113,117 @@ const Header = () => {
         {/* Site Logo/Name - Mobile optimized */}
         <div className="flex-shrink-0 min-w-0">
           <button
-            onClick={() => scrollToSection("hero")}
+            onClick={handleLogoClick}
             className="text-sm sm:text-base lg:text-xl font-bold text-white hover:text-[#FF7A00] transition-colors duration-300 truncate"
-            aria-label="Go to homepage"
+            aria-label={isOnProjectPage ? "Go to homepage" : "Go to top"}
           >
             Anas Alam
           </button>
         </div>
 
         {/* Desktop Navigation - Hidden on mobile */}
-        <nav className="hidden lg:flex items-center" aria-label="Main navigation">
-          <ul className="flex items-center gap-2">
-            <li>
-              <button
-                onClick={() => scrollToSection("hero")}
-                className={`px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium cursor-pointer whitespace-nowrap ${activeSection === "hero"
-                  ? "text-white bg-[#FF7A00] shadow-lg shadow-[#FF7A00]/30"
-                  : "text-white/70 hover:text-white hover:bg-white/10"
-                  }`}
-              >
-                Home
-              </button>
-            </li>
-            <li>
-              <button
-                onClick={() => scrollToSection("projects")}
-                className={`px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium cursor-pointer whitespace-nowrap ${activeSection === "projects"
-                  ? "text-white bg-[#FF7A00] shadow-lg shadow-[#FF7A00]/30"
-                  : "text-white/70 hover:text-white hover:bg-white/10"
-                  }`}
-              >
-                Projects
-              </button>
-            </li>
-            <li>
-              <button
-                onClick={() => scrollToSection("experience")}
-                className={`px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium cursor-pointer whitespace-nowrap ${activeSection === "experience"
-                  ? "text-white bg-[#FF7A00] shadow-lg shadow-[#FF7A00]/30"
-                  : "text-white/70 hover:text-white hover:bg-white/10"
-                  }`}
-              >
-                Experience
-              </button>
-            </li>
-            <li>
-              <button
-                onClick={() => scrollToSection("badges")}
-                className={`px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium cursor-pointer whitespace-nowrap ${activeSection === "badges"
-                  ? "text-white bg-[#FF7A00] shadow-lg shadow-[#FF7A00]/30"
-                  : "text-white/70 hover:text-white hover:bg-white/10"
-                  }`}
-              >
-                Badges
-              </button>
-            </li>
-            <li>
-              <button
-                onClick={() => scrollToSection("tools")}
-                className={`px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium cursor-pointer whitespace-nowrap ${activeSection === "tools"
-                  ? "text-white bg-[#FF7A00] shadow-lg shadow-[#FF7A00]/30"
-                  : "text-white/70 hover:text-white hover:bg-white/10"
-                  }`}
-              >
-                Tools
-              </button>
-            </li>
-            <li>
-              <button
-                onClick={() => scrollToSection("contact")}
-                className={`px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium cursor-pointer whitespace-nowrap ${activeSection === "contact"
-                  ? "text-white bg-[#FF7A00] shadow-lg shadow-[#FF7A00]/30"
-                  : "text-white/70 hover:text-white hover:bg-white/10"
-                  }`}
-              >
-                Contact
-              </button>
-            </li>
-            <li>
-              <button
-                onClick={handleResumeClick}
-                className="px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium cursor-pointer whitespace-nowrap text-white/70 hover:text-white hover:bg-white/10"
-              >
-                Resume
-              </button>
-            </li>
-          </ul>
-        </nav>
+        {!isOnProjectPage ? (
+          <nav className="hidden lg:flex items-center" aria-label="Main navigation">
+            <ul className="flex items-center gap-2">
+              <li>
+                <button
+                  onClick={() => scrollToSection("hero")}
+                  className={`px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium cursor-pointer whitespace-nowrap ${activeSection === "hero"
+                    ? "text-white bg-[#FF7A00] shadow-lg shadow-[#FF7A00]/30"
+                    : "text-white/70 hover:text-white hover:bg-white/10"
+                    }`}
+                >
+                  Home
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection("projects")}
+                  className={`px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium cursor-pointer whitespace-nowrap ${activeSection === "projects"
+                    ? "text-white bg-[#FF7A00] shadow-lg shadow-[#FF7A00]/30"
+                    : "text-white/70 hover:text-white hover:bg-white/10"
+                    }`}
+                >
+                  Projects
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection("experience")}
+                  className={`px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium cursor-pointer whitespace-nowrap ${activeSection === "experience"
+                    ? "text-white bg-[#FF7A00] shadow-lg shadow-[#FF7A00]/30"
+                    : "text-white/70 hover:text-white hover:bg-white/10"
+                    }`}
+                >
+                  Experience
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection("badges")}
+                  className={`px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium cursor-pointer whitespace-nowrap ${activeSection === "badges"
+                    ? "text-white bg-[#FF7A00] shadow-lg shadow-[#FF7A00]/30"
+                    : "text-white/70 hover:text-white hover:bg-white/10"
+                    }`}
+                >
+                  Badges
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection("tools")}
+                  className={`px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium cursor-pointer whitespace-nowrap ${activeSection === "tools"
+                    ? "text-white bg-[#FF7A00] shadow-lg shadow-[#FF7A00]/30"
+                    : "text-white/70 hover:text-white hover:bg-white/10"
+                    }`}
+                >
+                  Tools
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToSection("contact")}
+                  className={`px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium cursor-pointer whitespace-nowrap ${activeSection === "contact"
+                    ? "text-white bg-[#FF7A00] shadow-lg shadow-[#FF7A00]/30"
+                    : "text-white/70 hover:text-white hover:bg-white/10"
+                    }`}
+                >
+                  Contact
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={handleResumeClick}
+                  className="px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium cursor-pointer whitespace-nowrap text-white/70 hover:text-white hover:bg-white/10"
+                >
+                  Resume
+                </button>
+              </li>
+            </ul>
+          </nav>
+        ) : (
+          /* Project page navigation */
+          <nav className="hidden lg:flex items-center" aria-label="Project page navigation">
+            <ul className="flex items-center gap-2">
+              <li>
+                <button
+                  onClick={() => router.push('/')}
+                  className="px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium cursor-pointer whitespace-nowrap text-white/70 hover:text-white hover:bg-white/10"
+                >
+                  Home
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={handleResumeClick}
+                  className="px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium cursor-pointer whitespace-nowrap text-white/70 hover:text-white hover:bg-white/10"
+                >
+                  Resume
+                </button>
+              </li>
+            </ul>
+          </nav>
+        )}
 
         {/* Mobile Menu Button - Properly sized for touch */}
         <div className="flex-shrink-0 lg:hidden">
@@ -225,90 +264,110 @@ const Header = () => {
               {/* Mobile Menu Navigation - Clean & Modern */}
               <nav className="flex-1 overflow-y-auto py-6 px-4 max-h-[calc(100vh-6rem)]">
                 <ul className="space-y-2">
-                  <li>
-                    <SheetClose asChild>
-                      <button
-                        onClick={() => setTimeout(() => scrollToSection("hero"), 350)}
-                        className={`group flex items-center gap-4 w-full px-4 py-3 rounded-lg transition-all duration-300 ${activeSection === "hero"
-                          ? "bg-[#FF7A00] text-white shadow-lg shadow-[#FF7A00]/30"
-                          : "text-white/60 hover:text-white hover:bg-white/5"
-                          }`}
-                      >
-                        <Home className="w-5 h-5 flex-shrink-0" />
-                        <span className="font-medium text-sm">Home</span>
-                      </button>
-                    </SheetClose>
-                  </li>
-                  <li>
-                    <SheetClose asChild>
-                      <button
-                        onClick={() => setTimeout(() => scrollToSection("projects"), 350)}
-                        className={`group flex items-center gap-4 w-full px-4 py-3 rounded-lg transition-all duration-300 ${activeSection === "projects"
-                          ? "bg-[#FF7A00] text-white shadow-lg shadow-[#FF7A00]/30"
-                          : "text-white/60 hover:text-white hover:bg-white/5"
-                          }`}
-                      >
-                        <FolderGit2 className="w-5 h-5 flex-shrink-0" />
-                        <span className="font-medium text-sm">Projects</span>
-                      </button>
-                    </SheetClose>
-                  </li>
-                  <li>
-                    <SheetClose asChild>
-                      <button
-                        onClick={() => setTimeout(() => scrollToSection("experience"), 350)}
-                        className={`group flex items-center gap-4 w-full px-4 py-3 rounded-lg transition-all duration-300 ${activeSection === "experience"
-                          ? "bg-[#FF7A00] text-white shadow-lg shadow-[#FF7A00]/30"
-                          : "text-white/60 hover:text-white hover:bg-white/5"
-                          }`}
-                      >
-                        <Briefcase className="w-5 h-5 flex-shrink-0" />
-                        <span className="font-medium text-sm">Experience</span>
-                      </button>
-                    </SheetClose>
-                  </li>
-                  <li>
-                    <SheetClose asChild>
-                      <button
-                        onClick={() => setTimeout(() => scrollToSection("badges"), 350)}
-                        className={`group flex items-center gap-4 w-full px-4 py-3 rounded-lg transition-all duration-300 ${activeSection === "badges"
-                          ? "bg-[#FF7A00] text-white shadow-lg shadow-[#FF7A00]/30"
-                          : "text-white/60 hover:text-white hover:bg-white/5"
-                          }`}
-                      >
-                        <Award className="w-5 h-5 flex-shrink-0" />
-                        <span className="font-medium text-sm">Badges</span>
-                      </button>
-                    </SheetClose>
-                  </li>
-                  <li>
-                    <SheetClose asChild>
-                      <button
-                        onClick={() => setTimeout(() => scrollToSection("tools"), 350)}
-                        className={`group flex items-center gap-4 w-full px-4 py-3 rounded-lg transition-all duration-300 ${activeSection === "tools"
-                          ? "bg-[#FF7A00] text-white shadow-lg shadow-[#FF7A00]/30"
-                          : "text-white/60 hover:text-white hover:bg-white/5"
-                          }`}
-                      >
-                        <Wrench className="w-5 h-5 flex-shrink-0" />
-                        <span className="font-medium text-sm">Tools</span>
-                      </button>
-                    </SheetClose>
-                  </li>
-                  <li>
-                    <SheetClose asChild>
-                      <button
-                        onClick={() => setTimeout(() => scrollToSection("contact"), 350)}
-                        className={`group flex items-center gap-4 w-full px-4 py-3 rounded-lg transition-all duration-300 ${activeSection === "contact"
-                          ? "bg-[#FF7A00] text-white shadow-lg shadow-[#FF7A00]/30"
-                          : "text-white/60 hover:text-white hover:bg-white/5"
-                          }`}
-                      >
-                        <Headset className="w-5 h-5 flex-shrink-0" />
-                        <span className="font-medium text-sm">Contact</span>
-                      </button>
-                    </SheetClose>
-                  </li>
+                  {!isOnProjectPage ? (
+                    /* Home page navigation */
+                    <>
+                      <li>
+                        <SheetClose asChild>
+                          <button
+                            onClick={() => setTimeout(() => scrollToSection("hero"), 350)}
+                            className={`group flex items-center gap-4 w-full px-4 py-3 rounded-lg transition-all duration-300 ${activeSection === "hero"
+                              ? "bg-[#FF7A00] text-white shadow-lg shadow-[#FF7A00]/30"
+                              : "text-white/60 hover:text-white hover:bg-white/5"
+                              }`}
+                          >
+                            <Home className="w-5 h-5 flex-shrink-0" />
+                            <span className="font-medium text-sm">Home</span>
+                          </button>
+                        </SheetClose>
+                      </li>
+                      <li>
+                        <SheetClose asChild>
+                          <button
+                            onClick={() => setTimeout(() => scrollToSection("projects"), 350)}
+                            className={`group flex items-center gap-4 w-full px-4 py-3 rounded-lg transition-all duration-300 ${activeSection === "projects"
+                              ? "bg-[#FF7A00] text-white shadow-lg shadow-[#FF7A00]/30"
+                              : "text-white/60 hover:text-white hover:bg-white/5"
+                              }`}
+                          >
+                            <FolderGit2 className="w-5 h-5 flex-shrink-0" />
+                            <span className="font-medium text-sm">Projects</span>
+                          </button>
+                        </SheetClose>
+                      </li>
+                      <li>
+                        <SheetClose asChild>
+                          <button
+                            onClick={() => setTimeout(() => scrollToSection("experience"), 350)}
+                            className={`group flex items-center gap-4 w-full px-4 py-3 rounded-lg transition-all duration-300 ${activeSection === "experience"
+                              ? "bg-[#FF7A00] text-white shadow-lg shadow-[#FF7A00]/30"
+                              : "text-white/60 hover:text-white hover:bg-white/5"
+                              }`}
+                          >
+                            <Briefcase className="w-5 h-5 flex-shrink-0" />
+                            <span className="font-medium text-sm">Experience</span>
+                          </button>
+                        </SheetClose>
+                      </li>
+                      <li>
+                        <SheetClose asChild>
+                          <button
+                            onClick={() => setTimeout(() => scrollToSection("badges"), 350)}
+                            className={`group flex items-center gap-4 w-full px-4 py-3 rounded-lg transition-all duration-300 ${activeSection === "badges"
+                              ? "bg-[#FF7A00] text-white shadow-lg shadow-[#FF7A00]/30"
+                              : "text-white/60 hover:text-white hover:bg-white/5"
+                              }`}
+                          >
+                            <Award className="w-5 h-5 flex-shrink-0" />
+                            <span className="font-medium text-sm">Badges</span>
+                          </button>
+                        </SheetClose>
+                      </li>
+                      <li>
+                        <SheetClose asChild>
+                          <button
+                            onClick={() => setTimeout(() => scrollToSection("tools"), 350)}
+                            className={`group flex items-center gap-4 w-full px-4 py-3 rounded-lg transition-all duration-300 ${activeSection === "tools"
+                              ? "bg-[#FF7A00] text-white shadow-lg shadow-[#FF7A00]/30"
+                              : "text-white/60 hover:text-white hover:bg-white/5"
+                              }`}
+                          >
+                            <Wrench className="w-5 h-5 flex-shrink-0" />
+                            <span className="font-medium text-sm">Tools</span>
+                          </button>
+                        </SheetClose>
+                      </li>
+                      <li>
+                        <SheetClose asChild>
+                          <button
+                            onClick={() => setTimeout(() => scrollToSection("contact"), 350)}
+                            className={`group flex items-center gap-4 w-full px-4 py-3 rounded-lg transition-all duration-300 ${activeSection === "contact"
+                              ? "bg-[#FF7A00] text-white shadow-lg shadow-[#FF7A00]/30"
+                              : "text-white/60 hover:text-white hover:bg-white/5"
+                              }`}
+                          >
+                            <Headset className="w-5 h-5 flex-shrink-0" />
+                            <span className="font-medium text-sm">Contact</span>
+                          </button>
+                        </SheetClose>
+                      </li>
+                    </>
+                  ) : (
+                    /* Project page navigation */
+                    <>
+                      <li>
+                        <SheetClose asChild>
+                          <button
+                            onClick={() => setTimeout(() => router.push('/'), 350)}
+                            className="group flex items-center gap-4 w-full px-4 py-3 rounded-lg transition-all duration-300 text-white/60 hover:text-white hover:bg-white/5"
+                          >
+                            <Home className="w-5 h-5 flex-shrink-0" />
+                            <span className="font-medium text-sm">← Back to Home</span>
+                          </button>
+                        </SheetClose>
+                      </li>
+                    </>
+                  )}
                   <li>
                     <SheetClose asChild>
                       <button
