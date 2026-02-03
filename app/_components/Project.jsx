@@ -3,7 +3,7 @@
 import { Github, MoveUpRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ParallaxElement from "./ParallaxElement";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { cn } from "@/lib/utils";
@@ -52,6 +52,14 @@ const Project = () => {
                   <ProjectCard key={i} project={v} index={i} />
                 );
               })}
+
+            <div className="flex">
+              <Link href="/projects" className="m-auto">
+                <button className="cursor-pointer flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-white/20 bg-white/5 text-gray-300 hover:border-blue-500 hover:text-blue-500 hover:bg-blue-500/10 transition-all duration-300 text-sm md:text-base font-medium">
+                  <MoveUpRight size={16} />
+                </button>
+              </Link>
+            </div>
           </div>
         </ParallaxElement>
       </div>

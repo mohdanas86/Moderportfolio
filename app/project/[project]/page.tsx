@@ -37,8 +37,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ projec
                 <div className="w-full px-4 sm:px-6 lg:px-8">
                     <div className="grid gap-4 md:gap-6">
                         {/* Project Title */}
-                        <div className="flex flex-col lg:flex-wrap justify-start items-start gap-4 w-full">
-                            <BackButton />
+                        <div className="flex flex-col lg:flex-row justify-start lg:justify-between lg:items-start gap-4 w-full">
+                            <span><BackButton /></span>
                             <div className="flex-1">
                                 <h1 className="text-2xl lg:text-3xl font-bold font-sans text-white leading-tight">
                                     {currentProject.title}
