@@ -9,6 +9,7 @@ import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { cn } from "@/lib/utils";
 import { Projects } from "@/data/userData";
 import { useParams, usePathname } from "next/navigation";
+import { projectsData as projectsDatabase } from "@/data/projectsData";
 
 /**
  * Project component displays a grid of portfolio projects
@@ -19,16 +20,40 @@ const Project = () => {
   // Get current path name
   const currentPathName = usePathname();
 
+  const [projectsData, setProjectsData] = useState([]);
   const [showAnimation, setShowAnimation] = useState(false);
 
+  /**
+   * Fetches and sets project data from the imported database
+   * Updates the component state with available project information
+   */
+  const fetchProjectData = () => {
+    try {
+      const data = projectsDatabase; // Use the imported data
+      setProjectsData(data);
+      console.log("Successfully loaded projects:", data.length, "projects");
+    } catch (err) {
+      console.error("Error fetching project data:", err);
+    }
+  };
+
   useEffect(() => {
+    fetchProjectData();
+
+    // Delay animation for smooth entrance effect
     const timer = setTimeout(() => {
       setShowAnimation(true);
-    }, 200); // Delay animation by 200ms
+    }, 200);
 
     return () => clearTimeout(timer);
   }, []);
 
+  // Log projects data when state updates
+  useEffect(() => {
+    if (projectsData.length > 0) {
+      console.log("Projects loaded into state:", projectsData);
+    }
+  }, [projectsData]);
 
   return (
     <div
@@ -52,10 +77,12 @@ const Project = () => {
         <ParallaxElement speed={0.2}>
           <div className="grid grid-cols-1">
             <div className="projects mt-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 w-full">
-              {Projects &&
-                Projects.map((v, i) => {
+              {projectsData &&
+                projectsData.map((v, i) => {
                   return (
-                    <ProjectCard key={i} project={v} index={i} />
+                    <Link key={i} idx={i} href={`/project/${v.id}`}>
+                      <ProjectCard project={v} index={i} />
+                    </Link>
                   );
                 })}
             </div>
@@ -112,7 +139,7 @@ const ProjectCard = ({ project, index }) => {
             {/* Project Image */}
             <figure className="relative w-full aspect-video overflow-hidden rounded-t-xl">
               <Image
-                src={project?.img || '/placeholder.png'}
+                src={project?.thumbnail || '/placeholder.png'}
                 alt={`${project?.title} project screenshot`}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -127,32 +154,32 @@ const ProjectCard = ({ project, index }) => {
               {/* Title and Description */}
               <div className="space-y-3">
                 <h3 className="pt-0.5 text-lg leading-[1.375rem] font-semibold font-sans tracking-[-0.04em] md:text-xl md:leading-[1.875rem] text-balance text-white group-hover:text-blue-300 transition-colors duration-300">
-                  {project?.title}
+                  {project?.title && project?.title.length > 30 ? project?.title.slice(0, 50) + "..." : project?.title}
                 </h3>
                 <p className="font-sans text-sm leading-[1.125rem] md:text-base md:leading-[1.375rem] text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
-                  {project?.des}
+                  {project?.metaDescription}
                 </p>
               </div>
 
               {/* Links */}
-              <div className="flex items-center justify-end gap-3 pt-2">
-                {project.link && project.link.trim() !== "" && (
-                  <Link href={project.link} target="_blank">
+              {/* <div className="flex items-center justify-end gap-3 pt-2">
+                {project.previewLink && project.previewLink.trim() !== "" && (
+                  <Link href={project.previewLink} target="_blank">
                     <button className="cursor-pointer flex items-center justify-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/5 text-gray-300 hover:border-blue-500 hover:text-blue-500 hover:bg-blue-500/10 transition-all duration-300 text-sm font-medium">
                       <MoveUpRight size={16} />
                       Live
                     </button>
                   </Link>
                 )}
-                {project.repo && project.repo.trim() !== "" && (
-                  <Link href={project.repo} target="_blank">
+                {project.githubRepo && project.githubRepo.trim() !== "" && (
+                  <Link href={project.githubRepo} target="_blank">
                     <button className="cursor-pointer flex items-center justify-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/5 text-gray-300 hover:border-blue-500 hover:text-blue-500 hover:bg-blue-500/10 transition-all duration-300 text-sm font-medium">
                       <Github size={16} />
                       Code
                     </button>
                   </Link>
                 )}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
