@@ -16,17 +16,12 @@ import { useParams, usePathname } from "next/navigation";
  * @component
  */
 const Project = () => {
+  // Get current path name
   const currentPathName = usePathname();
 
   const [showAnimation, setShowAnimation] = useState(false);
 
   useEffect(() => {
-    console.log(currentPathName);
-
-    if (currentPathName && currentPathName.endsWith("/project")) {
-      console.log("Not on /project page, skipping animation.");
-    }
-
     const timer = setTimeout(() => {
       setShowAnimation(true);
     }, 200); // Delay animation by 200ms
