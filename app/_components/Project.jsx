@@ -8,6 +8,7 @@ import ParallaxElement from "./ParallaxElement";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { cn } from "@/lib/utils";
 import { Projects } from "@/data/userData";
+import { useParams, usePathname } from "next/navigation";
 
 /**
  * Project component displays a grid of portfolio projects
@@ -15,15 +16,24 @@ import { Projects } from "@/data/userData";
  * @component
  */
 const Project = () => {
+  const currentPathName = usePathname();
+
   const [showAnimation, setShowAnimation] = useState(false);
 
   useEffect(() => {
+    console.log(currentPathName);
+
+    if (currentPathName && currentPathName.endsWith("/project")) {
+      console.log("Not on /project page, skipping animation.");
+    }
+
     const timer = setTimeout(() => {
       setShowAnimation(true);
     }, 200); // Delay animation by 200ms
 
     return () => clearTimeout(timer);
   }, []);
+
 
   return (
     <div
@@ -45,21 +55,26 @@ const Project = () => {
 
         {/* === PROJECTS === */}
         <ParallaxElement speed={0.2}>
-          <div className="projects mt-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 w-full">
-            {Projects &&
-              Projects.map((v, i) => {
-                return (
-                  <ProjectCard key={i} project={v} index={i} />
-                );
-              })}
-
-            <div className="flex">
-              <Link href="/projects" className="m-auto">
-                <button className="cursor-pointer flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-white/20 bg-white/5 text-gray-300 hover:border-blue-500 hover:text-blue-500 hover:bg-blue-500/10 transition-all duration-300 text-sm md:text-base font-medium">
-                  <MoveUpRight size={16} />
-                </button>
-              </Link>
+          <div className="grid grid-cols-1">
+            <div className="projects mt-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 w-full">
+              {Projects &&
+                Projects.map((v, i) => {
+                  return (
+                    <ProjectCard key={i} project={v} index={i} />
+                  );
+                })}
             </div>
+
+            {currentPathName && !currentPathName.endsWith("/project") && (
+              <div className="flex mt-4">
+                <Link href="/project" className="m-auto">
+                  <button className="cursor-pointer flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-white/20 bg-white/5 text-gray-300 hover:border-blue-500 hover:text-blue-500 hover:bg-blue-500/10 transition-all duration-300 text-sm md:text-base font-medium">
+                    <span>View All</span>
+                    <MoveUpRight size={16} />
+                  </button>
+                </Link>
+              </div>
+            )}
           </div>
         </ParallaxElement>
       </div>
