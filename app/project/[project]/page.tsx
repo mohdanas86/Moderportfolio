@@ -57,7 +57,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ projec
 
     // If project not found, you might want to handle this case
     if (!currentProject) {
-        console.error(`Project with ID "${projectId}" not found`);
         // You could redirect to 404 or show error message
         return (
             <div className="min-h-screen flex items-center justify-center">

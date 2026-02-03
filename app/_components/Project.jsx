@@ -31,9 +31,8 @@ const Project = () => {
     try {
       const data = projectsDatabase; // Use the imported data
       setProjectsData(data);
-      console.log("Successfully loaded projects:", data.length, "projects");
     } catch (err) {
-      console.error("Error fetching project data:", err);
+      // Handle error silently in production
     }
   };
 
@@ -47,13 +46,6 @@ const Project = () => {
 
     return () => clearTimeout(timer);
   }, []);
-
-  // Log projects data when state updates
-  useEffect(() => {
-    if (projectsData.length > 0) {
-      console.log("Projects loaded into state:", projectsData);
-    }
-  }, [projectsData]);
 
   return (
     <div
