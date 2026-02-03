@@ -1,10 +1,7 @@
-// "use client"
-
 import dynamic from 'next/dynamic';
 import { getTechIcon, getTechIcons } from "@/data/userData";
 import BackButton from '../_components/BackButton';
 import { projectsData } from '@/data/projectsData';
-// import { useState } from 'react';
 
 // Dynamic imports for better performance
 const AboutTheProject = dynamic(() => import('../_components/AboutTheProject'), {
@@ -23,6 +20,9 @@ const TechStacks = dynamic(() => import("../_components/TechStacks").then(mod =>
     loading: () => <div className="animate-pulse h-48 bg-gray-800 rounded"></div>
 });
 
+{/*
+    Project Page Component    
+*/}
 export default async function ProjectPage({ params }: { params: Promise<{ project: string }> }) {
     // Await params to get the project ID
     const { project: projectId } = await params;
@@ -33,11 +33,11 @@ export default async function ProjectPage({ params }: { params: Promise<{ projec
     return (
         <div className="min-h-screen max-w-5xl mx-auto">
             {/* Hero Section */}
-            <div className="relative pt-16 pb-6 lg:pt-24 lg:pb-8">
+            <div className="relative pt-4 pb-6 lg:pt-24 lg:pb-8">
                 <div className="w-full px-4 sm:px-6 lg:px-8">
                     <div className="grid gap-4 md:gap-6">
                         {/* Project Title */}
-                        <div className="flex justify-start items-center gap-4 w-full">
+                        <div className="flex flex-col lg:flex-wrap justify-start items-start gap-4 w-full">
                             <BackButton />
                             <div className="flex-1">
                                 <h1 className="text-2xl lg:text-3xl font-bold font-sans text-white leading-tight">
@@ -50,7 +50,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ projec
             </div>
 
             {/* Main Content */}
-            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 lg:pb-16">
+            < div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 lg:pb-16" >
                 <div className="space-y-6 lg:space-y-10">
                     {/* Project Gallery */}
                     <section className="relative">
@@ -96,7 +96,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ projec
                         </div>
                     </section>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
