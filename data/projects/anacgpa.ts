@@ -21,6 +21,7 @@ export const anacgpa = {
     "Gemini",
     "Postman",
     "Github",
+    "Netlify",
   ],
   centerIcon: "TypeScript",
   textStack: [

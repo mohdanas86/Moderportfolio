@@ -526,6 +526,10 @@ export const techIcons = [
     name: "Gemini",
     src: "/techicons/gemini.svg",
   },
+  {
+    name: "Netlify",
+    src: "/techicons/netlify.svg",
+  },
 ];
 
 // Helper function to get tech icon by name
@@ -555,6 +559,7 @@ export const techCategories = {
     "Postman",
     "Prisma",
     "Gemini",
+    "Netlify",
   ],
 };
 
