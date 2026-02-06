@@ -518,6 +518,14 @@ export const techIcons = [
     name: "Postman",
     src: "/techicons/postman.png",
   },
+  {
+    name: "Prisma",
+    src: "/techicons/prisma.svg",
+  },
+  {
+    name: "Gemini",
+    src: "/techicons/gemini.svg",
+  },
 ];
 
 // Helper function to get tech icon by name
@@ -539,7 +547,15 @@ export const techCategories = {
     "Scikit-learn",
     "Jupyter",
   ],
-  devops: ["Git", "GitHub", "Docker", "Google Cloud", "Postman"],
+  devops: [
+    "Git",
+    "GitHub",
+    "Docker",
+    "Google Cloud",
+    "Postman",
+    "Prisma",
+    "Gemini",
+  ],
 };
 
 // Helper to get multiple tech icons by names

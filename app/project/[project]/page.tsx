@@ -148,6 +148,20 @@ export default async function ProjectPage({ params }: { params: Promise<{ projec
                         <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-white mb-3 lg:mb-4">
                             Technology Stack
                         </h2>
+
+                        {/* Display the list of technologies used in the project as text */}
+                        <div className="flex w-full gap-4">
+                            {currentProject.textStack.map((text, index) => {
+                                return (
+                                    <span
+                                        key={index}
+                                        className='py-1.5 px-4 rounded-[5px] bg-white/5'
+                                    >{text}</span>
+                                )
+                            })}
+                        </div>
+
+                        {/* Display the technology stack with orbiting icons */}
                         <div className="flex justify-center">
                             <TechStacks
                                 techs={getTechIcons(currentProject.techs)}
