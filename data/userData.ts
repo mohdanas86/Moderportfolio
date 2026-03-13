@@ -242,6 +242,19 @@ export const certificates = {
       description:
         "Participation in AI agent development hackathon at Indian Institute of Management Nagpur",
     },
+    {
+      id: "cert-16",
+      image: "/certificates/certificateOfProjectArena.jpeg",
+      title: "2nd Place | Project Arena",
+      type: "achievement",
+      date: "March 2026",
+      organization: "National Level Technical Fest",
+      badge: "🥈",
+      link: null,
+      issuer: "Project Arena",
+      description:
+        "Won 2nd place at Project Arena (Pragyotsav 2K26), a national-level technical fest, with a strong full-stack solution under time constraints.",
+    },
   ],
 };
 

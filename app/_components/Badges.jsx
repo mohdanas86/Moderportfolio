@@ -131,17 +131,29 @@ const Badges = () => {
                       </div>
                     </Lens>
                     <CardHeader className="pb-2">
-                      <Badge
-                        variant="outline"
-                        className="self-start border-[#FF7A00] text-[#FF7A00] bg-transparent mb-2"
-                      >
-                        {cert.issuer}
-                      </Badge>
+                      <div className="flex items-center gap-2 mb-2">
+                        {cert.badge ? (
+                          <span aria-hidden="true" className="text-lg leading-none">
+                            {cert.badge}
+                          </span>
+                        ) : null}
+                        <Badge
+                          variant="outline"
+                          className="self-start border-[#FF7A00] text-[#FF7A00] bg-transparent"
+                        >
+                          {cert.issuer}
+                        </Badge>
+                      </div>
                       <CardTitle className="text-lg md:text-xl text-white line-clamp-2 font-semibold">
                         {cert.title}
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="pt-0">
+                      {(cert.date || cert.organization) ? (
+                        <p className="text-xs md:text-sm text-[#b8b2b2] mb-2">
+                          {[cert.date, cert.organization].filter(Boolean).join(" • ")}
+                        </p>
+                      ) : null}
                       <p className="text-[#948A8A] text-sm md:text-base leading-relaxed">
                         {cert.description}
                       </p>
