@@ -248,6 +248,21 @@ export const certificates = {
 // Professional Experience Data
 export const experienceData = [
   {
+    title: "Open Source Contributor",
+    company: "Multiple Organizations",
+    duration: "2024 - Present",
+    location: "Remote",
+    type: "Open Source",
+    responsibilities: [
+      "Contributed production-ready features and fixes across 5+ open-source organizations on GitHub.",
+      "Magic UI (@magicuidesign): Improved animated React component experiences used by thousands of developers.",
+      "HeyPuter (@HeyPuter): Contributed to Puter, an open-source cloud OS platform.",
+      "C2SI Org (@c2siorg): Contributed to Ceylon Computer Science Institute open source projects.",
+      "Semantic UI (@Semantic-Org): Added and improved UI framework functionality and developer experience.",
+      "First Contributions (@firstcontributions): Supported onboarding journeys for new open-source contributors.",
+    ],
+  },
+  {
     title: "Google Student Ambassador",
     company: "Google",
     duration: "Sep 2025 - Present",
@@ -315,18 +330,6 @@ export const experienceData = [
       "Designed and implemented responsive, user-friendly interfaces using HTML5, CSS3, and JavaScript.",
       "Enhanced frontend performance by redesigning components with React.js and Tailwind CSS.",
       "Improved API response times and integrated new features for a smoother user experience.",
-    ],
-  },
-  {
-    title: "Open-Source Contributor",
-    company: "GirlScript Summer of Code 2024 - Extended Edition",
-    duration: "Oct 2024 – Nov 2024",
-    location: "Remote",
-    responsibilities: [
-      "Developed and maintained code for open-source repositories, enhancing features and resolving issues.",
-      "Collaborated with project maintainers to align contributions with community needs.",
-      "Created documentation to improve project accessibility and ensured code quality through reviews.",
-      "Enhanced project functionality while maintaining high code standards and community guidelines.",
     ],
   },
   {

@@ -21,6 +21,38 @@ const Experience = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  const getResponsibilities = (experience) => {
+    if (Array.isArray(experience?.responsibilities)) {
+      return experience.responsibilities;
+    }
+
+    if (Array.isArray(experience?.contributions)) {
+      return experience.contributions
+        .map((entry) => {
+          if (!entry) return null;
+          if (typeof entry === "string") return entry;
+          const org = entry.org ? `${entry.org}: ` : "";
+          return `${org}${entry.detail || "Contribution details"}`;
+        })
+        .filter(Boolean);
+    }
+
+    if (experience?.description) {
+      return [experience.description];
+    }
+
+    return ["Details will be added soon."];
+  };
+
+  const getCompany = (experience) =>
+    experience?.company || experience?.organization || "Organization";
+
+  const getDuration = (experience) =>
+    experience?.duration || experience?.period || "";
+
+  const getMeta = (experience) =>
+    [experience?.location, experience?.type].filter(Boolean).join(" • ");
+
 
   return (
     <div
@@ -44,28 +76,42 @@ const Experience = () => {
                 direction={index % 2 === 0 ? "horizontal" : "vertical"}
                 key={index}
               >
-                <div className="card w-full h-full min-h-[320px] md:min-h-[360px] lg:min-h-[280px] rounded-xl overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:bg-[#2726262e] text-white flex flex-col">
-                  <div className="p-6 flex flex-col h-full">
-                    <div className="flex-shrink-0 mb-4">
-                      <h2 className="text-xl md:text-2xl font-semibold text-white mb-2 leading-tight">
-                        {experience.title}
-                      </h2>
-                      <p className="text-[#948A8A] text-sm mb-1 font-medium">
-                        {experience.company}
-                      </p>
-                      <p className="text-[#948A8A] text-sm mb-2">
-                        {experience.duration}
-                      </p>
+                {(() => {
+                  const responsibilities = getResponsibilities(experience);
+                  const company = getCompany(experience);
+                  const duration = getDuration(experience);
+                  const meta = getMeta(experience);
+
+                  return (
+                    <div className="card w-full h-full min-h-[320px] md:min-h-[360px] lg:min-h-[280px] rounded-xl overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:bg-[#2726262e] text-white flex flex-col">
+                      <div className="p-6 flex flex-col h-full">
+                        <div className="flex-shrink-0 mb-4">
+                          <h2 className="text-xl md:text-2xl font-semibold text-white mb-2 leading-tight">
+                            {experience.title}
+                          </h2>
+                          <p className="text-[#948A8A] text-sm mb-1 font-medium">
+                            {company}
+                          </p>
+                          <p className="text-[#948A8A] text-sm mb-2">
+                            {duration}
+                          </p>
+                          {meta ? (
+                            <p className="text-xs text-[#8f8f8f] uppercase tracking-wide">
+                              {meta}
+                            </p>
+                          ) : null}
+                        </div>
+                        <div className="flex-grow">
+                          <ul className="text-sm text-[#bfbaba] list-disc ml-6 space-y-1 leading-relaxed">
+                            {responsibilities.map((item, i) => (
+                              <li key={`${experience.title}-${i}`}>{item}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex-grow">
-                      <ul className="text-sm text-[#bfbaba] list-disc ml-6 space-y-1 leading-relaxed">
-                        {experience.responsibilities.map((item, i) => (
-                          <li key={i}>{item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+                  );
+                })()}
               </ParallaxElement>
             ))}
           </div>
