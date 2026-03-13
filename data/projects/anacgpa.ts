@@ -1,7 +1,7 @@
 export const anacgpa = {
   id: "3",
-  title: "AnaCGPA — CGPA Calculator & Educational Blog Platform",
-  githubRepo: "https://github.com/your-username/anacgpa",
+  title: "AnaCGPA | Educational Blog & Tools",
+  githubRepo: "#",
   previewLink: "https://anacgpa.netlify.app",
   siteUrl: "anacgpa.netlify.app",
   thumbnail: "/projectImages/ancgpa/anacgpa1.png",
@@ -12,6 +12,8 @@ export const anacgpa = {
     "/projectImages/ancgpa/anacgpa4.png",
     "/projectImages/ancgpa/anacgpa5.png",
     "/projectImages/ancgpa/anacgpa6.png",
+    "/projectImages/ancgpa/anacgpa7.png",
+    "/projectImages/ancgpa/anacgpa8.png",
   ],
   techs: [
     "Next.js",
