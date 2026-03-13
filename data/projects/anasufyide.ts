@@ -1,6 +1,6 @@
 export const anasufyide = {
   id: "4",
-  title: "Ansufy IDE — Secure Online Code Compiler & Editor",
+  title: "Ansufy IDE | Secure Online Code Compiler & Editor",
   githubRepo: "https://github.com/mohdanas86/code-editor",
   previewLink: "https://anasufyide.netlify.app",
   siteUrl: "anasufyide.netlify.app",

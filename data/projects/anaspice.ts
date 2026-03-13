@@ -1,6 +1,6 @@
 export const anaspice = {
   id: "2",
-  title: "Anaspice — Full-Stack Food Ordering Web Application",
+  title: "Anaspice | Full-Stack Food Application",
   githubRepo: "https://github.com/mohdanas86/anaspiceFood",
   previewLink: "https://anaspice.netlify.app",
   siteUrl: "anaspice.netlify.app",
