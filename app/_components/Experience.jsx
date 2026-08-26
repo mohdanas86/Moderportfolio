@@ -138,23 +138,23 @@ const Experience = () => {
 
   return (
     <div className="py-16 relative overflow-hidden w-full" id="experience">
-      <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-4xl mx-auto px-3 sm:px-6 lg:px-8">
 
         {/* Heading */}
         <div className="text-center mb-12">
           <ParallaxElement speed={0.3} disabled={isMobile}>
-            <h1 className="text-4xl text-center lg:text-7xl font-bold uppercase">
+            <h1 className="text-3xl sm:text-4xl text-center lg:text-7xl font-bold uppercase">
               <TextAnimateReveal text="Experience" />
             </h1>
           </ParallaxElement>
 
           <ParallaxElement speed={0.5} disabled={isMobile}>
-            <h1 className="text-4xl text-center lg:text-7xl font-bold uppercase text-[#353334]">
+            <h1 className="text-3xl sm:text-4xl text-center lg:text-7xl font-bold uppercase text-[#353334]">
               <TextAnimateReveal text="& Work" />
             </h1>
           </ParallaxElement>
 
-          <p className="text-base md:text-lg text-[#948A8A] max-w-2xl mx-auto leading-relaxed mt-4">
+          <p className="text-sm md:text-lg text-[#948A8A] max-w-2xl mx-auto leading-relaxed mt-4">
             Professional roles, internships, and open-source contributions shaping a well-rounded engineering background.
           </p>
         </div>

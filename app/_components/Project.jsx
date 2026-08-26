@@ -24,21 +24,21 @@ const Project = () => {
       id="projects"
     >
       {/* Projects Section Container */}
-      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-6xl mx-auto px-3 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <ParallaxElement speed={0.3}>
-            <h1 className="text-4xl text-center lg:text-7xl font-bold uppercase">
+            <h1 className="text-3xl sm:text-4xl text-center lg:text-7xl font-bold uppercase">
               <TextAnimateReveal text="Recent" />
             </h1>
           </ParallaxElement>
 
           <ParallaxElement speed={0.5}>
-            <h1 className="text-4xl text-center lg:text-7xl font-bold uppercase text-[#353334]">
+            <h1 className="text-3xl sm:text-4xl text-center lg:text-7xl font-bold uppercase text-[#353334]">
               <TextAnimateReveal text="Projects" />
             </h1>
           </ParallaxElement>
 
-          <p className="text-base md:text-lg text-[#948A8A] max-w-3xl mx-auto leading-relaxed mt-4">
+          <p className="text-sm md:text-lg text-[#948A8A] max-w-3xl mx-auto leading-relaxed mt-4">
             Selected software engineering projects spanning AI systems, sandboxed runtime environments, and scalable full-stack applications.
           </p>
         </div>
@@ -160,22 +160,22 @@ const ProjectCard = ({ project, index }) => {
             </div>
 
             {/* Direct Action Links */}
-            <div className="flex items-center justify-between pt-4 border-t border-white/10 mt-auto">
+            <div className="flex items-center justify-between pt-3.5 sm:pt-4 border-t border-white/10 mt-auto gap-2">
               <Link
                 href={`/project/${project.id}`}
-                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-white/80 hover:text-[#FF7A00] transition-colors group/link"
+                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-white/80 hover:text-[#FF7A00] transition-colors group/link py-1"
               >
                 <span>Case Study</span>
-                <MoveUpRight size={14} className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform duration-200" />
+                <MoveUpRight size={14} className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform duration-200 shrink-0" />
               </Link>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 shrink-0">
                 {project?.githubRepo && project.githubRepo !== "#" && (
                   <a
                     href={project.githubRepo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 rounded-lg bg-white/5 hover:bg-white/15 text-white/75 hover:text-white border border-white/10 hover:border-white/25 transition-all duration-200"
+                    className="h-8 w-8 inline-flex items-center justify-center rounded-lg bg-white/5 hover:bg-white/15 text-white/75 hover:text-white border border-white/10 hover:border-white/25 transition-all duration-200 shrink-0"
                     aria-label="GitHub Repository"
                     title="View Source Code"
                   >
@@ -187,7 +187,7 @@ const ProjectCard = ({ project, index }) => {
                     href={project.previewLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#FF7A00]/15 hover:bg-[#FF7A00] text-[#FF7A00] hover:text-black border border-[#FF7A00]/30 hover:border-[#FF7A00] text-xs font-semibold transition-all duration-200 shadow-sm shadow-[#FF7A00]/10"
+                    className="h-8 inline-flex items-center justify-center gap-1.5 px-3 rounded-lg bg-[#FF7A00]/15 hover:bg-[#FF7A00] text-[#FF7A00] hover:text-black border border-[#FF7A00]/30 hover:border-[#FF7A00] text-xs font-semibold transition-all duration-200 shadow-sm shadow-[#FF7A00]/10 shrink-0"
                     title="Open Live Preview"
                   >
                     <span>Live</span>

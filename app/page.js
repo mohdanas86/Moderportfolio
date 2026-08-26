@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div className="relative">
       {/* Background - Confined to Hero Section */}
-      <section id="hero" className="snap-start relative min-h-screen overflow-hidden mt-10 lg:mt-0">
+      <section id="hero" className="snap-start relative min-h-screen overflow-hidden mt-0 lg:mt-0">
         <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
           <RaysBackground />
         </div>

@@ -1,28 +1,29 @@
 // @ts-nocheck
-
 import { useEffect } from "react";
 
 const useCanvasCursor = () => {
-  function n(e) {
+  function Osc(e) {
     this.init(e || {});
   }
-  n.prototype = {
+  Osc.prototype = {
     init: function (e) {
       this.phase = e.phase || 0;
-      this.offset = e.offset || 0;
-      this.frequency = e.frequency || 0.001;
-      this.amplitude = e.amplitude || 1;
+      this.offset = e.offset || 28; // Brand orange hue (~28 deg)
+      this.frequency = e.frequency || 0.0012;
+      this.amplitude = e.amplitude || 12;
     },
     update: function () {
-      return (
-        (this.phase += this.frequency),
-        (e = this.offset + Math.sin(this.phase) * this.amplitude)
-      );
-    },
-    value: function () {
-      return e;
+      this.phase += this.frequency;
+      return this.offset + Math.sin(this.phase) * this.amplitude;
     },
   };
+
+  function Node() {
+    this.x = 0;
+    this.y = 0;
+    this.vy = 0;
+    this.vx = 0;
+  }
 
   function Line(e) {
     this.init(e || {});
@@ -45,19 +46,21 @@ const useCanvasCursor = () => {
         t = this.nodes[0];
       t.vx += (pos.x - t.x) * e;
       t.vy += (pos.y - t.y) * e;
-      for (var n, i = 0, a = this.nodes.length; i < a; i++)
-        (t = this.nodes[i]),
-          0 < i &&
-          ((n = this.nodes[i - 1]),
-            (t.vx += (n.x - t.x) * e),
-            (t.vy += (n.y - t.y) * e),
-            (t.vx += n.vx * E.dampening),
-            (t.vy += n.vy * E.dampening)),
-          (t.vx *= this.friction),
-          (t.vy *= this.friction),
-          (t.x += t.vx),
-          (t.y += t.vy),
-          (e *= E.tension);
+      for (var n, i = 0, a = this.nodes.length; i < a; i++) {
+        t = this.nodes[i];
+        if (0 < i) {
+          n = this.nodes[i - 1];
+          t.vx += (n.x - t.x) * e;
+          t.vy += (n.y - t.y) * e;
+          t.vx += n.vx * E.dampening;
+          t.vy += n.vy * E.dampening;
+        }
+        t.vx *= this.friction;
+        t.vy *= this.friction;
+        t.x += t.vx;
+        t.y += t.vy;
+        e *= E.tension;
+      }
     },
     draw: function () {
       var e,
@@ -85,38 +88,50 @@ const useCanvasCursor = () => {
     function o() {
       lines = [];
       for (var e = 0; e < E.trails; e++)
-        lines.push(new Line({ spring: 0.4 + (e / E.trails) * 0.025 }));
+        lines.push(new Line({ spring: 0.42 + (e / E.trails) * 0.025 }));
     }
     function c(e) {
-      e.touches
-        ? ((pos.x = e.touches[0].pageX), (pos.y = e.touches[0].pageY))
-        : ((pos.x = e.clientX), (pos.y = e.clientY)),
-        e.preventDefault();
+      if (e.touches) {
+        pos.x = e.touches[0].pageX;
+        pos.y = e.touches[0].pageY;
+      } else {
+        pos.x = e.clientX;
+        pos.y = e.clientY;
+      }
     }
     function l(e) {
-      1 == e.touches.length &&
-        ((pos.x = e.touches[0].pageX), (pos.y = e.touches[0].pageY));
+      if (1 === e.touches.length) {
+        pos.x = e.touches[0].pageX;
+        pos.y = e.touches[0].pageY;
+      }
     }
-    document.removeEventListener("mousemove", onMousemove),
-      document.removeEventListener("touchstart", onMousemove),
-      document.addEventListener("mousemove", c),
-      document.addEventListener("touchmove", c),
-      document.addEventListener("touchstart", l),
-      c(e),
-      o(),
-      render();
+    document.removeEventListener("mousemove", onMousemove);
+    document.removeEventListener("touchstart", onMousemove);
+    document.addEventListener("mousemove", c, { passive: true });
+    document.addEventListener("touchmove", c, { passive: true });
+    document.addEventListener("touchstart", l, { passive: true });
+    c(e);
+    o();
+    render();
   }
 
   function render() {
-    if (ctx.running) {
+    if (ctx && ctx.running) {
       ctx.globalCompositeOperation = "source-over";
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
       ctx.globalCompositeOperation = "lighter";
-      ctx.strokeStyle = "hsla(" + Math.round(f.update()) + ",50%,50%,0.2)";
-      ctx.lineWidth = 1;
+
+      // Subtle Brand Orange/Amber Glow Trail (#FF7A00 range)
+      const hue = Math.round(f.update());
+      ctx.strokeStyle = `hsla(${hue}, 90%, 52%, 0.14)`;
+      ctx.lineWidth = 0.9;
+
       for (var e, t = 0; t < E.trails; t++) {
-        (e = lines[t]).update();
-        e.draw();
+        e = lines[t];
+        if (e) {
+          e.update();
+          e.draw();
+        }
       }
 
       ctx.frame++;
@@ -133,23 +148,16 @@ const useCanvasCursor = () => {
 
   var ctx,
     f,
-    e = 0,
-    pos = {},
+    pos = { x: -100, y: -100 },
     lines = [],
     E = {
-      debug: true,
-      friction: 0.5,
-      trails: 20,
-      size: 50,
-      dampening: 0.25,
-      tension: 0.98,
+      debug: false,
+      friction: 0.64, // Damps ripples quickly so lines settle smoothly
+      trails: 6,      // Reduced from 22 to 6 for a minimal, clean filament
+      size: 16,       // Reduced from 45 to 16 for a short, compact tail
+      dampening: 0.38,
+      tension: 0.92,
     };
-  function Node() {
-    this.x = 0;
-    this.y = 0;
-    this.vy = 0;
-    this.vx = 0;
-  }
 
   const renderCanvas = function () {
     const canvas = document.getElementById("canvas");
@@ -158,15 +166,14 @@ const useCanvasCursor = () => {
     if (!ctx) return;
     ctx.running = true;
     ctx.frame = 1;
-    f = new n({
+    f = new Osc({
       phase: Math.random() * 2 * Math.PI,
-      amplitude: 85,
-      frequency: 0.0015,
-      offset: 285,
+      amplitude: 10, // smooth swing between 20deg and 40deg hue
+      frequency: 0.0018,
+      offset: 30, // centered on #FF7A00 orange/gold
     });
-    document.addEventListener("mousemove", onMousemove);
-    document.addEventListener("touchstart", onMousemove);
-    document.body.addEventListener("orientationchange", resizeCanvas);
+    document.addEventListener("mousemove", onMousemove, { passive: true });
+    document.addEventListener("touchstart", onMousemove, { passive: true });
     window.addEventListener("resize", resizeCanvas);
     window.addEventListener("focus", () => {
       if (ctx && !ctx.running) {
@@ -175,7 +182,7 @@ const useCanvasCursor = () => {
       }
     });
     window.addEventListener("blur", () => {
-      if (ctx) ctx.running = true;
+      if (ctx) ctx.running = false;
     });
     resizeCanvas();
   };
@@ -187,7 +194,6 @@ const useCanvasCursor = () => {
       if (ctx) ctx.running = false;
       document.removeEventListener("mousemove", onMousemove);
       document.removeEventListener("touchstart", onMousemove);
-      document.body.removeEventListener("orientationchange", resizeCanvas);
       window.removeEventListener("resize", resizeCanvas);
     };
   }, []);
