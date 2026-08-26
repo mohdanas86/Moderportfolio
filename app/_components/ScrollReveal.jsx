@@ -2,14 +2,17 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-// This component will trigger animations when an element is scrolled into view
-export default function ScrollReveal({ 
-  children, 
-  threshold = 0.1, 
-  rootMargin = '0px',
-  animation = 'fade-up', // Options: fade-up, fade-down, fade-left, fade-right, zoom-in, zoom-out
+/**
+ * ScrollReveal - Triggers a smooth reveal animation when the element enters the viewport.
+ * Uses a clean CSS-only approach (no conflicting inline + class transforms).
+ */
+export default function ScrollReveal({
+  children,
+  threshold = 0.12,
+  rootMargin = '0px 0px -60px 0px',
+  animation = 'fade-up',
   delay = 0,
-  duration = 0.6,
+  duration = 0.65,
   once = true
 }) {
   const [isVisible, setIsVisible] = useState(false);
@@ -17,12 +20,7 @@ export default function ScrollReveal({
 
   useEffect(() => {
     const currentRef = ref.current;
-    if (currentRef) {
-      const rect = currentRef.getBoundingClientRect();
-      if (rect.top < window.innerHeight + 100 && rect.bottom > -100) {
-        setIsVisible(true);
-      }
-    }
+    if (!currentRef) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -35,50 +33,45 @@ export default function ScrollReveal({
       },
       {
         threshold,
-        rootMargin: rootMargin === '0px' ? '50px' : rootMargin
+        rootMargin,
       }
     );
 
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
+    observer.observe(currentRef);
 
     return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
+      observer.disconnect();
     };
   }, [threshold, rootMargin, once]);
 
-  // Define animation classes
-  const animationClasses = {
-    'fade-up': 'opacity-0 translate-y-10',
-    'fade-down': 'opacity-0 -translate-y-10',
-    'fade-left': 'opacity-0 translate-x-10',
-    'fade-right': 'opacity-0 -translate-x-10',
-    'zoom-in': 'opacity-0 scale-95',
-    'zoom-out': 'opacity-0 scale-105',
-    'none': ''
+  // Initial transforms for each animation type
+  const hiddenStyles = {
+    'fade-up':    { opacity: 0, transform: 'translateY(40px)' },
+    'fade-down':  { opacity: 0, transform: 'translateY(-40px)' },
+    'fade-left':  { opacity: 0, transform: 'translateX(40px)' },
+    'fade-right': { opacity: 0, transform: 'translateX(-40px)' },
+    'zoom-in':    { opacity: 0, transform: 'scale(0.94)' },
+    'zoom-out':   { opacity: 0, transform: 'scale(1.06)' },
+    'none':       {},
   };
 
-  const animationStyle = {
-    opacity: isVisible ? 1 : 0,
-    transform: isVisible 
-      ? 'translate3d(0, 0, 0) scale(1)' 
-      : undefined, // Will use the default transform from classes if not visible
-    transition: `opacity ${duration}s ease-out, transform ${duration}s ease-out`,
-    transitionDelay: `${delay}s`
+  const visibleStyle = {
+    opacity: 1,
+    transform: 'translate3d(0, 0, 0) scale(1)',
   };
+
+  const baseTransition = {
+    transition: `opacity ${duration}s cubic-bezier(0.22, 1, 0.36, 1), transform ${duration}s cubic-bezier(0.22, 1, 0.36, 1)`,
+    transitionDelay: `${delay}s`,
+    willChange: 'opacity, transform',
+  };
+
+  const currentStyle = isVisible
+    ? { ...baseTransition, ...visibleStyle }
+    : { ...baseTransition, ...(hiddenStyles[animation] ?? hiddenStyles['fade-up']) };
 
   return (
-    <div 
-      ref={ref} 
-      className={`${!isVisible ? animationClasses[animation] : ''} transition-all`}
-      style={isVisible ? animationStyle : {
-        ...animationStyle,
-        willChange: 'opacity, transform' // Performance optimization
-      }}
-    >
+    <div ref={ref} style={currentStyle}>
       {children}
     </div>
   );

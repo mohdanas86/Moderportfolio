@@ -24,13 +24,13 @@ export default function Home() {
       </section>
 
       <section id="projects" className="snap-start relative">
-        <ScrollReveal animation="fade-up">
+        <ScrollReveal animation="fade-up" duration={0.7} rootMargin="0px 0px -80px 0px">
           <Project />
         </ScrollReveal>
       </section>
 
       <section id="experience" className="snap-start relative">
-        <ScrollReveal animation="fade-up" delay={0.1}>
+        <ScrollReveal animation="fade-up" duration={0.7} delay={0} rootMargin="0px 0px -80px 0px">
           <Experience />
         </ScrollReveal>
       </section>
