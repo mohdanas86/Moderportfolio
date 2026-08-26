@@ -128,7 +128,7 @@ const GlowingEffect = memo(
       return (
         <div
           className={cn(
-            "pointer-events-none absolute -inset-px rounded-[inherit] border border-blue-500/20 opacity-50 transition-opacity"
+            "pointer-events-none absolute -inset-px rounded-[inherit] border border-[#FF7A00]/20 opacity-40 transition-opacity"
           )}
         />
       );
@@ -160,7 +160,8 @@ const GlowingEffect = memo(
                 var(--black),
                 var(--black) calc(25% / var(--repeating-conic-gradient-times))
               )`
-                : `radial-gradient(circle, #3B82F6 10%, #3B82F600 20%),
+                : variant === "blue"
+                ? `radial-gradient(circle, #3B82F6 10%, #3B82F600 20%),
               radial-gradient(circle at 40% 40%, #60A5FA 5%, #60A5FA00 15%),
               radial-gradient(circle at 60% 60%, #2563EB 10%, #2563EB00 20%), 
               radial-gradient(circle at 40% 60%, #1D4ED8 10%, #1D4ED800 20%),
@@ -171,6 +172,18 @@ const GlowingEffect = memo(
                 #2563EB calc(50% / var(--repeating-conic-gradient-times)), 
                 #1D4ED8 calc(75% / var(--repeating-conic-gradient-times)),
                 #3B82F6 calc(100% / var(--repeating-conic-gradient-times))
+              )`
+                : `radial-gradient(circle, #FF7A00 10%, #FF7A0000 20%),
+              radial-gradient(circle at 40% 40%, #FFA040 5%, #FFA04000 15%),
+              radial-gradient(circle at 60% 60%, #EA580C 10%, #EA580C00 20%), 
+              radial-gradient(circle at 40% 60%, #C2410C 10%, #C2410C00 20%),
+              repeating-conic-gradient(
+                from 236.84deg at 50% 50%,
+                #FF7A00 0%,
+                #FFA040 calc(25% / var(--repeating-conic-gradient-times)),
+                #EA580C calc(50% / var(--repeating-conic-gradient-times)), 
+                #C2410C calc(75% / var(--repeating-conic-gradient-times)),
+                #FF7A00 calc(100% / var(--repeating-conic-gradient-times))
               )`,
           }}
           className={cn(
