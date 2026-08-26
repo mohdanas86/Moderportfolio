@@ -2,22 +2,6 @@
 import { useEffect } from "react";
 
 const useCanvasCursor = () => {
-  function Osc(e) {
-    this.init(e || {});
-  }
-  Osc.prototype = {
-    init: function (e) {
-      this.phase = e.phase || 0;
-      this.offset = e.offset || 28; // Brand orange hue (~28 deg)
-      this.frequency = e.frequency || 0.0012;
-      this.amplitude = e.amplitude || 12;
-    },
-    update: function () {
-      this.phase += this.frequency;
-      return this.offset + Math.sin(this.phase) * this.amplitude;
-    },
-  };
-
   function Node() {
     this.x = 0;
     this.y = 0;
@@ -31,8 +15,8 @@ const useCanvasCursor = () => {
 
   Line.prototype = {
     init: function (e) {
-      this.spring = e.spring + 0.1 * Math.random() - 0.02;
-      this.friction = E.friction + 0.01 * Math.random() - 0.002;
+      this.spring = e.spring || 0.45;
+      this.friction = E.friction;
       this.nodes = [];
       for (var t, n = 0; n < E.size; n++) {
         t = new Node();
@@ -63,6 +47,7 @@ const useCanvasCursor = () => {
       }
     },
     draw: function () {
+      if (this.nodes.length < 2) return;
       var e,
         t,
         n = this.nodes[0].x,
@@ -76,9 +61,11 @@ const useCanvasCursor = () => {
         i = 0.5 * (e.y + t.y);
         ctx.quadraticCurveTo(e.x, e.y, n, i);
       }
-      e = this.nodes[a];
-      t = this.nodes[a + 1];
-      ctx.quadraticCurveTo(e.x, e.y, t.x, t.y);
+      if (this.nodes.length > 2) {
+        e = this.nodes[this.nodes.length - 2];
+        t = this.nodes[this.nodes.length - 1];
+        ctx.quadraticCurveTo(e.x, e.y, t.x, t.y);
+      }
       ctx.stroke();
       ctx.closePath();
     },
@@ -88,7 +75,7 @@ const useCanvasCursor = () => {
     function o() {
       lines = [];
       for (var e = 0; e < E.trails; e++)
-        lines.push(new Line({ spring: 0.42 + (e / E.trails) * 0.025 }));
+        lines.push(new Line({ spring: 0.48 + e * 0.04 }));
     }
     function c(e) {
       if (e.touches) {
@@ -121,10 +108,9 @@ const useCanvasCursor = () => {
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
       ctx.globalCompositeOperation = "lighter";
 
-      // Subtle Brand Orange/Amber Glow Trail (#FF7A00 range)
-      const hue = Math.round(f.update());
-      ctx.strokeStyle = `hsla(${hue}, 90%, 52%, 0.14)`;
-      ctx.lineWidth = 0.9;
+      // Refined, subtle warm brand orange trail (#FF7A00)
+      ctx.strokeStyle = "rgba(255, 122, 0, 0.18)";
+      ctx.lineWidth = 1.0;
 
       for (var e, t = 0; t < E.trails; t++) {
         e = lines[t];
@@ -147,16 +133,15 @@ const useCanvasCursor = () => {
   }
 
   var ctx,
-    f,
     pos = { x: -100, y: -100 },
     lines = [],
     E = {
       debug: false,
-      friction: 0.64, // Damps ripples quickly so lines settle smoothly
-      trails: 6,      // Reduced from 22 to 6 for a minimal, clean filament
-      size: 16,       // Reduced from 45 to 16 for a short, compact tail
-      dampening: 0.38,
-      tension: 0.92,
+      friction: 0.84,  // High friction: stops wild whipping & rippling
+      trails: 2,       // Only 2 minimal lines: clean, compact filament
+      size: 10,        // Short node length: follows closely at cursor tip
+      dampening: 0.55, // Strong damping: prevents bouncing oscillations
+      tension: 0.82,   // Soft tension: smooth, fluid movement
     };
 
   const renderCanvas = function () {
@@ -166,12 +151,6 @@ const useCanvasCursor = () => {
     if (!ctx) return;
     ctx.running = true;
     ctx.frame = 1;
-    f = new Osc({
-      phase: Math.random() * 2 * Math.PI,
-      amplitude: 10, // smooth swing between 20deg and 40deg hue
-      frequency: 0.0018,
-      offset: 30, // centered on #FF7A00 orange/gold
-    });
     document.addEventListener("mousemove", onMousemove, { passive: true });
     document.addEventListener("touchstart", onMousemove, { passive: true });
     window.addEventListener("resize", resizeCanvas);
