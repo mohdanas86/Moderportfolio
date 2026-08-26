@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 export const AnimatedBeam = ({
-  className,
+  className = "",
   containerRef,
   fromRef,
   toRef,

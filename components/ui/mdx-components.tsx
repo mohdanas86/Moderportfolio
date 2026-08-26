@@ -138,13 +138,13 @@ export const mdxComponents = {
         return (
             <code
                 className="
-                    p-4
-                    rounded
-                    bg-black/80
-                    text-sm
+                    px-2 py-0.5
+                    rounded-md
+                    bg-white/10
+                    text-xs sm:text-sm
                     font-mono
-                    text-gray-200
-                    border border-black/80
+                    text-[#FF7A00]
+                    border border-white/10
                 "
                 {...props}
             >
