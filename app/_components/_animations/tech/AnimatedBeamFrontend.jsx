@@ -70,7 +70,6 @@ export function AnimatedBeamFrontend() {
     const div14Ref = useRef(null)
     const div15Ref = useRef(null)
     const div16Ref = useRef(null)
-    const div17Ref = useRef(null)
 
     return (
         <div
@@ -144,22 +143,23 @@ export function AnimatedBeamFrontend() {
             </div>
 
             {/* Animated Beams connecting to center */}
-            <AnimatedBeam containerRef={containerRef} fromRef={div1Ref} toRef={div7Ref} curvature={-75} endYOffset={-10} />
-            <AnimatedBeam containerRef={containerRef} fromRef={div2Ref} toRef={div7Ref} curvature={-50} />
-            <AnimatedBeam containerRef={containerRef} fromRef={div3Ref} toRef={div7Ref} curvature={50} />
-            <AnimatedBeam containerRef={containerRef} fromRef={div4Ref} toRef={div7Ref} curvature={75} endYOffset={-10} />
-            <AnimatedBeam containerRef={containerRef} fromRef={div5Ref} toRef={div7Ref} />
-            <AnimatedBeam containerRef={containerRef} fromRef={div6Ref} toRef={div7Ref} />
-            <AnimatedBeam containerRef={containerRef} fromRef={div8Ref} toRef={div7Ref} reverse />
-            <AnimatedBeam containerRef={containerRef} fromRef={div9Ref} toRef={div7Ref} reverse />
-            <AnimatedBeam containerRef={containerRef} fromRef={div10Ref} toRef={div7Ref} curvature={-75} endYOffset={10} reverse />
-            <AnimatedBeam containerRef={containerRef} fromRef={div11Ref} toRef={div7Ref} curvature={-30} reverse />
-            <AnimatedBeam containerRef={containerRef} fromRef={div12Ref} toRef={div7Ref} curvature={30} reverse />
-            <AnimatedBeam containerRef={containerRef} fromRef={div13Ref} toRef={div7Ref} curvature={-90} endYOffset={10} reverse />
-            <AnimatedBeam containerRef={containerRef} fromRef={div14Ref} toRef={div7Ref} curvature={-60} endYOffset={10} reverse />
-            <AnimatedBeam containerRef={containerRef} fromRef={div15Ref} toRef={div7Ref} curvature={60} endYOffset={10} reverse />
-            <AnimatedBeam containerRef={containerRef} fromRef={div16Ref} toRef={div7Ref} curvature={90} endYOffset={10} reverse />
+            <AnimatedBeam className="" containerRef={containerRef} fromRef={div1Ref} toRef={div7Ref} curvature={-75} endYOffset={-10} />
+            <AnimatedBeam className="" containerRef={containerRef} fromRef={div2Ref} toRef={div7Ref} curvature={-50} />
+            <AnimatedBeam className="" containerRef={containerRef} fromRef={div3Ref} toRef={div7Ref} curvature={50} />
+            <AnimatedBeam className="" containerRef={containerRef} fromRef={div4Ref} toRef={div7Ref} curvature={75} endYOffset={-10} />
+            <AnimatedBeam className="" containerRef={containerRef} fromRef={div5Ref} toRef={div7Ref} />
+            <AnimatedBeam className="" containerRef={containerRef} fromRef={div6Ref} toRef={div7Ref} />
+            <AnimatedBeam className="" containerRef={containerRef} fromRef={div8Ref} toRef={div7Ref} reverse />
+            <AnimatedBeam className="" containerRef={containerRef} fromRef={div9Ref} toRef={div7Ref} reverse />
+            <AnimatedBeam className="" containerRef={containerRef} fromRef={div10Ref} toRef={div7Ref} curvature={-75} endYOffset={10} reverse />
+            <AnimatedBeam className="" containerRef={containerRef} fromRef={div11Ref} toRef={div7Ref} curvature={-30} reverse />
+            <AnimatedBeam className="" containerRef={containerRef} fromRef={div12Ref} toRef={div7Ref} curvature={30} reverse />
+            <AnimatedBeam className="" containerRef={containerRef} fromRef={div13Ref} toRef={div7Ref} curvature={-90} endYOffset={10} reverse />
+            <AnimatedBeam className="" containerRef={containerRef} fromRef={div14Ref} toRef={div7Ref} curvature={-60} endYOffset={10} reverse />
+            <AnimatedBeam className="" containerRef={containerRef} fromRef={div15Ref} toRef={div7Ref} curvature={60} endYOffset={10} reverse />
+            <AnimatedBeam className="" containerRef={containerRef} fromRef={div16Ref} toRef={div7Ref} curvature={90} endYOffset={10} reverse />
         </div>
     )
 }
+
 

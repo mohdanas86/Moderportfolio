@@ -57,31 +57,8 @@ const nextConfig = {
             '@radix-ui/react-slot',
             '@radix-ui/react-toast',
         ],
-        optimizeCss: true,
-        turbo: {
-            resolveAlias: {
-                canvas: './empty-module.js',
-            },
-        },
     },
-
-    // Webpack optimizations for faster builds
-    webpack: (config, { dev, isServer }) => {
-        if (dev && !isServer) {
-            config.cache = {
-                type: 'filesystem',
-                cacheDirectory: '.next/cache/webpack',
-            };
-        }
-
-        // Reduce bundle analyzer overhead
-        config.resolve.alias = {
-            ...config.resolve.alias,
-            '@': require('path').resolve(__dirname),
-        };
-
-        return config;
-    },
+    turbopack: {},
 
     // Performance optimizations
     compress: true,

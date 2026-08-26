@@ -4,9 +4,10 @@ import "./globals.css";
 import SmoothScroll from "./_components/SmoothScroll";
 import ScrollToTop from "./_components/ScrollToTop";
 import { Toaster } from "@/components/ui/sonner";
+import { SmoothCursor } from "@/components/ui/smooth-cursor";
 import CanvasCursor from "./_components/_animations/CanvasCursor";
-import { SmoothCursor } from "@/components/ui/smooth-cursor"
-import { ScrollProgress } from "@/components/ui/scroll-progress.jsx"
+import CursorFollower from "./_components/CursorFollower";
+import { ScrollProgress } from "@/components/ui/scroll-progress.jsx";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,18 +27,29 @@ export const viewport = {
   themeColor: "#151312",
   initialScale: 1,
   maximumScale: 5,
-  userScalable: true, // Allow user scaling for accessibility
+  userScalable: true,
 };
 
 export const metadata = {
-  metadataBase: new URL('https://anasalam.dev'),
+  metadataBase: new URL('https://anasalamportfolio.netlify.app'),
   title: {
-    default: "Anas Alam - Full Stack Software Developer Portfolio",
+    default: "Anas Alam | Full Stack Software Developer",
     template: "%s | Anas Alam"
   },
-  description: "Full Stack Software Developer specializing in React, Next.js, Node.js, and modern web technologies. Building scalable, performant web applications with focus on user experience and accessibility.",
-  keywords: ["Anas Alam", "Full Stack Developer", "Software Engineer", "React Developer", "Next.js", "Node.js", "Web Development", "Portfolio", "JavaScript", "TypeScript"],
-  authors: [{ name: "Anas Alam" }],
+  description: "Full Stack Software Developer specializing in React, Next.js, TypeScript, Node.js, and Modern Web Architectures. Building high-performance, accessible web applications.",
+  keywords: [
+    "Anas Alam",
+    "Full Stack Developer",
+    "Software Engineer",
+    "React Developer",
+    "Next.js",
+    "TypeScript",
+    "Node.js",
+    "Web Development",
+    "Portfolio",
+    "AI Agents"
+  ],
+  authors: [{ name: "Anas Alam", url: "https://anasalamportfolio.netlify.app" }],
   creator: "Anas Alam",
   publisher: "Anas Alam",
   robots: {
@@ -54,13 +66,13 @@ export const metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://anasalam.dev',
-    title: 'Anas Alam - Full Stack Software Developer',
-    description: 'Full Stack Software Developer specializing in React, Next.js, Node.js. Building scalable web applications with modern technologies.',
+    url: 'https://anasalamportfolio.netlify.app',
+    title: 'Anas Alam | Full Stack Software Developer',
+    description: 'Full Stack Software Developer specializing in React, Next.js, Node.js, and modern web architectures.',
     siteName: 'Anas Alam Portfolio',
     images: [
       {
-        url: '/og-image.png',
+        url: '/logo.png',
         width: 1200,
         height: 630,
         alt: 'Anas Alam - Full Stack Developer',
@@ -69,21 +81,20 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Anas Alam - Full Stack Software Developer',
-    description: 'Full Stack Software Developer specializing in React, Next.js, Node.js',
-    images: ['/og-image.png'],
+    title: 'Anas Alam | Full Stack Software Developer',
+    description: 'Full Stack Software Developer specializing in React, Next.js, TypeScript, Node.js.',
+    images: ['/logo.png'],
     creator: '@anasalam',
   },
   manifest: "/manifest.json",
   alternates: {
-    canonical: 'https://anasalam.dev',
+    canonical: 'https://anasalamportfolio.netlify.app',
   },
 };
 
 export default function RootLayout({ children }) {
-
   return (
-    <html lang="en" data-theme="light" className="no-scrollbar" suppressHydrationWarning>
+    <html lang="en" data-theme="dark" className="no-scrollbar" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
@@ -94,12 +105,12 @@ export default function RootLayout({ children }) {
               "name": "Anas Alam",
               "url": "https://anasalamportfolio.netlify.app",
               "jobTitle": "Full Stack Software Developer",
-              "description": "Full Stack Software Developer specializing in React, Next.js, Node.js, and modern web technologies",
+              "description": "Full Stack Software Developer specializing in React, Next.js, TypeScript, Node.js, and modern web technologies",
               "sameAs": [
                 "https://github.com/mohdanas86",
                 "https://linkedin.com/in/anas86",
               ],
-              "knowsAbout": ["React", "Next.js", "Node.js", "JavaScript", "TypeScript", "Web Development", "Java"],
+              "knowsAbout": ["React", "Next.js", "Node.js", "JavaScript", "TypeScript", "Web Development", "Python", "MongoDB"],
             })
           }}
         />
@@ -117,8 +128,12 @@ export default function RootLayout({ children }) {
         </a>
         <Toaster position="bottom-right" richColors closeButton expand={false} />
         <SmoothScroll className="hidden lg:visible" />
-        {/* <CanvasCursor /> */}
-        <span className="hidden lg:block"><SmoothCursor /></span>
+
+        {/* Custom Cursor Options - switch anytime by commenting/uncommenting */}
+        <span className="hidden lg:block"><CanvasCursor /></span>
+        {/* <span className="hidden lg:block"><SmoothCursor /></span> */}
+        {/* <CursorFollower /> */}
+
         <ScrollToTop />
         <ScrollProgress />
         <div className="flex flex-col min-h-screen w-full relative main-content">
@@ -143,3 +158,4 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+

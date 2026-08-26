@@ -1,7 +1,7 @@
 export const anacgpa = {
-  id: "3",
+  id: "anacgpa",
   title: "AnaCGPA | Educational Blog & Tools",
-  githubRepo: "#",
+  githubRepo: "https://github.com/mohdanas86/anacgpa",
   previewLink: "https://anacgpa.netlify.app",
   siteUrl: "anacgpa.netlify.app",
   thumbnail: "/projectImages/ancgpa/anacgpa1.png",

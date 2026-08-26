@@ -17,10 +17,7 @@ const Badges = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowAnimation(true);
-    }, 200);
-    return () => clearTimeout(timer);
+    setShowAnimation(true);
   }, []);
 
   useEffect(() => {

@@ -4,7 +4,7 @@ import React, { forwardRef, useRef } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { AnimatedBeam } from "@/components/ui/animated-beam";
-import { FaLinkedin, FaGithub, FaYoutube, FaInstagram } from "react-icons/fa6";
+import { FaLinkedin, FaGithub, FaEnvelope, FaCode } from "react-icons/fa6";
 
 const socialLinks = [
     {
@@ -17,19 +17,19 @@ const socialLinks = [
         name: "GitHub",
         url: "https://github.com/mohdanas86",
         Icon: FaGithub,
-        color: "#333333",
+        color: "#181717",
     },
     {
-        name: "Instagram",
-        url: "https://instagram.com/_anas__86",
-        Icon: FaInstagram,
-        color: "#E4405F",
+        name: "LeetCode",
+        url: "https://leetcode.com/u/mohdanas86",
+        Icon: FaCode,
+        color: "#FFA116",
     },
     {
-        name: "YouTube",
-        url: "https://youtube.com/c/AG4444YT",
-        Icon: FaYoutube,
-        color: "#FF0000",
+        name: "Email",
+        url: "mailto:coadanas@gmail.com",
+        Icon: FaEnvelope,
+        color: "#EA4335",
     },
 ];
 
@@ -38,8 +38,8 @@ const Circle = forwardRef(({ className, children, isCenter }, ref) => {
         <div
             ref={ref}
             className={cn(
-                "z-10 flex items-center justify-center rounded-full border-2 bg-white p-3 shadow-lg transition-all duration-300 hover:scale-110",
-                isCenter ? "size-16 border-blue-500" : "size-12 border-gray-300",
+                "z-10 flex items-center justify-center rounded-full border-2 bg-white/10 backdrop-blur-md p-3 shadow-lg border-white/20 transition-all duration-300 hover:scale-110 hover:border-white/50 hover:bg-white/20",
+                isCenter ? "size-16 border-[#FF7A00]" : "size-12",
                 className
             )}
         >
@@ -51,57 +51,47 @@ Circle.displayName = "Circle";
 
 export function AnimatedSocialBeam() {
     const containerRef = useRef(null);
-    const centerRef = useRef(null);
     const linkedinRef = useRef(null);
     const githubRef = useRef(null);
-    const instagramRef = useRef(null);
-    const youtubeRef = useRef(null);
+    const leetcodeRef = useRef(null);
+    const emailRef = useRef(null);
 
     const LinkedInIcon = socialLinks[0].Icon;
     const GitHubIcon = socialLinks[1].Icon;
-    const InstagramIcon = socialLinks[2].Icon;
-    const YouTubeIcon = socialLinks[3].Icon;
+    const LeetCodeIcon = socialLinks[2].Icon;
+    const EmailIcon = socialLinks[3].Icon;
 
     return (
         <div
-            className="relative flex h-[200px] w-full items-center justify-center overflow-hidden p-10"
+            className="relative flex h-[180px] w-full items-center justify-center overflow-hidden p-6"
             ref={containerRef}
         >
-            {/* Animated Beams connecting to center - Rendered first to be behind */}
+            {/* Animated Beams connecting professional links */}
             <AnimatedBeam
                 containerRef={containerRef}
                 fromRef={linkedinRef}
                 toRef={githubRef}
-                curvature={30}
+                curvature={25}
                 gradientStartColor="#0077B5"
-                gradientStopColor="#4da3ff"
-                className="z-0"
-            />
-            <AnimatedBeam
-                containerRef={containerRef}
-                fromRef={linkedinRef}
-                toRef={instagramRef}
-                curvature={10}
-                gradientStartColor="#333333"
-                gradientStopColor="#666666"
+                gradientStopColor="#FF7A00"
                 className="z-0"
             />
             <AnimatedBeam
                 containerRef={containerRef}
                 fromRef={githubRef}
-                toRef={instagramRef}
-                curvature={-10}
-                gradientStartColor="#E4405F"
-                gradientStopColor="#fd5c87"
+                toRef={leetcodeRef}
+                curvature={-20}
+                gradientStartColor="#FF7A00"
+                gradientStopColor="#FFA116"
                 className="z-0"
             />
             <AnimatedBeam
                 containerRef={containerRef}
-                fromRef={instagramRef}
-                toRef={youtubeRef}
-                curvature={-30}
-                gradientStartColor="#FF0000"
-                gradientStopColor="#ff4444"
+                fromRef={leetcodeRef}
+                toRef={emailRef}
+                curvature={25}
+                gradientStartColor="#FFA116"
+                gradientStopColor="#EA4335"
                 className="z-0"
             />
 
@@ -111,41 +101,43 @@ export function AnimatedSocialBeam() {
                     <Link
                         href={socialLinks[0].url}
                         target="_blank"
+                        rel="noopener noreferrer"
                         className="group"
                         aria-label={socialLinks[0].name}
                     >
                         <Circle ref={linkedinRef}>
-                            <LinkedInIcon className="text-2xl text-gray-700 group-hover:text-[#0077B5] transition-colors" />
+                            <LinkedInIcon className="text-2xl text-white/80 group-hover:text-[#0077B5] transition-colors" />
                         </Circle>
                     </Link>
                     <Link
                         href={socialLinks[1].url}
                         target="_blank"
+                        rel="noopener noreferrer"
                         className="group"
                         aria-label={socialLinks[1].name}
                     >
                         <Circle ref={githubRef}>
-                            <GitHubIcon className="text-2xl text-gray-700 group-hover:text-[#333333] transition-colors" />
+                            <GitHubIcon className="text-2xl text-white/80 group-hover:text-white transition-colors" />
                         </Circle>
                     </Link>
                     <Link
                         href={socialLinks[2].url}
                         target="_blank"
+                        rel="noopener noreferrer"
                         className="group"
                         aria-label={socialLinks[2].name}
                     >
-                        <Circle ref={instagramRef}>
-                            <InstagramIcon className="text-2xl text-gray-700 group-hover:text-[#E4405F] transition-colors" />
+                        <Circle ref={leetcodeRef}>
+                            <LeetCodeIcon className="text-2xl text-white/80 group-hover:text-[#FFA116] transition-colors" />
                         </Circle>
                     </Link>
                     <Link
                         href={socialLinks[3].url}
-                        target="_blank"
                         className="group"
                         aria-label={socialLinks[3].name}
                     >
-                        <Circle ref={youtubeRef}>
-                            <YouTubeIcon className="text-2xl text-gray-700 group-hover:text-[#FF0000] transition-colors" />
+                        <Circle ref={emailRef}>
+                            <EmailIcon className="text-2xl text-white/80 group-hover:text-[#EA4335] transition-colors" />
                         </Circle>
                     </Link>
                 </div>
@@ -153,4 +145,5 @@ export function AnimatedSocialBeam() {
         </div>
     );
 }
+
 

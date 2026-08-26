@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useSpring } from "motion/react"
 
-const DefaultCursorSVG = () => {
+export const DefaultCursorSVG = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -51,6 +51,38 @@ const DefaultCursorSVG = () => {
         </filter>
       </defs>
     </svg>
+  );
+}
+
+export const OrangeGlowCursorSVG = () => {
+  return (
+    <div className="relative flex items-center justify-center">
+      <div className="absolute w-8 h-8 bg-[#FF7A00]/25 rounded-full blur-sm animate-pulse" />
+      <svg
+        width={36}
+        height={36}
+        viewBox="0 0 36 36"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M7 6L28 17L18 20L15 29L7 6Z"
+          fill="#FF7A00"
+          stroke="#FFFFFF"
+          strokeWidth="2"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </div>
+  );
+}
+
+export const GlowingDotCursor = () => {
+  return (
+    <div className="relative flex items-center justify-center">
+      <div className="w-5 h-5 rounded-full border border-[#FF7A00]/60 animate-ping absolute opacity-75" />
+      <div className="w-3 h-3 bg-[#FF7A00] rounded-full shadow-[0_0_12px_#FF7A00]" />
+    </div>
   );
 }
 

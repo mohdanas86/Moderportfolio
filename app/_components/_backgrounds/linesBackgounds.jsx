@@ -14,17 +14,17 @@ function FloatingPaths({ position, rayColor }) {
     } ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`,
     color: rayColor === "white" 
       ? `rgba(255, 255, 255, ${0.1 + i * 0.02})` 
-      : `rgba(59, 130, 246, ${0.1 + i * 0.02})`,
+      : `rgba(255, 122, 0, ${0.1 + i * 0.02})`,
     width: 0.05 + i * 0.01,
   }));
 
   // Use full class names for Tailwind to detect them at build time
   const svgColorClass = rayColor === "white" 
     ? "w-full h-full text-white/20" 
-    : "w-full h-full text-blue-400/20";
+    : "w-full h-full text-[#FF7A00]/25";
 
   return (
-    <div className="absolute inset-0 pointer-events-none w-full h-full">
+    <div className="absolute inset-0 pointer-events-none w-full h-full overflow-hidden">
       <svg
         className={svgColorClass}
         viewBox="0 0 696 316"
@@ -59,9 +59,11 @@ function FloatingPaths({ position, rayColor }) {
 
 export function BackgroundPaths() {
   return (
-    <div className="absolute inset-0 w-full h-full">
+    <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
       <FloatingPaths position={-2} rayColor={"white"} />
-      <FloatingPaths position={-1} rayColor={"blue"} />
+      <FloatingPaths position={-1} rayColor={"orange"} />
     </div>
   );
 }
+
+export default BackgroundPaths;

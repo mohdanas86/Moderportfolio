@@ -1,34 +1,13 @@
-"use client";
-
-import dynamic from "next/dynamic";
+import Hero from "./_components/Hero";
+import Project from "./_components/Project";
+import Experience from "./_components/Experience";
+import Techstack from "./_components/Techstack";
+import Badges from "./_components/Badges";
+import Contact from "./_components/Contact";
 import ScrollReveal from "./_components/ScrollReveal";
 import { ParticalsBackground } from "./_components/_backgrounds/ParticalsBackground";
-
-// Dynamically import components with loading states for better performance
-const Hero = dynamic(() => import("./_components/Hero"), {
-  loading: () => <div className="min-h-screen" />,
-  ssr: false, // Disable SSR for Hero component to prevent animation hydration issues
-});
-const Project = dynamic(() => import("./_components/Project"), {
-  loading: () => <div className="min-h-[50vh]" />,
-  ssr: false, // Disable SSR for Project component
-});
-const Experience = dynamic(() => import("./_components/Experience"), {
-  loading: () => <div className="min-h-[50vh]" />,
-  ssr: false, // Disable SSR for Experience component
-});
-const Techstack = dynamic(() => import("./_components/Techstack"), {
-  loading: () => <div className="min-h-[50vh]" />,
-  ssr: false, // Disable SSR for Techstack component
-});
-const Contact = dynamic(() => import("./_components/Contact"), {
-  loading: () => <div className="min-h-[50vh]" />,
-  ssr: false, // Disable SSR for Contact component
-});
-const Badges = dynamic(() => import("./_components/Badges"), {
-  loading: () => <div className="min-h-[50vh]" />,
-  ssr: false, // Disable SSR for Badges component to fix Google Cloud badge animations
-});
+import { BackgroundPaths } from "./_components/_backgrounds/linesBackgounds";
+import { RaysBackground } from "./_components/_backgrounds/RaysBackground";
 
 export default function Home() {
   return (
@@ -36,7 +15,7 @@ export default function Home() {
       {/* Background - Confined to Hero Section */}
       <section id="hero" className="snap-start relative min-h-screen overflow-hidden mt-10 lg:mt-0">
         <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
-          <ParticalsBackground />
+          <RaysBackground />
         </div>
         {/* Hero Content */}
         <div className="relative z-10">

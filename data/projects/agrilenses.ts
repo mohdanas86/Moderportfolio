@@ -1,7 +1,7 @@
 export const agrilenses = {
-	id: "5",
+	id: "agrilenses",
 	title: "AgriLenses - Smart Crop Advisory System (SIH 2025)",
-	githubRepo: "#",
+	githubRepo: "https://github.com/mohdanas86/agrilenses_frontend",
 	previewLink: "https://agrilenses.netlify.app",
 	siteUrl: "agrilenses.netlify.app",
 	thumbnail: "/projectImages/agrilenses/1.png",

@@ -109,7 +109,7 @@ const Experience = () => {
 
                   return (
                     <div
-                      className="w-full h-full min-h-[320px] md:min-h-[360px] lg:min-h-[280px] rounded-xl overflow-hidden text-white flex flex-col transform-gpu transition-[transform,opacity,background-color] duration-500 hover:bg-[#2726262e] hover:-translate-y-1 md:hover:scale-[1.015]"
+                      className="w-full h-full min-h-[260px] md:min-h-[280px] rounded-2xl overflow-hidden text-white flex flex-col border border-white/10 bg-white/5 backdrop-blur-sm transform-gpu transition-[transform,opacity,border-color,background-color] duration-300 hover:border-[#FF7A00]/40 hover:bg-white/[0.08] hover:-translate-y-1"
                       style={{
                         opacity: showAnimation ? 1 : 0,
                         transform: showAnimation
@@ -119,25 +119,24 @@ const Experience = () => {
                         willChange: "transform, opacity",
                       }}
                     >
-                      <div className="p-6 flex flex-col h-full">
-                        <div className="flex-shrink-0 mb-4">
-                          <h2 className="text-xl md:text-2xl font-semibold text-white mb-2 leading-tight">
-                            {experience.title}
-                          </h2>
-                          <p className="text-[#948A8A] text-sm mb-1 font-medium">
-                            {company}
-                          </p>
-                          <p className="text-[#948A8A] text-sm mb-2">
-                            {duration}
-                          </p>
-                          {meta ? (
-                            <p className="text-xs text-[#8f8f8f] uppercase tracking-wide">
-                              {meta}
-                            </p>
-                          ) : null}
+                      <div className="p-6 md:p-7 flex flex-col h-full">
+                        <div className="flex-shrink-0 mb-4 pb-3 border-b border-white/10">
+                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-1">
+                            <h2 className="text-xl md:text-2xl font-bold text-white leading-tight">
+                              {experience.title}
+                            </h2>
+                            <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-[#FF7A00]/15 text-[#FF7A00] border border-[#FF7A00]/30 self-start sm:self-auto">
+                              {duration}
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2 text-sm text-[#b5b0b0] font-medium">
+                            <span>{company}</span>
+                            {meta ? <span>•</span> : null}
+                            {meta ? <span className="text-xs text-white/60">{meta}</span> : null}
+                          </div>
                         </div>
                         <div className="flex-grow">
-                          <ul className="text-sm text-[#bfbaba] list-disc ml-6 space-y-1 leading-relaxed">
+                          <ul className="text-sm text-gray-300 list-disc ml-5 space-y-2 leading-relaxed">
                             {responsibilities.map((item, i) => (
                               <li key={`${experience.title}-${i}`}>{item}</li>
                             ))}

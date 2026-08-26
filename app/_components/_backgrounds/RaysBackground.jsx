@@ -63,10 +63,10 @@ export function RaysBackground() {
         float gx = p.x;
         float bx = p.x * (1.0 - d);
 
-        // Blue color scheme (matching your cursor theme)
-        float r = 0.02 / abs(p.y + sin((rx + time) * xScale) * yScale);
-        float g = 0.04 / abs(p.y + sin((gx + time) * xScale) * yScale);
-        float b = 0.08 / abs(p.y + sin((bx + time) * xScale) * yScale);
+        // Vibrant orange & amber color scheme matching portfolio theme
+        float r = 0.08 / abs(p.y + sin((rx + time) * xScale) * yScale);
+        float g = 0.038 / abs(p.y + sin((gx + time) * xScale) * yScale);
+        float b = 0.01 / abs(p.y + sin((bx + time) * xScale) * yScale);
         
         gl_FragColor = vec4(r, g, b, 1.0);
       }
@@ -81,7 +81,7 @@ export function RaysBackground() {
       refs.renderer = new THREE.WebGLRenderer({ 
         canvas, 
         alpha: true,
-        antialias: false, // Disable for performance
+        antialias: false,
         powerPreference: "high-performance",
       });
       refs.renderer.setPixelRatio(pixelRatio);
@@ -124,7 +124,6 @@ export function RaysBackground() {
     };
 
     const animate = () => {
-      // Only animate if visible
       if (isVisible && refs.uniforms) {
         refs.uniforms.time.value += 0.01;
       }
@@ -147,7 +146,6 @@ export function RaysBackground() {
     initScene();
     animate();
     
-    // Debounced resize handler
     let resizeTimeout;
     const debouncedResize = () => {
       clearTimeout(resizeTimeout);
@@ -174,8 +172,10 @@ export function RaysBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute top-0 left-0 w-full h-full block pointer-events-none opacity-20"
+      className="absolute top-0 left-0 w-full h-full block pointer-events-none opacity-40"
       style={{ zIndex: 0 }}
     />
   );
 }
+
+export default RaysBackground;

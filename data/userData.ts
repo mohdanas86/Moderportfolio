@@ -119,25 +119,25 @@ export const certificates = {
       id: "cert-1",
       image: "/certificates/deloitte.png",
       title: "Deloitte Australia - Data Analytics Job Simulation",
-      issuer: "Forage",
+      issuer: "Deloitte / Forage",
       description:
-        "Hands-on experience with real-world data analytics challenges from a Big 4 consulting firm",
+        "Hands-on experience with real-world data analytics, dashboard design, and business intelligence challenges.",
     },
     {
       id: "cert-2",
       image: "/certificates/Accenture UK_page-0001.jpg",
       title: "Accenture UK - Software Engineering Job Simulation",
-      issuer: "Accenture",
+      issuer: "Accenture / Forage",
       description:
-        "Professional software engineering practices and methodologies from a global technology leader",
+        "Professional software engineering practices, architecture methodologies, and code debugging at enterprise scale.",
     },
     {
       id: "cert-3",
       image: "/certificates/Tata Group_page-0001.jpg",
       title: "Tata Group - Professional Development Program",
-      issuer: "Tata Group",
+      issuer: "Tata Group / Forage",
       description:
-        "Leadership and professional skills development from one of India's largest conglomerates",
+        "Leadership, strategic communication, and professional engineering practices from one of India's leading conglomerates.",
     },
   ],
   "Technical Certifications & Skills": [
@@ -145,18 +145,18 @@ export const certificates = {
       id: "cert-13",
       image: "/certificates/5-Day_AI_Agents_Intensive_Course.png",
       title: "5-Day AI Agents Intensive Course with Google",
-      issuer: "Google",
+      issuer: "Google Cloud",
       description:
-        "Intensive training on AI agents development and implementation with Google technologies",
+        "Intensive training on autonomous AI agents, tool orchestration, and LLM implementation with Google technologies.",
     },
     {
       id: "cert-14",
       image: "/certificates/participating_masterclass.png",
       title:
-        "Masterclass on Data Science, Artificial Intelligence, and Cyber Security & Privacy",
-      issuer: "Educational Institution",
+        "Masterclass on Data Science, AI, Cyber Security & Privacy",
+      issuer: "Masterclass Academy",
       description:
-        "Advanced masterclass covering data science, AI, and cybersecurity & privacy concepts",
+        "Advanced deep-dive covering modern data science pipelines, AI systems, and cloud security & privacy paradigms.",
     },
     {
       id: "cert-10",
@@ -164,40 +164,40 @@ export const certificates = {
       title: "Machine Learning with Python",
       issuer: "Coursera",
       description:
-        "Comprehensive understanding of machine learning concepts and practical implementation using Python.",
+        "Comprehensive understanding of machine learning algorithms, model evaluation, and practical Python implementation.",
     },
     {
       id: "cert-11",
       image: "/certificates/mongodb-basic-of-students.png",
       title: "MongoDB Basics for Students",
-      issuer: "MongoDB, Inc",
+      issuer: "MongoDB, Inc.",
       description:
-        "Foundational understanding of MongoDB document database fundamentals and basic operations.",
+        "Foundational understanding of NoSQL document database schema design, indexing, and CRUD operations.",
     },
     {
       id: "cert-12",
       image: "/certificates/relational-doc-model.png",
       title: "Relational to Document Model",
-      issuer: "MongoDB, Inc",
+      issuer: "MongoDB, Inc.",
       description:
-        "Understanding the transition from relational database concepts to MongoDB's document-based approach.",
+        "Strategic database migration and modeling techniques from relational schemas to flexible MongoDB document architectures.",
     },
     {
       id: "cert-4",
       image: "/certificates/postman.png",
       title: "Postman API Fundamentals Student Expert",
-      issuer: "Canvas Credentials (Badgr)",
+      issuer: "Postman",
       description:
-        "API testing, documentation, and development using industry-standard tools",
+        "RESTful API design, automated test suites, documentation, and mock server development with Postman.",
     },
     {
       id: "cert-5",
       image:
         "/certificates/frontend_developer_react certificate (1)_page-0001.jpg",
-      title: "Frontend Developer React Certificate",
+      title: "Frontend Developer (React) Certificate",
       issuer: "HackerRank",
       description:
-        "Advanced React.js development skills validated through practical coding assessments",
+        "Advanced React.js development skills, state management, and performance optimization validated via coding assessments.",
     },
     {
       id: "cert-6",
@@ -205,7 +205,7 @@ export const certificates = {
       title: "Introduction to Cybersecurity",
       issuer: "Cisco Networking Academy",
       description:
-        "Foundational cybersecurity principles, threat detection, and network security fundamentals",
+        "Foundational cybersecurity principles, threat detection, network security protocols, and vulnerability mitigation.",
     },
     {
       id: "cert-7",
@@ -213,26 +213,22 @@ export const certificates = {
       title: "Introduction to Data Science",
       issuer: "Simplilearn",
       description:
-        "Data analysis, machine learning basics, and statistical modeling techniques",
+        "Data wrangling, statistical modeling, exploratory analysis, and machine learning pipeline fundamentals.",
     },
   ],
   "Competitions & Academic Achievements": [
     {
-      id: "cert-8",
-      image: "/certificates/object-automation-hackathon_page-0001.jpg",
-      title: "Object Automation Hackathon",
-      issuer: "Hackathon",
+      id: "cert-16",
+      image: "/certificates/certificateOfProjectArena.jpeg",
+      title: "2nd Place | Project Arena",
+      type: "achievement",
+      date: "March 2026",
+      organization: "National Level Technical Fest (Pragyotsav 2K26)",
+      badge: "🥈",
+      link: null,
+      issuer: "Project Arena",
       description:
-        "Innovative automation solutions developed under time constraints in competitive environment",
-    },
-    {
-      id: "cert-9",
-      image:
-        "/certificates/Participation _ Student_E Certificate-251-500-77_page-0001.jpg",
-      title: "Research Paper Participation Certificate",
-      issuer: "Educational Institution",
-      description:
-        "Academic research contribution and scholarly publication participation",
+        "Won 2nd place at Project Arena (Pragyotsav 2K26), a national-level technical fest, delivering a full-stack production application under time constraints.",
     },
     {
       id: "cert-15",
@@ -240,20 +236,24 @@ export const certificates = {
       title: "AI Agent Hackathon - IIM Nagpur",
       issuer: "IIM Nagpur",
       description:
-        "Participation in AI agent development hackathon at Indian Institute of Management Nagpur",
+        "Built and pitched autonomous AI agents solving enterprise workflows at Indian Institute of Management Nagpur.",
     },
     {
-      id: "cert-16",
-      image: "/certificates/certificateOfProjectArena.jpeg",
-      title: "2nd Place | Project Arena",
-      type: "achievement",
-      date: "March 2026",
-      organization: "National Level Technical Fest",
-      badge: "🥈",
-      link: null,
-      issuer: "Project Arena",
+      id: "cert-8",
+      image: "/certificates/object-automation-hackathon_page-0001.jpg",
+      title: "Object Automation Hackathon",
+      issuer: "Object Automation",
       description:
-        "Won 2nd place at Project Arena (Pragyotsav 2K26), a national-level technical fest, with a strong full-stack solution under time constraints.",
+        "Engineered innovative automated solutions and web interfaces under competitive hackathon conditions.",
+    },
+    {
+      id: "cert-9",
+      image:
+        "/certificates/Participation _ Student_E Certificate-251-500-77_page-0001.jpg",
+      title: "Research Paper Presentation Certificate",
+      issuer: "Academic Research Forum",
+      description:
+        "Presented academic research contributions focusing on scalable software architecture and emerging web technologies.",
     },
   ],
 };
@@ -267,12 +267,12 @@ export const experienceData = [
     location: "Remote",
     type: "Open Source",
     responsibilities: [
-      "Contributed production-ready features and fixes across 5+ open-source organizations on GitHub.",
-      "Magic UI (@magicuidesign): Improved animated React component experiences used by thousands of developers.",
-      "HeyPuter (@HeyPuter): Contributed to Puter, an open-source cloud OS platform.",
-      "C2SI Org (@c2siorg): Contributed to Ceylon Computer Science Institute open source projects.",
-      "Semantic UI (@Semantic-Org): Added and improved UI framework functionality and developer experience.",
-      "First Contributions (@firstcontributions): Supported onboarding journeys for new open-source contributors.",
+      "Contributed production-ready features and bug fixes across 5+ prominent open-source repositories on GitHub.",
+      "Magic UI (@magicuidesign): Enhanced animated React component libraries and developer documentation used by thousands of developers.",
+      "HeyPuter (@HeyPuter): Contributed to Puter, an advanced open-source cloud desktop OS platform.",
+      "C2SI Org (@c2siorg): Contributed to Ceylon Computer Science Institute open-source research and tooling.",
+      "Semantic UI (@Semantic-Org): Improved UI framework responsiveness, cross-browser compatibility, and developer experience.",
+      "First Contributions (@firstcontributions): Mentored and supported onboarding journeys for junior open-source contributors.",
     ],
   },
   {
@@ -281,10 +281,10 @@ export const experienceData = [
     duration: "Sep 2025 - Present",
     location: "SRM Institute of Science and Technology",
     responsibilities: [
-      "Promote Google technologies and initiatives within the university community.",
-      "Organize workshops, tech talks, and events to engage students with Google products.",
-      "Collaborate with other ambassadors to share best practices and enhance outreach efforts.",
-      "Serve as a liaison between Google and the student body, providing feedback and insights.",
+      "Promote Google Cloud, Gemini AI, and web technologies across the university student developer ecosystem.",
+      "Organize technical workshops, hackathons, and tech talks to train students on modern Google developer tooling.",
+      "Collaborate with regional ambassador networks to coordinate cross-campus technical events and hackathons.",
+      "Serve as a direct liaison between Google Developer Programs and 1,000+ student developers.",
     ],
   },
   {
@@ -293,21 +293,21 @@ export const experienceData = [
     duration: "Jul 2025 - Present",
     location: "SRM Institute of Science and Technology",
     responsibilities: [
-      "Founded and established NextGen Crews, a student-led community bridging tech and non-tech domains",
-      "Lead interdisciplinary initiatives including Full Stack Development, AI/Data Science, UI/UX Design, and Content Creation",
-      "Mentor students in developing both technical skills and soft skills for industry readiness",
-      "Organize weekly Tech x Talk sessions, bootcamps",
+      "Founded and lead NextGen Crews, a 200+ member student technical community bridging full-stack development, AI, and UI/UX design.",
+      "Direct technical bootcamps and collaborative projects covering React, Next.js, Node.js, and cloud deployments.",
+      "Mentor junior engineers in clean code principles, version control workflows, and software engineering interviews.",
+      "Organize weekly Tech x Talk sessions, coding sprints, and project demo days.",
     ],
   },
   {
     title: "Executive Member - Institute Innovation Entrepreneur Council",
     company: "SRM Institute of Science and Technology (SRMIST)",
     duration: "Jan 2025 - Present",
-    location: "SRM IST Chennai",
+    location: "Chennai, India",
     responsibilities: [
-      "Organized and managed events to foster innovation and entrepreneurship at SRM IST Chennai.",
-      "Collaborated with stakeholders to develop strategies and provide mentorship for students and faculty.",
-      "Facilitated resources to promote innovative thinking and entrepreneurial growth within the institution.",
+      "Coordinated campus-wide entrepreneurship summits and technical hackathons promoting student-led innovation.",
+      "Collaborated with faculty, industry mentors, and student startup founders to facilitate incubation resources.",
+      "Organized project evaluation panels and mentored student teams through prototype development.",
     ],
   },
   {
@@ -316,11 +316,9 @@ export const experienceData = [
     duration: "May 2025 – Jun 2025",
     location: "Remote",
     responsibilities: [
-      "Worked on data analysis projects as part of internship under Cognifyz Technologies.",
-      "Demonstrated strong analytical and problem-solving skills using relevant data tools.",
-      "Showcased effective communication, attention to detail, and coordination throughout the internship.",
-      "Proactively took on new challenges with enthusiasm and a desire to learn.",
-      "Gained practical exposure to data cleaning, interpretation, and reporting.",
+      "Conducted exploratory data analysis (EDA) on multi-dimensional business datasets using Python, Pandas, and NumPy.",
+      "Built automated data cleaning and transformation scripts, significantly reducing anomalies and missing values.",
+      "Designed visual reporting charts and metrics using Matplotlib and Seaborn to communicate insights clearly.",
     ],
   },
   {
@@ -329,9 +327,9 @@ export const experienceData = [
     duration: "Feb 2025 – Mar 2025",
     location: "Remote",
     responsibilities: [
-      "Built and launched the 'Trade Journal' feature from scratch for multiple brokerage platforms.",
-      "Designed a dynamic dashboard with interactive charts to enhance trade tracking and data visualization.",
-      "Collaborated closely with designers and backend developers to ensure seamless integration.",
+      "Architected and delivered the 'Trade Journal' feature from scratch for interactive financial charting platforms.",
+      "Implemented real-time data visualization charts and responsive trading dashboards using React.js and Tailwind CSS.",
+      "Collaborated closely with product designers and backend engineers to integrate low-latency RESTful APIs.",
     ],
   },
   {
@@ -340,220 +338,81 @@ export const experienceData = [
     duration: "Nov 2024 – Dec 2024",
     location: "Remote",
     responsibilities: [
-      "Designed and implemented responsive, user-friendly interfaces using HTML5, CSS3, and JavaScript.",
-      "Enhanced frontend performance by redesigning components with React.js and Tailwind CSS.",
-      "Improved API response times and integrated new features for a smoother user experience.",
+      "Developed responsive, accessible user interfaces for web applications using React.js, Tailwind CSS, and JavaScript (ES6+).",
+      "Optimized core frontend components to reduce load times and improve interaction responsiveness.",
+      "Integrated backend endpoints and improved error handling for consistent user feedback.",
     ],
   },
   {
-    title: "Web Developer",
-    company: "Fiverr - Freelance",
-    duration: "",
-    location: "",
+    title: "Full Stack Web Developer (Freelance)",
+    company: "Fiverr / Independent Clients",
+    duration: "2024 - Present",
+    location: "Remote",
     responsibilities: [
-      "Completed freelance projects building responsive web apps tailored to client requirements.",
-      "Delivered custom solutions using React.js, HTML5, CSS3, and JavaScript.",
-      "Achieved high client satisfaction by meeting deadlines and providing quality results.",
-      "Collaborated with global clients, improving communication and project management skills.",
+      "Delivered custom, responsive full-stack web applications for global clients using React, Next.js, Node.js, and MongoDB.",
+      "Ensured high performance, SEO optimization, and clean cross-browser UI execution with 100% on-time delivery.",
+      "Handled end-to-end delivery from requirements analysis and wireframing to database modeling and cloud deployment.",
     ],
-  },
-];
-
-// Project Portfolio Data
-export const Projects = [
-  {
-    id: "POWERGRID Inventory Management System",
-    img: "/dashboard.png",
-    title: "POWERGRID Inventory Management System",
-    des: "A comprehensive, inventory management, demand forecasting, and procurement optimization.",
-    repo: "https://github.com/mohdanas86/POWERGRID-Inventory-Management-System",
-    link: "",
-  },
-  {
-    img: "/smartcrop.png",
-    title: "Smart Crop Advisory System",
-    des: "AI-powered crop disease detection platform that provides instant diagnosis and treatment recommendations for farmers.",
-    repo: "https://github.com/mohdanas86/agrilenses_frontend",
-    link: "https://agrilenses.netlify.app/",
-  },
-  {
-    img: "/imgrithm.png",
-    title: "Image Compression Tool",
-    des: "Free online image compression tool supporting bulk optimization and WebP conversion with minimal quality loss.",
-    repo: "",
-    link: "https://imgrithm.tech/",
-  },
-  {
-    img: "/fynsera.png",
-    title: "Fynnsera – AI Financial Assistant",
-    des: "AI platform with real-time financial analytics and personalized chatbot assistance.",
-    repo: "https://github.com/mohdanas86/fynnsera",
-    link: "https://fynsera.netlify.app/",
-  },
-  {
-    img: "/ainotestaker.png",
-    title: "AI Notes Taker",
-    des: "PDF text analysis tool that generates summaries and answers with integrated auth and payment system.",
-    repo: "https://github.com/mohdanas86/ainotestaker",
-    link: "https://ainotestaker.netlify.app/",
-  },
-  {
-    img: "/anaspice.png",
-    title: "AnaSpice – Food Delivery App",
-    des: "Food delivery platform with real-time order tracking and responsive design.",
-    repo: "https://github.com/mohdanas86/anaspiceFood.git",
-    link: "https://anaspice.netlify.app/",
-  },
-  {
-    img: "/blog-backend.png",
-    title: "Blog API Platform",
-    des: "RESTful blog backend with Express.js, MongoDB, and Redis featuring caching and Docker containerization.",
-    repo: "https://github.com/mohdanas86/Blog-CRUD",
-    link: "",
   },
 ];
 
 // Technology Icons Data
 export const techIcons = [
   // Programming Languages
-  {
-    name: "C",
-    src: "/techicons/c.svg",
-  },
-  {
-    name: "C++",
-    src: "/techicons/c++.svg",
-  },
-  {
-    name: "Java",
-    src: "/techicons/java.svg",
-  },
-  {
-    name: "Python",
-    src: "/techicons/python.svg",
-  },
   { name: "JavaScript", src: "/techicons/javascript.svg" },
-  {
-    name: "TypeScript",
-    src: "/techicons/typescript.svg",
-  },
+  { name: "TypeScript", src: "/techicons/typescript.svg" },
+  { name: "Python", src: "/techicons/python.svg" },
+  { name: "Java", src: "/techicons/java.svg" },
+  { name: "C++", src: "/techicons/c++.svg" },
+  { name: "C", src: "/techicons/c.svg" },
 
   // Frontend Development
+  { name: "React", src: "/icons/react.svg" },
+  { name: "Next.js", src: "/icons/next.svg" },
+  { name: "Tailwind CSS", src: "https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" },
   { name: "HTML5", src: "/html.png" },
   { name: "CSS3", src: "/css-3.png" },
-  {
-    name: "React",
-    src: "/icons/react.svg",
-    // src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg",
-  },
-  {
-    name: "Next.js",
-    src: "/icons/next.svg",
-    // src: "https://cdn.worldvectorlogo.com/logos/nextjs-2.svg",
-  },
-  {
-    name: "Tailwind CSS",
-    src: "https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg",
-  },
-  {
-    name: "Bootstrap",
-    src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg",
-  },
-  { name: "Pug", src: "https://cdn.worldvectorlogo.com/logos/pug.svg" },
+  { name: "Bootstrap", src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg" },
 
   // Backend Development
-  {
-    name: "Node.js",
-    src: "/icons/node.svg",
-    // src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg",
-  },
-  {
-    name: "Express.js",
-    // src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg",
-    src: "/icons/express.svg",
-  },
+  { name: "Node.js", src: "/icons/node.svg" },
+  { name: "Express.js", src: "/icons/express.svg" },
 
   // Databases
-  {
-    name: "MongoDB",
-    src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg",
-  },
-  {
-    name: "MySQL",
-    src: "/icons/sql.svg",
-    // src: "/techicons/mysql.svg",
-  },
-  {
-    name: "Redis",
-    src: "/techicons/redis.svg",
-  },
+  { name: "MongoDB", src: "/techicons/mongodb.svg" },
+  { name: "MySQL", src: "/techicons/mysql.svg" },
+  { name: "Redis", src: "/techicons/redis.svg" },
 
   // Data Science & Machine Learning
-  {
-    name: "NumPy",
-    src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/numpy/numpy-original.svg",
-  },
-  {
-    name: "Pandas",
-    src: "https://raw.githubusercontent.com/devicons/devicon/2ae2a900d2f041da66e950e4d48052658d850630/icons/pandas/pandas-original.svg",
-  },
-  {
-    name: "Matplotlib",
-    src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/matplotlib/matplotlib-original.svg",
-  },
-  {
-    name: "Seaborn",
-    src: "https://seaborn.pydata.org/_images/logo-mark-lightbg.svg",
-  },
-  {
-    name: "Scikit-learn",
-    src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/scikitlearn/scikitlearn-original.svg",
-  },
-  {
-    name: "Jupyter",
-    src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/jupyter/jupyter-original-wordmark.svg",
-  },
+  { name: "NumPy", src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/numpy/numpy-original.svg" },
+  { name: "Pandas", src: "https://raw.githubusercontent.com/devicons/devicon/2ae2a900d2f041da66e950e4d48052658d850630/icons/pandas/pandas-original.svg" },
+  { name: "Matplotlib", src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/matplotlib/matplotlib-original.svg" },
+  { name: "Seaborn", src: "https://seaborn.pydata.org/_images/logo-mark-lightbg.svg" },
+  { name: "Scikit-learn", src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/scikitlearn/scikitlearn-original.svg" },
+  { name: "Jupyter", src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/jupyter/jupyter-original-wordmark.svg" },
 
   // Cloud & DevOps
-  {
-    name: "Google Cloud",
-    src: "https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg",
-  },
-  { name: "Docker", src: "/icons/docker.svg" },
+  { name: "Google Cloud", src: "/techicons/gcloud.svg" },
+  { name: "Docker", src: "/techicons/docker.svg" },
+  { name: "Netlify", src: "/techicons/netlify.svg" },
 
   // Development Tools
-  {
-    name: "Git",
-    src: "https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg",
-  },
-  {
-    name: "GitHub",
-    src: "/techicons/github.svg",
-  },
-  {
-    name: "Postman",
-    src: "/techicons/postman.png",
-  },
-  {
-    name: "Prisma",
-    src: "/techicons/prisma.svg",
-  },
-  {
-    name: "Gemini",
-    src: "/techicons/gemini.svg",
-  },
-  {
-    name: "Netlify",
-    src: "/techicons/netlify.svg",
-  },
+  { name: "Git", src: "https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" },
+  { name: "GitHub", src: "/techicons/github.svg" },
+  { name: "Postman", src: "/techicons/postman.png" },
+  { name: "Prisma", src: "/techicons/prisma.svg" },
+  { name: "Gemini", src: "/techicons/gemini.svg" },
 ];
 
 // Helper function to get tech icon by name
 export const getTechIcon = (name) => {
-  return techIcons.find((icon) => icon.name === name);
+  return techIcons.find((icon) => icon.name.toLowerCase() === (name || "").toLowerCase()) || {
+    name: name,
+    src: "/file.svg",
+  };
 };
 
-// Example: Organize tech icons by category for projects
+// Organize tech icons by category for projects & filters
 export const techCategories = {
   frontend: ["React", "Next.js", "Tailwind CSS", "HTML5", "CSS3", "Bootstrap"],
   backend: ["Node.js", "Express.js", "MongoDB", "MySQL", "Redis"],
@@ -580,6 +439,6 @@ export const techCategories = {
 };
 
 // Helper to get multiple tech icons by names
-export const getTechIcons = (names) => {
+export const getTechIcons = (names = []) => {
   return names.map((name) => getTechIcon(name)).filter(Boolean);
 };

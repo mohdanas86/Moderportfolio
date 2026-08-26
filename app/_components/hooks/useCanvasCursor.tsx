@@ -125,8 +125,10 @@ const useCanvasCursor = () => {
   }
 
   function resizeCanvas() {
-    ctx.canvas.width = window.innerWidth - 20;
-    ctx.canvas.height = window.innerHeight;
+    if (ctx && ctx.canvas) {
+      ctx.canvas.width = window.innerWidth;
+      ctx.canvas.height = window.innerHeight;
+    }
   }
 
   var ctx,
@@ -150,7 +152,10 @@ const useCanvasCursor = () => {
   }
 
   const renderCanvas = function () {
-    ctx = document.getElementById("canvas").getContext("2d");
+    const canvas = document.getElementById("canvas");
+    if (!canvas) return;
+    ctx = canvas.getContext("2d");
+    if (!ctx) return;
     ctx.running = true;
     ctx.frame = 1;
     f = new n({
@@ -164,13 +169,13 @@ const useCanvasCursor = () => {
     document.body.addEventListener("orientationchange", resizeCanvas);
     window.addEventListener("resize", resizeCanvas);
     window.addEventListener("focus", () => {
-      if (!ctx.running) {
+      if (ctx && !ctx.running) {
         ctx.running = true;
         render();
       }
     });
     window.addEventListener("blur", () => {
-      ctx.running = true;
+      if (ctx) ctx.running = true;
     });
     resizeCanvas();
   };
@@ -179,20 +184,11 @@ const useCanvasCursor = () => {
     renderCanvas();
 
     return () => {
-      ctx.running = false;
+      if (ctx) ctx.running = false;
       document.removeEventListener("mousemove", onMousemove);
       document.removeEventListener("touchstart", onMousemove);
       document.body.removeEventListener("orientationchange", resizeCanvas);
       window.removeEventListener("resize", resizeCanvas);
-      window.removeEventListener("focus", () => {
-        if (!ctx.running) {
-          ctx.running = true;
-          render();
-        }
-      });
-      window.removeEventListener("blur", () => {
-        ctx.running = true;
-      });
     };
   }, []);
 };
