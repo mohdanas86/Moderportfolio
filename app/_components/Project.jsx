@@ -3,11 +3,10 @@
 import { Github, MoveUpRight, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import ParallaxElement from "./ParallaxElement";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { cn } from "@/lib/utils";
-import { usePathname } from "next/navigation";
 import { projectsData } from "@/data/projectsData";
 import TextAnimateReveal from "./_animations/TextAnimateReveal";
 
@@ -18,15 +17,10 @@ import TextAnimateReveal from "./_animations/TextAnimateReveal";
  */
 const Project = () => {
   const currentPathName = usePathname();
-  const [showAnimation, setShowAnimation] = useState(false);
-
-  useEffect(() => {
-    setShowAnimation(true);
-  }, []);
 
   return (
     <div
-      className={`${showAnimation ? "fade-in" : "opacity-0"} py-16 relative overflow-hidden w-full`}
+      className="py-16 relative overflow-hidden w-full"
       id="projects"
     >
       {/* Projects Section Container */}
@@ -73,17 +67,7 @@ const Project = () => {
         </ParallaxElement>
       </div>
 
-      <style jsx>{`
-        .fade-in {
-          opacity: 1;
-          transform: translateY(0);
-          transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-        }
-        .opacity-0 {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-      `}</style>
+
     </div>
   );
 };

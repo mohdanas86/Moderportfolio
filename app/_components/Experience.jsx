@@ -17,20 +17,36 @@ const ExperienceCard = ({ experience, index }) => {
     const el = ref.current;
     if (!el) return;
 
+    const show = () => setVisible(true);
+
+    // If already in viewport on mount (common on mobile for early cards), show immediately.
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      show();
+      return;
+    }
+
+    // Safety fallback: if observer never fires, force-reveal after 1.8s.
+    const fallback = setTimeout(show, 1800);
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setVisible(true);
+          show();
+          clearTimeout(fallback);
           observer.disconnect();
         }
       },
       {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
+        threshold: 0.08,
+        rootMargin: "0px 0px -40px 0px",
       }
     );
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      clearTimeout(fallback);
+    };
   }, []);
 
   const getResponsibilities = (exp) => {

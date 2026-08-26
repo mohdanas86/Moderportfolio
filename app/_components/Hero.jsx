@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ScrollDownButton from "./ScrollDownButton";
 import ParallaxElement from "./ParallaxElement";
 import {
@@ -16,15 +16,9 @@ import { SparklesText } from "@/components/ui/sparkles-text";
  * @component
  */
 const Hero = () => {
-  const [showAnimation, setShowAnimation] = useState(false);
-
-  useEffect(() => {
-    setShowAnimation(true);
-  }, []);
-
   return (
     <div
-      className={`${showAnimation ? "fade-in" : "opacity-0"} py-4 lg:py-16 relative w-full`}
+      className="py-4 lg:py-16 relative w-full"
       id="home"
     >
       {/* Content with higher z-index */}
@@ -56,17 +50,7 @@ const Hero = () => {
         <ScrollDownButton />
       </div>
 
-      <style jsx>{`
-        .fade-in {
-          opacity: 1;
-          transform: translateY(0);
-          transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-        }
-        .opacity-0 {
-          opacity: 0;
-          transform: translateY(16px);
-        }
-      `}</style>
+
     </div>
   );
 };

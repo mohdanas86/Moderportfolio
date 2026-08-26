@@ -13,12 +13,7 @@ import { SkillBadgeMarquee } from "./_animations/SkillBadgeMarquee";
 import { Lens } from "@/components/ui/lens";
 
 const Badges = () => {
-  const [showAnimation, setShowAnimation] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    setShowAnimation(true);
-  }, []);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -33,8 +28,7 @@ const Badges = () => {
   const allSkillBadges = Object.values(skillBadges).flat();
   return (
     <div
-      className={`${showAnimation ? "fade-in" : "opacity-0"
-        } relative overflow-hidden w-full`}
+      className="relative overflow-hidden w-full"
       id="badges"
     >
       {/* Badges Section Container */}
@@ -243,27 +237,7 @@ const Badges = () => {
         </section>
       </div >
 
-      <style jsx>{`
-        .fade-in {
-          opacity: 1;
-          transition: opacity 0.8s ease-in-out;
-        }
-        .opacity-0 {
-          opacity: 0;
-        }
-        .line-clamp-2 {
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-        .line-clamp-3 {
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-      `}</style>
+
     </div >
   );
 };
